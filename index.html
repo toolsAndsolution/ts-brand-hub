@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>T&S Brand Hub</title>
 
-  <!-- استدعاء خط Cairo -->
+  <!-- استدعاء خط Cairo لواجهة الصفحة -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -96,11 +96,20 @@
       z-index: 1;
     }
 
+    /* ===== هيدر جديد – تصميم مرن للجوال والكمبيوتر ===== */
+
     header.brand-header {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 22px;
+    }
+
+    /* السطر الرئيسي: شعار + عنوان */
+    .brand-header-main {
       display: flex;
       align-items: center;
       gap: 16px;
-      margin-bottom: 24px;
     }
 
     .brand-logo-placeholder {
@@ -161,8 +170,13 @@
       color: var(--text-muted);
     }
 
+    /* السطر الثاني: زر اللغة */
+    .brand-header-actions {
+      display: flex;
+      justify-content: flex-end;
+    }
+
     .lang-toggle {
-      margin-inline-start: auto;
       display: flex;
       align-items: center;
       gap: 6px;
@@ -173,7 +187,6 @@
       border: 1px solid rgba(255,255,255,0.16);
       font-size: 0.8rem;
       color: var(--text-muted);
-      flex-shrink: 0;
     }
 
     .lang-pill {
@@ -185,6 +198,36 @@
       color: #ffffff;
       border: none;
       box-shadow: 0 8px 18px rgba(0,0,0,0.6);
+    }
+
+    /* سلوك الهيدر على الشاشات الصغيرة */
+    @media (max-width: 700px) {
+      header.brand-header {
+        gap: 12px;
+      }
+
+      .brand-header-main {
+        flex-direction: column;
+        align-items: flex-start; /* شعار فوق، ثم العنوان تحته */
+        gap: 10px;
+      }
+
+      .brand-logo-placeholder {
+        width: 56px;
+        height: 56px;
+      }
+
+      .brand-title {
+        font-size: 1.15rem;
+      }
+
+      .brand-subtitle {
+        font-size: 0.84rem;
+      }
+
+      .brand-header-actions {
+        justify-content: flex-start; /* زر اللغة جهة اليمين في RTL */
+      }
     }
 
     nav.quick-nav {
@@ -571,40 +614,44 @@
 
         <!-- ===== الهيدر ===== -->
         <header class="brand-header">
-          <div class="brand-logo-placeholder">
-            <!-- الشعار بصيغة SVG في نفس مجلد index.html -->
-            <img src="ts-logo.svg" alt="T&S Logo">
-          </div>
-
-          <div class="brand-title-block">
-            <div class="brand-title">
-              <div class="brand-title-line">
-                <span class="tr-ar">دليل الهوية البصرية لموظفي T&amp;S</span>
-                <span class="tr-en">T&amp;S Brand Guidelines for Employees</span>
-
-                <span class="brand-title-tag">
-                  <span class="tr-ar">T&amp;S Brand Hub</span>
-                  <span class="tr-en">T&amp;S Brand Hub</span>
-                </span>
-              </div>
+          <div class="brand-header-main">
+            <div class="brand-logo-placeholder">
+              <!-- الشعار بصيغة SVG في نفس مجلد index.html -->
+              <img src="ts-logo.svg" alt="T&S Logo">
             </div>
 
-            <p class="brand-subtitle">
-              <span class="tr-ar">
-                مرجع موحّد لكل ما يخص الشعار، الألوان، الخطوط، القوالب والملفات الرسمية المعتمدة في T&amp;S.
-              </span>
-              <span class="tr-en">
-                A single source of truth for T&amp;S logos, colors, typography, templates, and official brand assets.
-              </span>
-            </p>
+            <div class="brand-title-block">
+              <div class="brand-title">
+                <div class="brand-title-line">
+                  <span class="tr-ar">دليل الهوية البصرية لموظفي T&amp;S</span>
+                  <span class="tr-en">T&amp;S Brand Guidelines for Employees</span>
+
+                  <span class="brand-title-tag">
+                    <span class="tr-ar">T&amp;S Brand Hub</span>
+                    <span class="tr-en">T&amp;S Brand Hub</span>
+                  </span>
+                </div>
+              </div>
+
+              <p class="brand-subtitle">
+                <span class="tr-ar">
+                  مرجع موحّد لكل ما يخص الشعار، الألوان، الخطوط، القوالب والملفات الرسمية المعتمدة في T&amp;S.
+                </span>
+                <span class="tr-en">
+                  A single source of truth for T&amp;S logos, colors, typography, templates, and official brand assets.
+                </span>
+              </p>
+            </div>
           </div>
 
-          <div class="lang-toggle" id="lang-toggle">
-            <span class="tr-ar">اللغة</span>
-            <span class="tr-en">Language</span>
-            <button type="button" class="lang-pill" id="lang-toggle-btn">
-              AR / EN
-            </button>
+          <div class="brand-header-actions">
+            <div class="lang-toggle" id="lang-toggle">
+              <span class="tr-ar">اللغة</span>
+              <span class="tr-en">Language</span>
+              <button type="button" class="lang-pill" id="lang-toggle-btn">
+                AR / EN
+              </button>
+            </div>
           </div>
         </header>
 
@@ -641,7 +688,7 @@
         </nav>
 
         <main>
-          <!-- ===== العمود الرئيسي ===== -->
+          <!-- ===== العمود الرئيسي (يسار) ===== -->
           <section class="section-col">
             <!-- الشعار -->
             <article class="glass-card" id="logos">
@@ -940,8 +987,7 @@
               </div>
             </article>
           </section>
-
-          <!-- ===== العمود الجانبي ===== -->
+          <!-- ===== العمود الجانبي (يمين) ===== -->
           <section class="section-col">
             <!-- لوحة الألوان في صندوق -->
             <article class="glass-card" id="colors">
@@ -1115,27 +1161,38 @@
               <div class="card-body">
                 <p>
                   <span class="tr-ar">
-                    يُفضّل استخدام خط <strong>Cairo</strong> أو خط عربي مشابه في جميع المواد العربية،
-                    مع استخدام <strong>Segoe UI</strong> أو <strong>Inter</strong> في المواد الإنجليزية
-                    لضمان مظهر متناسق وحديث.
+                    الخط الأساسي لهوية T&amp;S هو
+                    <strong>Baloo_Bhaijaan (EN_AR)</strong> للاستخدام في المواد العربية والإنجليزية معاً،
+                    مع إمكانية استخدام <strong>Cairo</strong> في بعض المواد الداخلية.
                   </span>
                   <span class="tr-en">
-                    For Arabic content, use <strong>Cairo</strong> or a similar modern Arabic typeface.
-                    For English, use <strong>Segoe UI</strong> or <strong>Inter</strong> to keep a clean and modern look.
+                    The primary brand typeface for T&amp;S is
+                    <strong>Baloo_Bhaijaan (EN_AR)</strong> for both Arabic and English,
+                    with <strong>Cairo</strong> as an optional font for some internal materials.
                   </span>
                 </p>
+
+                <div class="btn-row">
+                  <a href="assets/fonts/Baloo_Bhaijaan_EN_AR.zip" class="btn-primary" download>
+                    <span>
+                      <span class="tr-ar">تحميل خط Baloo_Bhaijaan (EN_AR)</span>
+                      <span class="tr-en">Download Baloo_Bhaijaan (EN_AR)</span>
+                    </span>
+                  </a>
+                </div>
+
                 <p class="mini-note">
                   <span class="tr-ar">
-                    مثال مقترح:
-                    <br>• عناوين رئيسية: وزن 700 – حجم 24–28px
-                    <br>• عناوين فرعية: وزن 600 – حجم 18–20px
-                    <br>• نص أساسي: وزن 400–500 – حجم 14–16px
+                    مثال مقترح للتدرج:
+                    <br>• العناوين الرئيسية: وزن ثقيل – حجم 24–28px
+                    <br>• العناوين الفرعية: وزن متوسط – حجم 18–20px
+                    <br>• النص الأساسي: وزن عادي – حجم 14–16px
                   </span>
                   <span class="tr-en">
                     Suggested hierarchy:
-                    <br>• Main headings: weight 700 – size 24–28px
-                    <br>• Sub-headings: weight 600 – size 18–20px
-                    <br>• Body text: weight 400–500 – size 14–16px
+                    <br>• Main headings: bold weight – size 24–28px
+                    <br>• Sub-headings: medium weight – size 18–20px
+                    <br>• Body text: regular weight – size 14–16px
                   </span>
                 </p>
               </div>
@@ -1168,7 +1225,7 @@
                   </span>
                 </p>
                 <div class="btn-row">
-                  <a href="assets/brand-book/ts-brand-book-2025.pdf" class="btn-primary" target="_blank">
+                  <a href="assets/brand-book/ts-brand-book.pdf" class="btn-primary" download>
                     <span>
                       <span class="tr-ar">تحميل دليل الهوية (PDF)</span>
                       <span class="tr-en">Download Brand Book (PDF)</span>
