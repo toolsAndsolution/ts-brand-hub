@@ -2,36 +2,44 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>T&S Brand Hub</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- استدعاء خط Cairo لواجهة الصفحة -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="ts-favicon.svg" />
 
-  <!-- Favicon في نفس مسار index.html -->
-  <link rel="icon" type="image/svg+xml" href="ts-favicon.svg">
+  <!-- Cairo Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
 
   <style>
     :root {
-      --ts-primary-1: #0d295c;
-      --ts-primary-2: #8c40ff;
-      --ts-primary-3: #0a0f21;
+      /* Brand Colors */
+      --primary-1: #0d295c;
+      --primary-2: #8c40ff;
+      --primary-3: #0a0f21;
+      --accent-1: #05adad;
+      --accent-2: #3b1745;
+      --accent-3: #113d8f;
+      --accent-4: #f0474a;
 
-      --ts-accent-1: #05adad;
-      --ts-accent-2: #3b1745;
-      --ts-accent-3: #113d8f;
-      --ts-accent-4: #f0474a;
+      --text-primary: #f5f5ff;
+      --text-secondary: #c0c4d6;
 
-      --glass-bg: rgba(10, 15, 33, 0.45);
-      --glass-border: rgba(255, 255, 255, 0.18);
-      --text-main: #f5f5ff;
-      --text-muted: #c0c4d6;
-      --radius-lg: 24px;
-      --radius-md: 18px;
-      --transition-fast: 0.25s ease-out;
-      --shadow-strong: 0 22px 60px rgba(0, 0, 0, 0.75);
+      --glass-bg: rgba(10, 15, 33, 0.78);
+      --glass-border: rgba(255, 255, 255, 0.06);
+      --chip-bg: rgba(17, 61, 143, 0.25);
+      --chip-border: rgba(255, 255, 255, 0.08);
+
+      --radius-lg: 20px;
+      --radius-pill: 999px;
+
+      --transition-fast: 0.18s ease-out;
+      --transition-med: 0.25s ease-out;
     }
 
     * {
@@ -45,1388 +53,1816 @@
     }
 
     body {
-      font-family: "Cairo", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background:
-        radial-gradient(circle at 0% 0%, rgba(140, 64, 255, 0.35), transparent 55%),
-        radial-gradient(circle at 100% 100%, rgba(5, 173, 173, 0.25), transparent 55%),
-        linear-gradient(135deg, #02040b, #0a0f21 40%, #000000 100%);
-      color: var(--text-main);
       min-height: 100vh;
-      padding: 32px 16px;
+      margin: 0;
+      font-family: "Cairo", system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", sans-serif;
+      color: var(--text-primary);
+      background:
+        radial-gradient(circle at top left, rgba(140, 64, 255, 0.4), transparent 55%),
+        radial-gradient(circle at bottom right, rgba(5, 173, 173, 0.35), transparent 55%),
+        linear-gradient(145deg, #050710, #050917, #02030a);
       display: flex;
       justify-content: center;
+    }
+
+    body.lang-ar {
+      direction: rtl;
+      text-align: right;
+    }
+
+    body.lang-en {
+      direction: ltr;
+      text-align: left;
     }
 
     .page-wrapper {
       width: 100%;
       max-width: 1200px;
+      padding: 24px 16px 32px;
     }
 
-    .glass-shell {
-      position: relative;
-      border-radius: 32px;
-      padding: 26px 22px 32px;
-      background: radial-gradient(circle at 0 0, rgba(255,255,255,0.1), transparent 55%),
-                  radial-gradient(circle at 100% 100%, rgba(5,173,173,0.08), transparent 55%),
-                  linear-gradient(135deg, rgba(13,41,92,0.92), rgba(10,15,33,0.96));
-      box-shadow: var(--shadow-strong);
-      border: 1px solid rgba(255,255,255,0.12);
-      overflow: hidden;
+    @media (min-width: 768px) {
+      .page-wrapper {
+        padding: 32px 24px 40px;
+      }
     }
 
-    .glass-shell::before {
-      content: "";
-      position: absolute;
-      inset: -80px;
-      background:
-        linear-gradient(120deg, rgba(255,255,255,0.08), transparent 40% 60%, rgba(5,173,173,0.06)),
-        repeating-linear-gradient(
-          135deg,
-          rgba(255,255,255,0.08) 0px,
-          rgba(255,255,255,0.08) 1px,
-          transparent 1px,
-          transparent 6px
-        );
-      opacity: 0.12;
-      pointer-events: none;
+    .glass-card {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-lg);
+      box-shadow:
+        0 22px 50px rgba(0, 0, 0, 0.72),
+        0 0 0 1px rgba(255, 255, 255, 0.02);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
     }
 
-    .glass-shell-inner {
-      position: relative;
-      z-index: 1;
-    }
-
-    /* ===== هيدر جديد – تصميم مرن للجوال والكمبيوتر ===== */
-
-    header.brand-header {
+    /* HEADER */
+    .main-header {
       display: flex;
       flex-direction: column;
-      gap: 10px;
-      margin-bottom: 22px;
-    }
-
-    /* السطر الرئيسي: شعار + عنوان */
-    .brand-header-main {
-      display: flex;
-      align-items: center;
       gap: 16px;
+      margin-bottom: 18px;
     }
 
-    .brand-logo-placeholder {
-      width: 64px;
-      height: 64px;
-      border-radius: 24px;
-      background: radial-gradient(circle at 30% 0%, rgba(255,255,255,0.25), transparent 60%),
-                  linear-gradient(135deg, var(--ts-primary-2), var(--ts-accent-1));
+    .header-top {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      padding: 18px 18px 16px;
+      align-items: center;
+    }
+
+    @media (min-width: 768px) {
+      .header-top {
+        padding: 20px 22px 16px;
+      }
+    }
+
+    .logo-box {
+      width: 60px;
+      height: 60px;
+      border-radius: 18px;
+      background: radial-gradient(circle at 10% 0%, rgba(140, 64, 255, 0.6), transparent 55%),
+        rgba(10, 15, 33, 0.92);
+      border: 1px solid rgba(255, 255, 255, 0.16);
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 14px 35px rgba(0,0,0,0.6);
       flex-shrink: 0;
-      overflow: hidden;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.7);
     }
 
-    .brand-logo-placeholder img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
+    .logo-box img {
+      max-width: 70%;
+      max-height: 70%;
+      display: block;
     }
 
-    .brand-title-block {
-      flex: 1;
-      min-width: 0;
-    }
-
-    .brand-title {
-      font-size: 1.4rem;
-      font-weight: 700;
-      letter-spacing: 0.02em;
+    .header-text {
+      flex: 1 1 220px;
       display: flex;
       flex-direction: column;
       gap: 4px;
     }
 
-    .brand-title-line {
-      display: flex;
-      align-items: baseline;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
-    .brand-title-tag {
-      font-size: 0.8rem;
-      font-weight: 500;
-      color: var(--ts-accent-1);
-      background: rgba(10,15,33,0.75);
-      padding: 3px 8px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.15);
-      white-space: nowrap;
-    }
-
-    .brand-subtitle {
-      margin-top: 6px;
-      font-size: 0.9rem;
-      color: var(--text-muted);
-    }
-
-    /* السطر الثاني: زر اللغة */
-    .brand-header-actions {
-      display: flex;
-      justify-content: flex-end;
-    }
-
-    .lang-toggle {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      padding: 6px 10px;
-      border-radius: 999px;
-      backdrop-filter: blur(14px);
-      background: rgba(0,0,0,0.4);
-      border: 1px solid rgba(255,255,255,0.16);
-      font-size: 0.8rem;
-      color: var(--text-muted);
-    }
-
-    .lang-pill {
-      padding: 4px 10px;
-      border-radius: 999px;
-      cursor: pointer;
-      font-weight: 600;
-      background: linear-gradient(135deg, var(--ts-primary-2), var(--ts-accent-1));
-      color: #ffffff;
-      border: none;
-      box-shadow: 0 8px 18px rgba(0,0,0,0.6);
-    }
-
-    /* سلوك الهيدر على الشاشات الصغيرة */
-    @media (max-width: 700px) {
-      header.brand-header {
-        gap: 12px;
-      }
-
-      .brand-header-main {
-        flex-direction: column;
-        align-items: flex-start; /* شعار فوق، ثم العنوان تحته */
-        gap: 10px;
-      }
-
-      .brand-logo-placeholder {
-        width: 56px;
-        height: 56px;
-      }
-
-      .brand-title {
-        font-size: 1.15rem;
-      }
-
-      .brand-subtitle {
-        font-size: 0.84rem;
-      }
-
-      .brand-header-actions {
-        justify-content: flex-start; /* زر اللغة جهة اليمين في RTL */
-      }
-    }
-
-    nav.quick-nav {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 20px;
-    }
-
-    .nav-chip {
-      padding: 6px 12px;
-      border-radius: 999px;
-      font-size: 0.8rem;
-      border: 1px solid rgba(255,255,255,0.18);
-      background: rgba(10,15,33,0.7);
-      backdrop-filter: blur(10px);
-      text-decoration: none;
-      color: var(--text-muted);
+    .hub-tag {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      transition: var(--transition-fast);
-    }
-
-    .nav-chip:hover {
-      border-color: var(--ts-accent-1);
+      border-radius: var(--radius-pill);
+      padding: 3px 10px;
+      font-size: 11px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      background: linear-gradient(120deg, rgba(140, 64, 255, 0.3), rgba(5, 173, 173, 0.25));
       color: #ffffff;
-      transform: translateY(-1px);
-      box-shadow: 0 8px 18px rgba(0,0,0,0.6);
+      border: 1px solid rgba(255, 255, 255, 0.18);
     }
 
-    main {
-      display: grid;
-      grid-template-columns: minmax(0, 2fr) minmax(0, 1.4fr);
-      gap: 20px;
+    .hub-tag-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #3bffca;
+      box-shadow: 0 0 12px rgba(59, 255, 202, 0.8);
     }
 
-    @media (max-width: 900px) {
-      main {
-        grid-template-columns: minmax(0, 1fr);
+    .header-title {
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1.35;
+    }
+
+    @media (min-width: 768px) {
+      .header-title {
+        font-size: 20px;
       }
     }
 
-    .section-col {
+    .header-subtitle {
+      font-size: 13px;
+      color: var(--text-secondary);
+      max-width: 560px;
+    }
+
+    .header-subtitle strong {
+      font-weight: 600;
+      color: #ffffff;
+    }
+
+    .header-lang-nav {
       display: flex;
       flex-direction: column;
+      gap: 10px;
+      margin-top: 6px;
+      width: 100%;
+    }
+
+    @media (min-width: 768px) {
+      .header-lang-nav {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+      }
+    }
+
+    .lang-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 6px 4px 4px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: linear-gradient(120deg, rgba(13, 41, 92, 0.9), rgba(17, 61, 143, 0.9));
+      align-self: flex-end;
+    }
+
+    body.lang-en .lang-toggle {
+      align-self: flex-start;
+    }
+
+    @media (min-width: 768px) {
+      .lang-toggle {
+        align-self: auto;
+      }
+    }
+
+    .lang-label {
+      font-size: 11px;
+      color: var(--text-secondary);
+      white-space: nowrap;
+      padding-inline: 4px;
+    }
+
+    .lang-pill {
+      border-radius: var(--radius-pill);
+      border: none;
+      padding: 4px 10px;
+      font-size: 11px;
+      font-weight: 600;
+      cursor: pointer;
+      background: transparent;
+      color: #e0e2ff;
+      transition: background var(--transition-fast), color var(--transition-fast),
+        transform 0.1s ease-out;
+    }
+
+    .lang-pill.active {
+      background: #f5f5ff;
+      color: #0a0f21;
+      box-shadow: 0 0 0 1px rgba(10, 15, 33, 0.8), 0 8px 18px rgba(0, 0, 0, 0.7);
+    }
+
+    .lang-pill:active {
+      transform: translateY(1px);
+    }
+
+    /* QUICK NAV */
+    .quick-nav {
+      padding: 10px 10px;
+    }
+
+    .quick-nav-title {
+      font-size: 11px;
+      color: var(--text-secondary);
+      margin-inline: 4px;
+      margin-bottom: 6px;
+    }
+
+    .chip-row {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 6px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+      scrollbar-width: thin;
+    }
+
+    .chip-row::-webkit-scrollbar {
+      height: 4px;
+    }
+
+    .chip-row::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.22);
+      border-radius: 999px;
+    }
+
+    .chip {
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      font-size: 11px;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--chip-border);
+      background: var(--chip-bg);
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: background var(--transition-fast), color var(--transition-fast),
+        transform 0.1s ease-out, border-color var(--transition-fast);
+    }
+
+    .chip-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(5, 173, 173, 0.95);
+      box-shadow: 0 0 8px rgba(5, 173, 173, 0.9);
+    }
+
+    .chip:hover {
+      background: rgba(15, 56, 110, 0.7);
+      color: #ffffff;
+      border-color: rgba(255, 255, 255, 0.35);
+      transform: translateY(-1px);
+    }
+
+    /* GRID LAYOUT */
+    .content-grid {
+      display: grid;
+      grid-template-columns: 1fr;
       gap: 16px;
+      margin-top: 10px;
+      margin-bottom: 18px;
     }
 
-    .glass-card {
-      position: relative;
-      background: radial-gradient(circle at 0 0, rgba(255,255,255,0.10), transparent 55%),
-                  linear-gradient(135deg, rgba(10,15,33,0.92), rgba(3,4,10,0.96));
-      border-radius: var(--radius-lg);
-      padding: 16px 16px 18px;
-      border: 1px solid var(--glass-border);
-      box-shadow: 0 18px 40px rgba(0,0,0,0.75);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-      overflow: hidden;
-      transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
+    @media (min-width: 960px) {
+      .content-grid {
+        grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+        align-items: flex-start;
+      }
     }
 
-    .glass-card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        135deg,
-        rgba(140,64,255,0.22),
-        transparent 30%,
-        rgba(5,173,173,0.18),
-        transparent 70%,
-        rgba(240,71,74,0.18)
-      );
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity var(--transition-fast);
+    .column {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
     }
 
-    .glass-card:hover {
-      transform: translateY(-6px) translateZ(0);
-      box-shadow: 0 26px 60px rgba(0,0,0,0.9);
-      border-color: rgba(140,64,255,0.55);
+    .card {
+      padding: 16px 16px 14px;
     }
 
-    .glass-card:hover::before {
-      opacity: 0.8;
+    @media (min-width: 768px) {
+      .card {
+        padding: 18px 18px 16px;
+      }
     }
 
     .card-header {
       display: flex;
       align-items: center;
-      gap: 10px;
+      justify-content: space-between;
+      gap: 12px;
       margin-bottom: 8px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .card-icon {
-      width: 34px;
-      height: 34px;
-      border-radius: 14px;
-      background: radial-gradient(circle at 30% 0%, rgba(255,255,255,0.5), transparent 55%),
-                  linear-gradient(135deg, rgba(140,64,255,0.9), rgba(5,173,173,0.9));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 18px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.7);
-      flex-shrink: 0;
-    }
-
-    .card-title-block {
-      flex: 1;
-      min-width: 0;
     }
 
     .card-title {
-      font-size: 0.98rem;
+      font-size: 14px;
       font-weight: 600;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      align-items: baseline;
+    }
+
+    .card-kicker {
+      font-size: 11px;
+      color: var(--accent-1);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
     }
 
     .card-subtitle {
-      font-size: 0.78rem;
-      color: var(--text-muted);
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-bottom: 10px;
     }
 
     .card-body {
-      margin-top: 4px;
-      font-size: 0.82rem;
-      color: var(--text-muted);
-      position: relative;
-      z-index: 1;
+      font-size: 12px;
+      color: var(--text-secondary);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
     }
 
-    .card-body p + p {
-      margin-top: 4px;
+    .card-body p {
+      line-height: 1.6;
     }
 
-    .tag-row {
+    .badge-row {
       display: flex;
       flex-wrap: wrap;
       gap: 6px;
-      margin-top: 10px;
+      margin-top: 4px;
     }
 
-    .tag {
-      font-size: 0.75rem;
+    .badge {
+      font-size: 10px;
       padding: 3px 8px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.18);
-      background: rgba(0,0,0,0.45);
-      color: var(--text-muted);
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: radial-gradient(circle at 0 0, rgba(140, 64, 255, 0.45), transparent 60%),
+        rgba(10, 15, 33, 0.9);
+      color: #ffffff;
+      white-space: nowrap;
+    }
+
+    .badge-muted {
+      background: rgba(10, 15, 33, 0.8);
+      color: var(--text-secondary);
     }
 
     .btn-row {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
-      margin-top: 10px;
+      margin-top: 6px;
     }
 
-    .btn-primary,
-    .btn-secondary {
+    .btn {
       position: relative;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 7px 14px;
+      gap: 6px;
       border-radius: 999px;
-      border: none;
+      font-size: 11px;
+      padding: 6px 12px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      background: linear-gradient(135deg, rgba(140, 64, 255, 0.9), rgba(17, 61, 143, 0.95));
+      color: #ffffff;
       text-decoration: none;
-      font-size: 0.8rem;
-      font-weight: 600;
       cursor: pointer;
-      overflow: hidden;
+      transition: box-shadow var(--transition-med), transform 0.1s ease-out,
+        background var(--transition-med), border-color var(--transition-med);
       white-space: nowrap;
     }
 
-    .btn-primary {
-      background: linear-gradient(135deg, var(--ts-primary-2), var(--ts-accent-1));
-      color: #ffffff;
-      box-shadow: 0 10px 26px rgba(0,0,0,0.8);
-    }
-
-    .btn-secondary {
-      background: rgba(10,15,33,0.9);
-      color: var(--text-muted);
-      border: 1px solid rgba(255,255,255,0.18);
-    }
-
-    .btn-primary span,
-    .btn-secondary span {
-      position: relative;
-      z-index: 1;
-    }
-
-    .btn-primary::before,
-    .btn-secondary::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(255,255,255,0.3), transparent 40%);
-      opacity: 0;
-      transition: opacity var(--transition-fast);
-    }
-
-    .btn-primary:hover::before,
-    .btn-secondary:hover::before {
+    .btn span.icon {
+      font-size: 13px;
       opacity: 0.9;
     }
 
-    .btn-primary:hover {
+    .btn:focus-visible {
+      outline: 2px solid #ffffff;
+      outline-offset: 2px;
+    }
+
+    .btn:hover {
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.7);
       transform: translateY(-1px);
     }
 
-    .mini-note {
-      margin-top: 8px;
-      font-size: 0.75rem;
-      color: var(--text-muted);
+    .btn:active {
+      transform: translateY(0);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.7);
     }
 
-    footer.page-footer {
-      margin-top: 18px;
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      display: flex;
-      justify-content: space-between;
-      gap: 8px;
-      flex-wrap: wrap;
+    .btn-ghost {
+      background: transparent;
+      border-color: rgba(255, 255, 255, 0.22);
+      color: var(--text-secondary);
     }
 
-    footer strong {
+    .btn-ghost:hover {
+      background: rgba(11, 19, 40, 0.9);
       color: #ffffff;
     }
 
-    .light-orbit {
-      position: absolute;
-      width: 180px;
-      height: 180px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(140,64,255,0.32), transparent 65%);
-      opacity: 0.3;
-      filter: blur(2px);
-      pointer-events: none;
+    .btn-outline-accent {
+      background: transparent;
+      border-color: rgba(5, 173, 173, 0.6);
+      color: #dbfeff;
     }
 
-    .light-orbit.orbit-1 {
-      top: -60px;
-      left: -60px;
+    .btn-outline-accent:hover {
+      background: rgba(5, 173, 173, 0.22);
     }
 
-    .light-orbit.orbit-2 {
-      bottom: -80px;
-      right: -80px;
-      background: radial-gradient(circle, rgba(5,173,173,0.32), transparent 65%);
+    ul {
+      padding-inline-start: 18px;
     }
 
-    /* ===== لوحة الألوان – الصندوق المتوسع ===== */
-    .color-toggle-box {
+    body.lang-ar ul {
+      padding-inline-start: 0;
+      padding-inline-end: 18px;
+    }
+
+    li {
+      margin-bottom: 4px;
+      line-height: 1.6;
+    }
+
+    .two-column-list {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+
+    @media (min-width: 640px) {
+      .two-column-list {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .list-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: #ffffff;
+      margin-bottom: 2px;
+    }
+
+    .muted {
+      color: var(--text-secondary);
+      font-size: 11px;
+    }
+
+    .code-like {
+      font-family: "Cairo", system-ui, sans-serif;
+      font-size: 11px;
+      padding: 3px 7px;
+      border-radius: var(--radius-pill);
+      border: 1px dashed rgba(255, 255, 255, 0.25);
+      background: rgba(10, 15, 33, 0.75);
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      margin-top: 4px;
+    }
+
+    .code-like span.icon {
+      font-size: 12px;
+      opacity: 0.8;
+    }
+
+    /* COLOR PALETTE */
+    .palette-toggle-wrapper {
+      margin-top: 4px;
+      margin-bottom: 8px;
+    }
+
+    .palette-panel {
+      margin-top: 8px;
+      border-radius: 16px;
+      border: 1px dashed rgba(255, 255, 255, 0.18);
+      background: rgba(1, 4, 18, 0.92);
+      padding: 10px 10px 8px;
+      display: none;
+    }
+
+    .palette-panel.open {
+      display: block;
+    }
+
+    .palette-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 10px;
       margin-top: 6px;
     }
 
-    .color-toggle-trigger {
-      width: 100%;
-      border-radius: 999px;
-      border: 1px dashed rgba(255,255,255,0.3);
-      background: rgba(0,0,0,0.4);
-      padding: 8px 12px;
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      display: inline-flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 8px;
-      cursor: pointer;
-      backdrop-filter: blur(10px);
-    }
-
-    .color-toggle-trigger span {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .color-panel {
-      margin-top: 10px;
-      padding: 10px 10px 12px;
-      border-radius: var(--radius-md);
-      border: 1px solid rgba(255,255,255,0.18);
-      background: rgba(3,4,10,0.9);
-      box-shadow: 0 14px 32px rgba(0,0,0,0.8);
-      display: none; /* مخفي افتراضياً */
-    }
-
-    .color-panel-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 8px;
-      margin-bottom: 10px;
-      font-size: 0.8rem;
-      color: var(--text-muted);
-    }
-
-    .palette-close-btn {
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.2);
-      background: rgba(10,15,33,0.9);
-      padding: 4px 10px;
-      font-size: 0.75rem;
-      color: var(--text-muted);
-      cursor: pointer;
-    }
-
-    .color-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: 8px;
-    }
-
-    .color-chip {
-      border-radius: var(--radius-md);
+    .palette-item {
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
       padding: 8px;
-      border: 1px solid rgba(255,255,255,0.16);
-      background: rgba(0,0,0,0.45);
+      background: linear-gradient(135deg, rgba(10, 15, 33, 0.9), rgba(17, 61, 143, 0.8));
       display: flex;
       flex-direction: column;
-      gap: 6px;
-      font-size: 0.78rem;
+      gap: 4px;
+      font-size: 11px;
     }
 
-    .color-swatch {
-      height: 26px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.4);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.7);
+    .swatch {
+      height: 42px;
+      border-radius: 9px;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.3);
     }
 
-    .color-name {
+    .palette-name {
       font-weight: 600;
-      font-size: 0.78rem;
+      color: #ffffff;
+      margin-top: 6px;
     }
 
-    .color-code-row {
+    .palette-hex-row {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 6px;
+      gap: 8px;
+      margin-top: 2px;
     }
 
-    .color-code {
-      font-family: "Cairo", monospace;
-      font-size: 0.75rem;
-      color: var(--text-muted);
+    .palette-hex {
+      font-family: "Cairo", system-ui, sans-serif;
+      font-size: 11px;
+      color: var(--text-secondary);
     }
 
-    .copy-color-btn {
+    .copy-btn {
       border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.25);
-      background: rgba(13,41,92,0.9);
-      padding: 3px 8px;
-      font-size: 0.7rem;
+      border: none;
+      padding: 4px 9px;
+      font-size: 11px;
       cursor: pointer;
-      white-space: nowrap;
+      background: rgba(5, 173, 173, 0.14);
+      color: #dbfeff;
       display: inline-flex;
       align-items: center;
       gap: 4px;
-      color: var(--text-muted);
+      transition: background var(--transition-fast), transform 0.08s ease-out;
     }
 
-    .copy-color-btn.copied {
-      background: rgba(5,173,173,0.9);
-      border-color: rgba(255,255,255,0.6);
+    .copy-btn span.icon {
+      font-size: 12px;
+    }
+
+    .copy-btn:hover {
+      background: rgba(5, 173, 173, 0.32);
+    }
+
+    .copy-btn:active {
+      transform: translateY(1px);
+    }
+
+    .copy-btn.copied {
+      background: rgba(5, 173, 173, 0.9);
+      color: #021018;
+    }
+
+    /* TYPOGRAPHY SAMPLES */
+    .type-scale {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-top: 4px;
+    }
+
+    .type-row {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      padding: 6px 8px;
+      border-radius: 10px;
+      background: rgba(10, 15, 33, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .type-label {
+      font-size: 10px;
+      color: var(--text-secondary);
+    }
+
+    .type-preview {
+      font-weight: 600;
       color: #ffffff;
+    }
+
+    .type-preview.h1 {
+      font-size: 20px;
+    }
+
+    .type-preview.h2 {
+      font-size: 16px;
+    }
+
+    .type-preview.body {
+      font-size: 13px;
+      font-weight: 400;
+    }
+
+    /* VOICE EXAMPLES */
+    .voice-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+
+    @media (min-width: 640px) {
+      .voice-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .voice-block {
+      border-radius: 12px;
+      padding: 8px 9px;
+      background: rgba(10, 15, 33, 0.95);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      font-size: 11px;
+    }
+
+    .voice-block.good {
+      border-color: rgba(5, 173, 173, 0.7);
+    }
+
+    .voice-block.bad {
+      border-color: rgba(240, 71, 74, 0.8);
+    }
+
+    .voice-label {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 4px;
+    }
+
+    .voice-label.good {
+      color: #3bffc3;
+    }
+
+    .voice-label.bad {
+      color: #ff9b9d;
+    }
+
+    /* FOOTER */
+    .site-footer {
+      padding: 12px 16px 10px;
+      font-size: 11px;
+      color: var(--text-secondary);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      align-items: flex-start;
+    }
+
+    body.lang-ar .site-footer {
+      align-items: flex-end;
+    }
+
+    .footer-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .footer-dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.4);
+    }
+
+    /* LANGUAGE HANDLING */
+    .tr-ar {
+      display: inline;
+    }
+
+    .tr-en {
+      display: none;
+    }
+
+    body.lang-en .tr-ar {
+      display: none !important;
+    }
+
+    body.lang-en .tr-en {
+      display: inline !important;
+    }
+
+    /* Small helper to stack label phrases nicely */
+    .line-break {
+      display: block;
+    }
+
+    /* RESPONSIVE TWEAKS */
+    @media (max-width: 767px) {
+      .header-top {
+        flex-direction: row;
+        align-items: flex-start;
+      }
+
+      .header-text {
+        min-width: 0;
+      }
+
+      .header-subtitle {
+        font-size: 12px;
+      }
     }
   </style>
 </head>
-<body>
-  <div class="page-wrapper">
-    <div class="glass-shell">
-      <div class="glass-shell-inner">
 
-        <!-- ===== الهيدر ===== -->
-        <header class="brand-header">
-          <div class="brand-header-main">
-            <div class="brand-logo-placeholder">
-              <!-- الشعار بصيغة SVG في نفس مجلد index.html -->
-              <img src="ts-logo.svg" alt="T&S Logo">
+<body class="lang-ar">
+  <div class="page-wrapper">
+    <!-- HEADER -->
+    <header class="main-header">
+      <div class="header-top glass-card">
+        <div class="logo-box">
+          <img src="ts-logo.svg" alt="T&S Logo" />
+        </div>
+
+        <div class="header-text">
+          <div class="hub-tag">
+            <span class="hub-tag-dot"></span>
+            <span>T&S Brand Hub</span>
+          </div>
+
+          <h1 class="header-title">
+            <span class="tr-ar">دليل الهوية البصرية لموظفي T&amp;S</span>
+            <span class="tr-en">T&amp;S Brand Guidelines for Employees</span>
+          </h1>
+
+          <p class="header-subtitle">
+            <span class="tr-ar">
+              هذا المركز هو المرجع الموحد
+              <strong>للشعار، الألوان، الخطوط، والقوالب الرسمية</strong>
+              لجميع موظفي T&amp;S.
+            </span>
+            <span class="tr-en">
+              This hub is the single source of truth for
+              <strong>logos, colors, typography, and branded templates</strong>
+              used across T&amp;S.
+            </span>
+          </p>
+
+          <div class="header-lang-nav">
+            <!-- Language Toggle -->
+            <div class="lang-toggle" aria-label="Language toggle">
+              <span class="lang-label tr-ar">اللغة</span>
+              <span class="lang-label tr-en">Language</span>
+
+              <button class="lang-pill active" type="button" data-lang="ar">
+                AR
+              </button>
+              <button class="lang-pill" type="button" data-lang="en">
+                EN
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- QUICK NAV -->
+      <nav class="quick-nav glass-card" aria-label="Quick navigation">
+        <div class="quick-nav-title">
+          <span class="tr-ar">انتقل بسرعة إلى:</span>
+          <span class="tr-en">Jump to section:</span>
+        </div>
+        <div class="chip-row">
+          <a href="#logos" class="chip">
+            <span class="chip-dot"></span>
+            <span class="tr-ar">الشعار &amp; استخداماته</span>
+            <span class="tr-en">Logo &amp; Usage</span>
+          </a>
+          <a href="#colors" class="chip">
+            <span class="chip-dot"></span>
+            <span class="tr-ar">لوحة الألوان</span>
+            <span class="tr-en">Color Palette</span>
+          </a>
+          <a href="#templates" class="chip">
+            <span class="chip-dot"></span>
+            <span class="tr-ar">القوالب الرسمية</span>
+            <span class="tr-en">Branded Templates</span>
+          </a>
+          <a href="#files" class="chip">
+            <span class="chip-dot"></span>
+            <span class="tr-ar">ملفات الهوية</span>
+            <span class="tr-en">Brand Assets</span>
+          </a>
+          <a href="#social" class="chip">
+            <span class="chip-dot"></span>
+            <span class="tr-ar">أمثلة التصاميم</span>
+            <span class="tr-en">Design Examples</span>
+          </a>
+          <a href="#voice" class="chip">
+            <span class="chip-dot"></span>
+            <span class="tr-ar">نبرة الكتابة</span>
+            <span class="tr-en">Brand Voice</span>
+          </a>
+          <a href="#contact" class="chip">
+            <span class="chip-dot"></span>
+            <span class="tr-ar">للاستفسارات</span>
+            <span class="tr-en">Contact</span>
+          </a>
+        </div>
+      </nav>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="content-grid">
+      <!-- LEFT COLUMN -->
+      <section class="column column-left">
+        <!-- LOGO CARD -->
+        <article id="logos" class="card glass-card">
+          <header class="card-header">
+            <div>
+              <div class="card-kicker tr-ar">الشعار الرسمي</div>
+              <div class="card-kicker tr-en">Primary Logo</div>
+              <h2 class="card-title">
+                <span class="tr-ar">الشعار &amp; الاستخدامات الأساسية</span>
+                <span class="tr-en">Logo &amp; Core Usage</span>
+              </h2>
+            </div>
+          </header>
+
+          <div class="card-body">
+            <p>
+              <span class="tr-ar">
+                يُستخدم الشعار الرسمي لـ T&amp;S كما هو، بدون أي تعديل على
+                <strong>الألوان، النِسَب، أو العناصر</strong>. يجب المحافظة على
+                مساحة عزل (Clear Space) حول الشعار، وتجنب وضعه فوق خلفيات تُضعف
+                الوضوح أو تقلل التباين.
+              </span>
+              <span class="tr-en">
+                Always use the official T&amp;S logo as provided, with
+                <strong>no changes to colors, proportions, or structure</strong>.
+                Keep a clear space around the logo and avoid placing it on
+                cluttered or low-contrast backgrounds that reduce legibility.
+              </span>
+            </p>
+
+            <div class="btn-row">
+              <!-- COLORED SVG -->
+              <a
+                href="assets/logos/ts-logo-colored.svg"
+                target="_blank"
+                class="btn"
+              >
+                <span class="icon">👁️</span>
+                <span class="tr-ar">معاينة الشعار (SVG)</span>
+                <span class="tr-en">Preview Logo (SVG)</span>
+              </a>
+
+              <a
+                href="assets/logos/ts-logo-colored.svg"
+                download
+                class="btn btn-ghost"
+              >
+                <span class="icon">⬇️</span>
+                <span class="tr-ar">تحميل الشعار الملون (SVG)</span>
+                <span class="tr-en">Download Colored Logo (SVG)</span>
+              </a>
+
+              <!-- COLORED PNG -->
+              <a
+                href="assets/logos/ts-logo-colored.png"
+                target="_blank"
+                class="btn btn-outline-accent"
+              >
+                <span class="icon">👁️</span>
+                <span class="tr-ar">معاينة الشعار (PNG)</span>
+                <span class="tr-en">Preview Logo (PNG)</span>
+              </a>
+
+              <a
+                href="assets/logos/ts-logo-colored.png"
+                download
+                class="btn btn-ghost"
+              >
+                <span class="icon">⬇️</span>
+                <span class="tr-ar">تحميل الشعار بدقة عالية (PNG)</span>
+                <span class="tr-en">Download High-Res Logo (PNG)</span>
+              </a>
             </div>
 
-            <div class="brand-title-block">
-              <div class="brand-title">
-                <div class="brand-title-line">
-                  <span class="tr-ar">دليل الهوية البصرية لموظفي T&amp;S</span>
-                  <span class="tr-en">T&amp;S Brand Guidelines for Employees</span>
+            <div class="badge-row">
+              <span class="badge">Colored Version</span>
+              <span class="badge">Monochrome</span>
+              <span class="badge badge-muted">Digital &amp; Print</span>
+            </div>
+          </div>
+        </article>
 
-                  <span class="brand-title-tag">
-                    <span class="tr-ar">T&amp;S Brand Hub</span>
-                    <span class="tr-en">T&amp;S Brand Hub</span>
+        <!-- ALLOWED & FORBIDDEN USAGE -->
+        <article class="card glass-card">
+          <header class="card-header">
+            <div>
+              <div class="card-kicker tr-ar">الاستخدامات</div>
+              <div class="card-kicker tr-en">Usage Rules</div>
+              <h2 class="card-title">
+                <span class="tr-ar">الاستخدامات المسموحة والممنوعة</span>
+                <span class="tr-en">Allowed &amp; Forbidden Usage</span>
+              </h2>
+            </div>
+          </header>
+
+          <div class="card-body">
+            <div class="two-column-list">
+              <div>
+                <div class="list-label tr-ar">مسموح ✅</div>
+                <div class="list-label tr-en">Allowed ✅</div>
+                <ul>
+                  <li class="tr-ar">
+                    استخدام الشعار بالألوان الأصلية فقط وعلى خلفيات عالية
+                    التباين.
+                  </li>
+                  <li class="tr-en">
+                    Use the logo in its official colors on backgrounds with
+                    strong contrast.
+                  </li>
+                  <li class="tr-ar">
+                    احترام مساحة العزل حول الشعار وعدم إلصاق عناصر أخرى به.
+                  </li>
+                  <li class="tr-en">
+                    Keep sufficient clear space around the logo with no other
+                    elements touching it.
+                  </li>
+                  <li class="tr-ar">
+                    استخدام النسخة الأحادية اللون عند الحاجة لطباعة محدودة
+                    الألوان.
+                  </li>
+                  <li class="tr-en">
+                    Use the monochrome version for restricted-color printing
+                    when needed.
+                  </li>
+                </ul>
+              </div>
+
+              <div>
+                <div class="list-label tr-ar">ممنوع 🚫</div>
+                <div class="list-label tr-en">Not Allowed 🚫</div>
+                <ul>
+                  <li class="tr-ar">
+                    تغيير ألوان الشعار أو إضافة تأثيرات غير معتمدة (ظلال مبالغ
+                    فيها/توهج).
+                  </li>
+                  <li class="tr-en">
+                    Changing logo colors or adding unapproved effects (strong
+                    glow, drop shadow, etc.).
+                  </li>
+                  <li class="tr-ar">
+                    تمديد الشعار أفقياً أو عمودياً أو تشويهه بأي شكل.
+                  </li>
+                  <li class="tr-en">
+                    Stretching, skewing, or distorting the logo proportions.
+                  </li>
+                  <li class="tr-ar">
+                    استخدام الشعار داخل جُمل أو نصوص كجزء من الكتابة.
+                  </li>
+                  <li class="tr-en">
+                    Using the logo as part of a sentence or inline text.
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="btn-row">
+              <a
+                href="assets/logos/ts-logo-usage-guide.pdf"
+                class="btn"
+                download
+              >
+                <span class="icon">📘</span>
+                <span class="tr-ar">تحميل دليل استخدامات الشعار (PDF)</span>
+                <span class="tr-en">Download Logo Usage Guide (PDF)</span>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- TEMPLATES -->
+        <article id="templates" class="card glass-card">
+          <header class="card-header">
+            <div>
+              <div class="card-kicker tr-ar">القوالب الرسمية</div>
+              <div class="card-kicker tr-en">Branded Templates</div>
+              <h2 class="card-title">
+                <span class="tr-ar">القوالب الجاهزة – Branded Templates</span>
+                <span class="tr-en">Ready-to-use Branded Templates</span>
+              </h2>
+            </div>
+          </header>
+
+          <div class="card-body">
+            <p>
+              <span class="tr-ar">
+                تم إعداد حزمة قوالب رسمية للاستخدام اليومي في
+                <strong>العروض التقديمية، المراسلات، التواقيع البريدية، ومحتوى
+                  السوشال ميديا</strong>، لضمان توحيد الهوية في جميع المخرجات.
+              </span>
+              <span class="tr-en">
+                A full set of official templates is available for
+                <strong>presentations, documents, email signatures, and social
+                  media</strong>, ensuring consistent branding across all
+                deliverables.
+              </span>
+            </p>
+
+            <div class="btn-row">
+              <a
+                href="assets/templates/ts-ppt-templates-kit.zip"
+                class="btn"
+                download
+              >
+                <span class="icon">⬇️</span>
+                <span class="tr-ar">حزمة قوالب العروض (PowerPoint)</span>
+                <span class="tr-en">Presentation Templates Kit (PPT)</span>
+              </a>
+
+              <a
+                href="assets/templates/ts-letterhead-word-templates.zip"
+                class="btn btn-ghost"
+                download
+              >
+                <span class="icon">⬇️</span>
+                <span class="tr-ar">قوالب ورق رسمي (Word)</span>
+                <span class="tr-en">Letterhead Templates (Word)</span>
+              </a>
+
+              <a
+                href="assets/templates/ts-email-signature-guide.pdf"
+                class="btn btn-outline-accent"
+                download
+              >
+                <span class="icon">📄</span>
+                <span class="tr-ar">دليل توقيع البريد الإلكتروني (PDF)</span>
+                <span class="tr-en">Email Signature Guide (PDF)</span>
+              </a>
+            </div>
+
+            <p class="muted">
+              <span class="tr-ar">
+                قبل إنشاء أي مادة تسويقية أو داخلية جديدة، يُفضّل بدء التصميم من
+                هذه القوالب المعتمدة.
+              </span>
+              <span class="tr-en">
+                Whenever you create new internal or external material, start from
+                these official templates.
+              </span>
+            </p>
+          </div>
+        </article>
+
+        <!-- EXTRA ASSETS -->
+        <article id="files" class="card glass-card">
+          <header class="card-header">
+            <div>
+              <div class="card-kicker tr-ar">ملفات الهوية</div>
+              <div class="card-kicker tr-en">Brand Assets</div>
+              <h2 class="card-title">
+                <span class="tr-ar">ملفات إضافية – Extra Assets</span>
+                <span class="tr-en">Additional Brand Assets</span>
+              </h2>
+            </div>
+          </header>
+
+          <div class="card-body">
+            <p>
+              <span class="tr-ar">
+                تشمل هذه الحزمة <strong>أيقونات، صور رسمية، خلفيات، وMockups</strong>
+                يمكن استخدامها في العروض، السوشال ميديا، وتقارير العملاء مع
+                الحفاظ على روح الهوية.
+              </span>
+              <span class="tr-en">
+                These packages include official <strong>icons, photography,
+                  backgrounds, and mockups</strong> to support presentations,
+                social media, and client deliverables while keeping the brand
+                look and feel.
+              </span>
+            </p>
+
+            <div class="btn-row">
+              <a
+                href="assets/icons/ts-icon-pack.zip"
+                class="btn"
+                download
+              >
+                <span class="icon">⬇️</span>
+                <span class="tr-ar">حزمة الأيقونات (ZIP)</span>
+                <span class="tr-en">Icon Pack (ZIP)</span>
+              </a>
+
+              <a
+                href="assets/photos/ts-official-photos-kit.zip"
+                class="btn btn-ghost"
+                download
+              >
+                <span class="icon">⬇️</span>
+                <span class="tr-ar">مجموعة الصور الرسمية (ZIP)</span>
+                <span class="tr-en">Official Photos Kit (ZIP)</span>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- DESIGN EXAMPLES -->
+        <article id="social" class="card glass-card">
+          <header class="card-header">
+            <div>
+              <div class="card-kicker tr-ar">أمثلة التصاميم</div>
+              <div class="card-kicker tr-en">Design Examples</div>
+              <h2 class="card-title">
+                <span class="tr-ar">أمثلة التصاميم – Social &amp; Events</span>
+                <span class="tr-en">Design Examples – Social &amp; Events</span>
+              </h2>
+            </div>
+          </header>
+
+          <div class="card-body">
+            <p>
+              <span class="tr-ar">
+                تحتوي هذه الأمثلة على بوستات سوشال ميديا، رول أب، وبنرات معارض
+                تُظهر كيفية تطبيق الهوية البصرية في سياقات مختلفة.
+              </span>
+              <span class="tr-en">
+                These examples showcase social media posts, roll-ups, and event
+                banners that demonstrate how to apply the visual identity in
+                different contexts.
+              </span>
+            </p>
+
+            <p>
+              <span class="tr-ar">
+                مقاسات مقترحة:
+                <strong>Instagram</strong> (¹:¹ &amp; ⁴:⁵)،
+                <strong>LinkedIn</strong> (١٢٠٠×١٢٠٠ و١٢٠٠×٦٢٨)،
+                <strong>Roll-up</strong> (٨٥×٢٠٠ سم أو حسب المتطلبات).
+              </span>
+              <span class="tr-en">
+                Recommended sizes:
+                <strong>Instagram</strong> (1:1 &amp; 4:5),
+                <strong>LinkedIn</strong> (1200×1200 &amp; 1200×628),
+                <strong>Roll-up</strong> (85×200 cm or as required).
+              </span>
+            </p>
+
+            <div class="btn-row">
+              <a
+                href="assets/social/ts-social-media-examples.zip"
+                class="btn"
+                download
+              >
+                <span class="icon">⬇️</span>
+                <span class="tr-ar">أمثلة سوشال ميديا (ZIP)</span>
+                <span class="tr-en">Social Media Examples (ZIP)</span>
+              </a>
+
+              <a
+                href="assets/events/ts-events-and-banners-examples.zip"
+                class="btn btn-ghost"
+                download
+              >
+                <span class="icon">⬇️</span>
+                <span class="tr-ar">أمثلة المعارض والرول أب (ZIP)</span>
+                <span class="tr-en">Events &amp; Banners Examples (ZIP)</span>
+              </a>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <!-- RIGHT COLUMN -->
+      <section class="column column-right">
+        <!-- COLOR PALETTE -->
+        <article id="colors" class="card glass-card">
+          <header class="card-header">
+            <div>
+              <div class="card-kicker tr-ar">الألوان المعتمدة</div>
+              <div class="card-kicker tr-en">Official Colors</div>
+              <h2 class="card-title">
+                <span class="tr-ar">لوحة الألوان – Color Palette</span>
+                <span class="tr-en">Color Palette – Brand Core</span>
+              </h2>
+            </div>
+          </header>
+
+          <div class="card-body">
+            <p>
+              <span class="tr-ar">
+                تعتمد الهوية على مجموعة ألوان داكنة وحديثة، مع لمسات
+                <strong>Accent</strong> لإبراز العناصر المهمة. استخدم هذه
+                الأكواد كما هي في جميع التصاميم.
+              </span>
+              <span class="tr-en">
+                The identity uses a modern dark palette with vibrant
+                <strong>accent colors</strong> to highlight key elements. Always
+                use these exact HEX values in your designs.
+              </span>
+            </p>
+
+            <div class="palette-toggle-wrapper">
+              <button
+                id="palette-toggle"
+                type="button"
+                class="btn btn-ghost"
+              >
+                <span class="icon">🎨</span>
+                <span class="tr-ar">
+                  <span class="text-when-closed">عرض لوحة الألوان</span>
+                  <span class="text-when-open" style="display: none;">
+                    إخفاء لوحة الألوان
                   </span>
+                </span>
+                <span class="tr-en">
+                  <span class="text-when-closed">Show Color Palette</span>
+                  <span class="text-when-open" style="display: none;">
+                    Hide Color Palette
+                  </span>
+                </span>
+              </button>
+            </div>
+
+            <div id="palette-panel" class="palette-panel">
+              <div class="palette-grid">
+                <div class="palette-item">
+                  <div
+                    class="swatch"
+                    style="background: #0D295C;"
+                  ></div>
+                  <div class="palette-name">Primary 1</div>
+                  <div class="palette-hex-row">
+                    <span class="palette-hex">#0D295C</span>
+                    <button
+                      class="copy-btn"
+                      type="button"
+                      data-hex="#0D295C"
+                    >
+                      <span class="icon">📋</span>
+                      <span class="copy-label tr-ar">نسخ</span>
+                      <span class="copy-label tr-en">Copy</span>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="palette-item">
+                  <div
+                    class="swatch"
+                    style="background: #8C40FF;"
+                  ></div>
+                  <div class="palette-name">Primary 2</div>
+                  <div class="palette-hex-row">
+                    <span class="palette-hex">#8C40FF</span>
+                    <button
+                      class="copy-btn"
+                      type="button"
+                      data-hex="#8C40FF"
+                    >
+                      <span class="icon">📋</span>
+                      <span class="copy-label tr-ar">نسخ</span>
+                      <span class="copy-label tr-en">Copy</span>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="palette-item">
+                  <div
+                    class="swatch"
+                    style="background: #0A0F21;"
+                  ></div>
+                  <div class="palette-name">Primary 3</div>
+                  <div class="palette-hex-row">
+                    <span class="palette-hex">#0A0F21</span>
+                    <button
+                      class="copy-btn"
+                      type="button"
+                      data-hex="#0A0F21"
+                    >
+                      <span class="icon">📋</span>
+                      <span class="copy-label tr-ar">نسخ</span>
+                      <span class="copy-label tr-en">Copy</span>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="palette-item">
+                  <div
+                    class="swatch"
+                    style="background: #05ADAD;"
+                  ></div>
+                  <div class="palette-name">Accent 1</div>
+                  <div class="palette-hex-row">
+                    <span class="palette-hex">#05ADAD</span>
+                    <button
+                      class="copy-btn"
+                      type="button"
+                      data-hex="#05ADAD"
+                    >
+                      <span class="icon">📋</span>
+                      <span class="copy-label tr-ar">نسخ</span>
+                      <span class="copy-label tr-en">Copy</span>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="palette-item">
+                  <div
+                    class="swatch"
+                    style="background: #3B1745;"
+                  ></div>
+                  <div class="palette-name">Accent 2</div>
+                  <div class="palette-hex-row">
+                    <span class="palette-hex">#3B1745</span>
+                    <button
+                      class="copy-btn"
+                      type="button"
+                      data-hex="#3B1745"
+                    >
+                      <span class="icon">📋</span>
+                      <span class="copy-label tr-ar">نسخ</span>
+                      <span class="copy-label tr-en">Copy</span>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="palette-item">
+                  <div
+                    class="swatch"
+                    style="background: #113D8F;"
+                  ></div>
+                  <div class="palette-name">Accent 3</div>
+                  <div class="palette-hex-row">
+                    <span class="palette-hex">#113D8F</span>
+                    <button
+                      class="copy-btn"
+                      type="button"
+                      data-hex="#113D8F"
+                    >
+                      <span class="icon">📋</span>
+                      <span class="copy-label tr-ar">نسخ</span>
+                      <span class="copy-label tr-en">Copy</span>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="palette-item">
+                  <div
+                    class="swatch"
+                    style="background: #F0474A;"
+                  ></div>
+                  <div class="palette-name">Accent 4</div>
+                  <div class="palette-hex-row">
+                    <span class="palette-hex">#F0474A</span>
+                    <button
+                      class="copy-btn"
+                      type="button"
+                      data-hex="#F0474A"
+                    >
+                      <span class="icon">📋</span>
+                      <span class="copy-label tr-ar">نسخ</span>
+                      <span class="copy-label tr-en">Copy</span>
+                    </button>
+                  </div>
                 </div>
               </div>
 
-              <p class="brand-subtitle">
+              <p class="muted" style="margin-top: 10px;">
                 <span class="tr-ar">
-                  مرجع موحّد لكل ما يخص الشعار، الألوان، الخطوط، القوالب والملفات الرسمية المعتمدة في T&amp;S.
+                  تذكير: النصوص الأساسية بلون
+                  <code>#F5F5FF</code>
+                  والنصوص الثانوية بلون
+                  <code>#C0C4D6</code>.
                 </span>
                 <span class="tr-en">
-                  A single source of truth for T&amp;S logos, colors, typography, templates, and official brand assets.
+                  Reminder: primary text uses
+                  <code>#F5F5FF</code>
+                  and secondary text uses
+                  <code>#C0C4D6</code>.
                 </span>
               </p>
             </div>
           </div>
+        </article>
 
-          <div class="brand-header-actions">
-            <div class="lang-toggle" id="lang-toggle">
-              <span class="tr-ar">اللغة</span>
-              <span class="tr-en">Language</span>
-              <button type="button" class="lang-pill" id="lang-toggle-btn">
-                AR / EN
-              </button>
+        <!-- TYPOGRAPHY -->
+        <article class="card glass-card">
+          <header class="card-header">
+            <div>
+              <div class="card-kicker tr-ar">الخطوط</div>
+              <div class="card-kicker tr-en">Typography</div>
+              <h2 class="card-title">
+                <span class="tr-ar">الخطوط – Typography</span>
+                <span class="tr-en">Typography &amp; Brand Fonts</span>
+              </h2>
+            </div>
+          </header>
+
+          <div class="card-body">
+            <p>
+              <span class="tr-ar">
+                الخط الرسمي للهوية هو
+                <strong>Baloo_Bhaijaan (EN_AR)</strong> ويُستخدم للهوية
+                البصرية الرئيسية. لواجهة الموقع والمواد الداخلية، يمكن استخدام
+                <strong>Cairo</strong> بما يتوافق مع أسلوب T&amp;S.
+              </span>
+              <span class="tr-en">
+                The primary brand font is
+                <strong>Baloo_Bhaijaan (EN_AR)</strong>, used in core identity
+                visuals. For the interface and internal assets, the
+                <strong>Cairo</strong> font family can be used to keep a clean
+                and modern look.
+              </span>
+            </p>
+
+            <div class="btn-row">
+              <a
+                href="assets/fonts/Baloo_Bhaijaan_EN_AR.zip"
+                class="btn"
+                download
+              >
+                <span class="icon">⬇️</span>
+                <span class="tr-ar">تحميل الخط الرسمي (ZIP)</span>
+                <span class="tr-en">Download Official Font (ZIP)</span>
+              </a>
+            </div>
+
+            <div class="type-scale">
+              <div class="type-row">
+                <div class="type-label tr-ar">عنوان رئيسي – H1</div>
+                <div class="type-label tr-en">Headline – H1</div>
+                <div class="type-preview h1">
+                  <span class="tr-ar">عنوان رئيسي – T&amp;S Brand Hub</span>
+                  <span class="tr-en">Main Headline – T&amp;S Brand Hub</span>
+                </div>
+              </div>
+
+              <div class="type-row">
+                <div class="type-label tr-ar">عنوان فرعي – H2</div>
+                <div class="type-label tr-en">Section Title – H2</div>
+                <div class="type-preview h2">
+                  <span class="tr-ar">هوية متسقة في جميع مخرجات الشركة</span>
+                  <span class="tr-en">
+                    A consistent identity across all company touchpoints
+                  </span>
+                </div>
+              </div>
+
+              <div class="type-row">
+                <div class="type-label tr-ar">نص أساسي – Body</div>
+                <div class="type-label tr-en">Body Text</div>
+                <div class="type-preview body">
+                  <span class="tr-ar">
+                    يُستخدم هذا الأسلوب للنصوص الشارحة، التعليمات، ورسائل
+                    البريد الإلكتروني.
+                  </span>
+                  <span class="tr-en">
+                    Used for explanatory copy, guidelines, and email content in
+                    everyday communication.
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
-        </header>
+        </article>
 
-        <!-- ===== شريط التنقل ===== -->
-        <nav class="quick-nav">
-          <a href="#logos" class="nav-chip">
-            <span class="tr-ar">الشعار &amp; استخداماته</span>
-            <span class="tr-en">Logo &amp; Usage</span>
-          </a>
-          <a href="#colors" class="nav-chip">
-            <span class="tr-ar">لوحة الألوان</span>
-            <span class="tr-en">Color Palette</span>
-          </a>
-          <a href="#templates" class="nav-chip">
-            <span class="tr-ar">القوالب الرسمية</span>
-            <span class="tr-en">Branded Templates</span>
-          </a>
-          <a href="#files" class="nav-chip">
-            <span class="tr-ar">ملفات الهوية</span>
-            <span class="tr-en">Brand Assets</span>
-          </a>
-          <a href="#social" class="nav-chip">
-            <span class="tr-ar">أمثلة التصاميم</span>
-            <span class="tr-en">Design Examples</span>
-          </a>
-          <a href="#voice" class="nav-chip">
-            <span class="tr-ar">نبرة الكتابة</span>
-            <span class="tr-en">Brand Voice</span>
-          </a>
-          <a href="#contact" class="nav-chip">
-            <span class="tr-ar">للاستفسارات</span>
-            <span class="tr-en">Contact</span>
-          </a>
-        </nav>
+        <!-- BRAND BOOK -->
+        <article class="card glass-card">
+          <header class="card-header">
+            <div>
+              <div class="card-kicker tr-ar">دليل الهوية</div>
+              <div class="card-kicker tr-en">Brand Book</div>
+              <h2 class="card-title">
+                <span class="tr-ar">دليل الهوية البصرية – Brand Book</span>
+                <span class="tr-en">Visual Identity Brand Book</span>
+              </h2>
+            </div>
+          </header>
 
-        <main>
-          <!-- ===== العمود الرئيسي (يسار) ===== -->
-          <section class="section-col">
-            <!-- الشعار -->
-            <article class="glass-card" id="logos">
-              <span class="light-orbit orbit-1"></span>
-              <div class="card-header">
-                <div class="card-icon">🎯</div>
-                <div class="card-title-block">
-                  <h2 class="card-title">
-                    <span class="tr-ar">الشعار الرسمي – Official Logo</span>
-                    <span class="tr-en">Official Logo – Main Lockup</span>
-                  </h2>
-                  <p class="card-subtitle">
-                    <span class="tr-ar">النسخ المعتمدة للاستخدام في جميع القنوات الداخلية والخارجية.</span>
-                    <span class="tr-en">Approved logo versions for all internal and external channels.</span>
-                  </p>
-                </div>
-              </div>
-              <div class="card-body">
-                <p>
-                  <span class="tr-ar">
-                    الرجاء استخدام هذه النسخ فقط من الشعار مع مراعاة المساحات الفارغة (Clear Space)
-                    وعدم تغيير الألوان أو النِسَب أو إضافة أي مؤثرات غير معتمدة.
-                  </span>
-                  <span class="tr-en">
-                    Please use only these official logo versions, respect the clear space, and avoid
-                    changing colors, proportions, or adding unapproved effects.
-                  </span>
+          <div class="card-body">
+            <p>
+              <span class="tr-ar">
+                يجمع هذا الدليل كل ما يتعلق بالهوية البصرية لـ T&amp;S من
+                شعارات، ألوان، خطوط، أمثلة تطبيقية، ودليل لنبرة الكتابة. يُفضل
+                الرجوع له قبل إطلاق أي مادة تحمل اسم الشركة.
+              </span>
+              <span class="tr-en">
+                This brand book consolidates everything about the T&amp;S
+                identity: logos, colors, typography, applications, and voice &amp;
+                tone. Refer to it before releasing any material carrying the
+                T&amp;S name.
+              </span>
+            </p>
+
+            <div class="btn-row">
+              <a
+                href="assets/brand-book/ts-brand-book.pdf"
+                class="btn"
+                download
+              >
+                <span class="icon">📘</span>
+                <span class="tr-ar">تحميل دليل الهوية (PDF)</span>
+                <span class="tr-en">Download Brand Book (PDF)</span>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- BRAND VOICE & TONE -->
+        <article id="voice" class="card glass-card">
+          <header class="card-header">
+            <div>
+              <div class="card-kicker tr-ar">نبرة الكتابة</div>
+              <div class="card-kicker tr-en">Voice &amp; Tone</div>
+              <h2 class="card-title">
+                <span class="tr-ar">نبرة وهوية الكتابة – Brand Voice</span>
+                <span class="tr-en">Brand Voice &amp; Tone</span>
+              </h2>
+            </div>
+          </header>
+
+          <div class="card-body">
+            <p>
+              <span class="tr-ar">
+                نبرة T&amp;S مهنية، بسيطة، قريبة، وقائمة على القيمة. نكتب
+                بالعربية والإنجليزية بأسلوب متزن، بدون ترجمة حرفية، وبجُمل
+                واضحة بلا مبالغة تسويقية.
+              </span>
+              <span class="tr-en">
+                The T&amp;S voice is professional, simple, approachable, and
+                value-driven. We write in both Arabic and English with clarity,
+                avoiding literal translation and exaggerated marketing claims.
+              </span>
+            </p>
+
+            <div class="voice-grid">
+              <div class="voice-block good">
+                <div class="voice-label good tr-ar">صياغة مفضلة ✅</div>
+                <div class="voice-label good tr-en">Preferred Style ✅</div>
+                <p class="tr-ar">
+                  "نساعد الجهات على بناء حلول رقمية عملية، قابلة للتطبيق، وتضيف
+                  قيمة حقيقية لفِرَق العمل."
                 </p>
-                <p>
-                  <span class="tr-ar">
-                    <strong>ملاحظة:</strong> قبل الإرسال لأي جهة خارجية، تأكد من استخدام الشعار بصيغته عالية الدقة.
-                  </span>
-                  <span class="tr-en">
-                    <strong>Note:</strong> Always use a high-resolution version of the logo when sending materials to external parties.
-                  </span>
-                </p>
-
-                <div class="btn-row">
-                  <!-- ملفات الشعار من GitHub -->
-                  <a href="assets/logos/ts-logo-colored.svg" class="btn-primary" download>
-                    <span>
-                      <span class="tr-ar">تحميل الشعار الملون (SVG)</span>
-                      <span class="tr-en">Download Colored Logo (SVG)</span>
-                    </span>
-                  </a>
-
-                  <a href="assets/logos/ts-logo-colored.png" class="btn-secondary" download>
-                    <span>
-                      <span class="tr-ar">تحميل الشعار بدقة عالية (PNG)</span>
-                      <span class="tr-en">Download High-Res Logo (PNG)</span>
-                    </span>
-                  </a>
-                </div>
-
-                <div class="tag-row">
-                  <span class="tag">
-                    <span class="tr-ar">نسخة ملونة</span>
-                    <span class="tr-en">Colored Version</span>
-                  </span>
-                  <span class="tag">
-                    <span class="tr-ar">نسخة مونوكروم</span>
-                    <span class="tr-en">Monochrome</span>
-                  </span>
-                  <span class="tag">
-                    <span class="tr-ar">استخدام رقمي &amp; مطبوع</span>
-                    <span class="tr-en">Digital &amp; Print</span>
-                  </span>
-                </div>
-              </div>
-            </article>
-
-            <!-- استخدامات الشعار -->
-            <article class="glass-card">
-              <div class="card-header">
-                <div class="card-icon">✅</div>
-                <div class="card-title-block">
-                  <h2 class="card-title">
-                    <span class="tr-ar">الاستخدامات المسموحة والممنوعة</span>
-                    <span class="tr-en">Do's &amp; Don'ts</span>
-                  </h2>
-                  <p class="card-subtitle">
-                    <span class="tr-ar">أمثلة عملية لكيفية استخدام الشعار بشكل صحيح.</span>
-                    <span class="tr-en">Practical examples of correct and incorrect logo usage.</span>
-                  </p>
-                </div>
-              </div>
-              <div class="card-body">
-                <p>
-                  <span class="tr-ar">
-                    أمثلة على الاستخدامات الصحيحة:
-                    <br>• وضع الشعار على خلفيات داكنة متوافقة مع الهوية.
-                    <br>• الحفاظ على المساحة الفارغة حول الشعار.
-                    <br>• استخدام الألوان المعتمدة فقط.
-                  </span>
-                  <span class="tr-en">
-                    Correct usage examples:
-                    <br>• Place the logo on brand-approved dark backgrounds.
-                    <br>• Always keep the required clear space around the logo.
-                    <br>• Use only the official brand colors.
-                  </span>
-                </p>
-                <p class="mini-note">
-                  <span class="tr-ar">
-                    الاستخدامات الممنوعة (موضحة بالتفصيل في دليل الهوية):
-                    تمديد الشعار، تغيير الألوان، إضافة ظلال عشوائية، أو وضعه فوق خلفيات مزعجة.
-                  </span>
-                  <span class="tr-en">
-                    Incorrect usage (detailed in the brand book): stretching the logo, changing its colors,
-                    adding random shadows, or placing it on busy, low-contrast backgrounds.
-                  </span>
-                </p>
-                <div class="btn-row">
-                  <a href="assets/logos/ts-logo-usage-guide.pdf" class="btn-secondary" target="_blank">
-                    <span>
-                      <span class="tr-ar">تحميل ملف استخدامات الشعار (PDF)</span>
-                      <span class="tr-en">Download Logo Usage Guide (PDF)</span>
-                    </span>
-                  </a>
-                </div>
-              </div>
-            </article>
-
-            <!-- القوالب -->
-            <article class="glass-card" id="templates">
-              <span class="light-orbit orbit-2"></span>
-              <div class="card-header">
-                <div class="card-icon">📂</div>
-                <div class="card-title-block">
-                  <h2 class="card-title">
-                    <span class="tr-ar">القوالب الجاهزة – Branded Templates</span>
-                    <span class="tr-en">Branded Templates – Presentations &amp; Docs</span>
-                  </h2>
-                  <p class="card-subtitle">
-                    <span class="tr-ar">
-                      قوالب PowerPoint، Word، تواقيع البريد، وتصاميم السوشال ميديا المعتمدة من T&amp;S.
-                    </span>
-                    <span class="tr-en">
-                      Official templates for PowerPoint, Word, email signatures, and social media visuals.
-                    </span>
-                  </p>
-                </div>
-              </div>
-              <div class="card-body">
-                <p>
-                  <span class="tr-ar">
-                    استخدم هذه القوالب لأي تواصل رسمي داخلي أو خارجي.
-                    الرجاء عدم تعديل أماكن الشعارات أو الألوان الأساسية إلا بالتنسيق مع فريق التسويق.
-                  </span>
-                  <span class="tr-en">
-                    Use these templates for any official internal or external communication.
-                    Please do not change logo placement or core colors without consulting the marketing team.
-                  </span>
-                </p>
-                <div class="btn-row">
-                  <a href="assets/templates/ts-ppt-templates-kit.zip" class="btn-primary" download>
-                    <span>
-                      <span class="tr-ar">قوالب عروض PowerPoint</span>
-                      <span class="tr-en">PowerPoint Templates Kit</span>
-                    </span>
-                  </a>
-
-                  <a href="assets/templates/ts-letterhead-word-templates.zip" class="btn-secondary" download>
-                    <span>
-                      <span class="tr-ar">ورق رسمي Letterhead (Word)</span>
-                      <span class="tr-en">Letterhead (Word) Templates</span>
-                    </span>
-                  </a>
-
-                  <a href="assets/templates/ts-email-signature-guide.pdf" class="btn-secondary" target="_blank">
-                    <span>
-                      <span class="tr-ar">دليل توقيع البريد الإلكتروني</span>
-                      <span class="tr-en">Email Signature Guide (PDF)</span>
-                    </span>
-                  </a>
-                </div>
-                <div class="tag-row">
-                  <span class="tag">Presentations</span>
-                  <span class="tag">Documents</span>
-                  <span class="tag">Email</span>
-                  <span class="tag">Social Media</span>
-                </div>
-              </div>
-            </article>
-
-            <!-- ملفات الهوية الإضافية -->
-            <article class="glass-card" id="files">
-              <div class="card-header">
-                <div class="card-icon">📎</div>
-                <div class="card-title-block">
-                  <h2 class="card-title">
-                    <span class="tr-ar">ملفات إضافية – Extra Assets</span>
-                    <span class="tr-en">Extra Assets – Icons &amp; Photos</span>
-                  </h2>
-                  <p class="card-subtitle">
-                    <span class="tr-ar">أيقونات، موك أب، صور رسمية، وخلفيات مطابقة للهوية.</span>
-                    <span class="tr-en">Icons, mockups, official photos, and on-brand wallpapers.</span>
-                  </p>
-                </div>
-              </div>
-              <div class="card-body">
-                <p>
-                  <span class="tr-ar">
-                    هنا يمكن الوصول لحزمة الأيقونات الخاصة بـ T&amp;S، صور الفريق الرسمية، صور المعارض،
-                    وخلفيات سطح المكتب، بالإضافة إلى موك أب جاهز للعروض والمواد التسويقية.
-                  </span>
-                  <span class="tr-en">
-                    Here you can access T&amp;S icon packs, official team photos, event photos,
-                    desktop wallpapers, and ready-to-use mockups for presentations and marketing materials.
-                  </span>
-                </p>
-                <div class="btn-row">
-                  <a href="assets/icons/ts-icon-pack.zip" class="btn-secondary" download>
-                    <span>
-                      <span class="tr-ar">مجلد حزمة الأيقونات</span>
-                      <span class="tr-en">Icons Pack</span>
-                    </span>
-                  </a>
-
-                  <a href="assets/photos/ts-official-photos-kit.zip" class="btn-secondary" download>
-                    <span>
-                      <span class="tr-ar">مجلد الصور الرسمية</span>
-                      <span class="tr-en">Official Photos Kit</span>
-                    </span>
-                  </a>
-                </div>
-                <p class="mini-note">
-                  <span class="tr-ar">
-                    يفضّل تنظيم الملفات في مجلدات واضحة (Logos / Templates / Photos / Icons)
-                    واستخدام هذه الصفحة كبوابة للوصول لها.
-                  </span>
-                  <span class="tr-en">
-                    It’s recommended to organize assets in structured folders (Logos / Templates / Photos / Icons)
-                    and use this page as the main entry point.
-                  </span>
+                <p class="tr-en">
+                  "We help organizations build practical digital solutions that
+                  teams can actually use and benefit from."
                 </p>
               </div>
-            </article>
 
-            <!-- أمثلة التصاميم -->
-            <article class="glass-card" id="social">
-              <div class="card-header">
-                <div class="card-icon">📱</div>
-                <div class="card-title-block">
-                  <h2 class="card-title">
-                    <span class="tr-ar">أمثلة التصاميم – Social &amp; Event Visuals</span>
-                    <span class="tr-en">Design Examples – Social &amp; Events</span>
-                  </h2>
-                  <p class="card-subtitle">
-                    <span class="tr-ar">نماذج جاهزة لبوستات السوشال، البانرات، ومواد المعارض.</span>
-                    <span class="tr-en">Ready-made examples for social media posts, banners, and event visuals.</span>
-                  </p>
-                </div>
-              </div>
-              <div class="card-body">
-                <p>
-                  <span class="tr-ar">
-                    هذا القسم يجمع أمثلة للتصاميم المعتمدة (Instagram / LinkedIn / X / رول أب / بوث المعارض)
-                    لتكون مرجع بصري لأي مادة جديدة يتم تصميمها.
-                  </span>
-                  <span class="tr-en">
-                    This section collects approved visual examples (Instagram / LinkedIn / X / roll-ups / booth designs)
-                    as a visual reference for any new materials.
-                  </span>
+              <div class="voice-block bad">
+                <div class="voice-label bad tr-ar">غير مفضل ❌</div>
+                <div class="voice-label bad tr-en">Not Recommended ❌</div>
+                <p class="tr-ar">
+                  "نقدّم أفضل وأقوى الحلول الرقمية على الإطلاق لنعيد تعريف
+                  المستقبل بالكامل."
                 </p>
-
-                <p class="mini-note">
-                  <span class="tr-ar">
-                    يفضَّل اعتماد المقاسات التالية:
-                    <br>• Instagram: 1080×1080 أو 1080×1350
-                    <br>• LinkedIn: 1200×627
-                    <br>• رول أب: 85×200 سم (بدقة لا تقل عن 150–300 DPI)
-                  </span>
-                  <span class="tr-en">
-                    Recommended sizes:
-                    <br>• Instagram: 1080×1080 or 1080×1350
-                    <br>• LinkedIn: 1200×627
-                    <br>• Roll-up: 85×200 cm (at least 150–300 DPI)
-                  </span>
-                </p>
-
-                <div class="btn-row">
-                  <a href="assets/social/ts-social-media-examples.zip" class="btn-primary" download>
-                    <span>
-                      <span class="tr-ar">مجلد أمثلة السوشال ميديا</span>
-                      <span class="tr-en">Social Media Examples Kit</span>
-                    </span>
-                  </a>
-
-                  <a href="assets/events/ts-events-and-banners-examples.zip" class="btn-secondary" download>
-                    <span>
-                      <span class="tr-ar">مجلد أمثلة المعارض والبانرات</span>
-                      <span class="tr-en">Events &amp; Banners Examples Kit</span>
-                    </span>
-                  </a>
-                </div>
-              </div>
-            </article>
-          </section>
-          <!-- ===== العمود الجانبي (يمين) ===== -->
-          <section class="section-col">
-            <!-- لوحة الألوان في صندوق -->
-            <article class="glass-card" id="colors">
-              <div class="card-header">
-                <div class="card-icon">🎨</div>
-                <div class="card-title-block">
-                  <h2 class="card-title">
-                    <span class="tr-ar">لوحة الألوان – Color Palette</span>
-                    <span class="tr-en">Color Palette – Core &amp; Accents</span>
-                  </h2>
-                  <p class="card-subtitle">
-                    <span class="tr-ar">الألوان الأساسية والفرعية المعتمدة في هوية T&amp;S.</span>
-                    <span class="tr-en">Primary and secondary colors used across the T&amp;S brand.</span>
-                  </p>
-                </div>
-              </div>
-              <div class="card-body">
-                <div class="color-toggle-box">
-                  <button type="button" class="color-toggle-trigger" id="color-toggle-trigger">
-                    <span>
-                      <span class="tr-ar">عرض لوحة الألوان</span>
-                      <span class="tr-en">Show Color Palette</span>
-                    </span>
-                    <span>＋</span>
-                  </button>
-
-                  <div class="color-panel" id="color-panel">
-                    <div class="color-panel-header">
-                      <span>
-                        <span class="tr-ar">لوحة الألوان المعتمدة للهوية.</span>
-                        <span class="tr-en">Approved color palette for the brand.</span>
-                      </span>
-                      <button type="button" class="palette-close-btn" id="palette-close">
-                        <span class="tr-ar">إخفاء</span>
-                        <span class="tr-en">Hide</span>
-                      </button>
-                    </div>
-
-                    <div class="color-grid">
-                      <!-- Primary 1 -->
-                      <div class="color-chip">
-                        <div class="color-swatch" style="background:#0d295c;"></div>
-                        <div class="color-name">
-                          <span class="tr-ar">أساسي 1</span>
-                          <span class="tr-en">Primary 1</span>
-                        </div>
-                        <div class="color-code-row">
-                          <div class="color-code">#0D295C</div>
-                          <button type="button" class="copy-color-btn" data-code="#0D295C">
-                            <span class="tr-ar">نسخ</span>
-                            <span class="tr-en">Copy</span>
-                          </button>
-                        </div>
-                      </div>
-
-                      <!-- Primary 2 -->
-                      <div class="color-chip">
-                        <div class="color-swatch" style="background:#8c40ff;"></div>
-                        <div class="color-name">
-                          <span class="tr-ar">أساسي 2</span>
-                          <span class="tr-en">Primary 2</span>
-                        </div>
-                        <div class="color-code-row">
-                          <div class="color-code">#8C40FF</div>
-                          <button type="button" class="copy-color-btn" data-code="#8C40FF">
-                            <span class="tr-ar">نسخ</span>
-                            <span class="tr-en">Copy</span>
-                          </button>
-                        </div>
-                      </div>
-
-                      <!-- Primary 3 -->
-                      <div class="color-chip">
-                        <div class="color-swatch" style="background:#0a0f21;"></div>
-                        <div class="color-name">
-                          <span class="tr-ar">أساسي 3</span>
-                          <span class="tr-en">Primary 3</span>
-                        </div>
-                        <div class="color-code-row">
-                          <div class="color-code">#0A0F21</div>
-                          <button type="button" class="copy-color-btn" data-code="#0A0F21">
-                            <span class="tr-ar">نسخ</span>
-                            <span class="tr-en">Copy</span>
-                          </button>
-                        </div>
-                      </div>
-
-                      <!-- Accent 1 -->
-                      <div class="color-chip">
-                        <div class="color-swatch" style="background:#05adad;"></div>
-                        <div class="color-name">Accent 1</div>
-                        <div class="color-code-row">
-                          <div class="color-code">#05ADAD</div>
-                          <button type="button" class="copy-color-btn" data-code="#05ADAD">
-                            <span class="tr-ar">نسخ</span>
-                            <span class="tr-en">Copy</span>
-                          </button>
-                        </div>
-                      </div>
-
-                      <!-- Accent 2 -->
-                      <div class="color-chip">
-                        <div class="color-swatch" style="background:#3b1745;"></div>
-                        <div class="color-name">Accent 2</div>
-                        <div class="color-code-row">
-                          <div class="color-code">#3B1745</div>
-                          <button type="button" class="copy-color-btn" data-code="#3B1745">
-                            <span class="tr-ar">نسخ</span>
-                            <span class="tr-en">Copy</span>
-                          </button>
-                        </div>
-                      </div>
-
-                      <!-- Accent 3 -->
-                      <div class="color-chip">
-                        <div class="color-swatch" style="background:#113d8f;"></div>
-                        <div class="color-name">Accent 3</div>
-                        <div class="color-code-row">
-                          <div class="color-code">#113D8F</div>
-                          <button type="button" class="copy-color-btn" data-code="#113D8F">
-                            <span class="tr-ar">نسخ</span>
-                            <span class="tr-en">Copy</span>
-                          </button>
-                        </div>
-                      </div>
-
-                      <!-- Accent 4 -->
-                      <div class="color-chip">
-                        <div class="color-swatch" style="background:#f0474a;"></div>
-                        <div class="color-name">Accent 4</div>
-                        <div class="color-code-row">
-                          <div class="color-code">#F0474A</div>
-                          <button type="button" class="copy-color-btn" data-code="#F0474A">
-                            <span class="tr-ar">نسخ</span>
-                            <span class="tr-en">Copy</span>
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-
-                    <p class="mini-note">
-                      <span class="tr-ar">
-                        يفضّل استخدام الخلفيات الداكنة (خاصة #0A0F21 و #0D295C)
-                        مع نصوص فاتحة لضمان وضوح عالٍ في الشاشات والعروض التقديمية.
-                      </span>
-                      <span class="tr-en">
-                        Prefer dark backgrounds (especially #0A0F21 and #0D295C)
-                        with light typography for high contrast in screens and presentations.
-                      </span>
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </article>
-
-            <!-- الخطوط -->
-            <article class="glass-card">
-              <div class="card-header">
-                <div class="card-icon">✒️</div>
-                <div class="card-title-block">
-                  <h2 class="card-title">
-                    <span class="tr-ar">الخطوط – Typography</span>
-                    <span class="tr-en">Typography – Arabic &amp; English</span>
-                  </h2>
-                  <p class="card-subtitle">
-                    <span class="tr-ar">الخطوط المعتمدة في جميع المواد المكتوبة.</span>
-                    <span class="tr-en">Approved fonts for all written communications.</span>
-                  </p>
-                </div>
-              </div>
-              <div class="card-body">
-                <p>
-                  <span class="tr-ar">
-                    الخط الأساسي لهوية T&amp;S هو
-                    <strong>Baloo_Bhaijaan (EN_AR)</strong> للاستخدام في المواد العربية والإنجليزية معاً،
-                    مع إمكانية استخدام <strong>Cairo</strong> في بعض المواد الداخلية.
-                  </span>
-                  <span class="tr-en">
-                    The primary brand typeface for T&amp;S is
-                    <strong>Baloo_Bhaijaan (EN_AR)</strong> for both Arabic and English,
-                    with <strong>Cairo</strong> as an optional font for some internal materials.
-                  </span>
-                </p>
-
-                <div class="btn-row">
-                  <a href="assets/fonts/Baloo_Bhaijaan_EN_AR.zip" class="btn-primary" download>
-                    <span>
-                      <span class="tr-ar">تحميل خط Baloo_Bhaijaan (EN_AR)</span>
-                      <span class="tr-en">Download Baloo_Bhaijaan (EN_AR)</span>
-                    </span>
-                  </a>
-                </div>
-
-                <p class="mini-note">
-                  <span class="tr-ar">
-                    مثال مقترح للتدرج:
-                    <br>• العناوين الرئيسية: وزن ثقيل – حجم 24–28px
-                    <br>• العناوين الفرعية: وزن متوسط – حجم 18–20px
-                    <br>• النص الأساسي: وزن عادي – حجم 14–16px
-                  </span>
-                  <span class="tr-en">
-                    Suggested hierarchy:
-                    <br>• Main headings: bold weight – size 24–28px
-                    <br>• Sub-headings: medium weight – size 18–20px
-                    <br>• Body text: regular weight – size 14–16px
-                  </span>
+                <p class="tr-en">
+                  "We deliver the most powerful digital solutions ever that
+                  completely redefine the future."
                 </p>
               </div>
-            </article>
+            </div>
 
-            <!-- دليل الهوية -->
-            <article class="glass-card">
-              <div class="card-header">
-                <div class="card-icon">📘</div>
-                <div class="card-title-block">
-                  <h2 class="card-title">
-                    <span class="tr-ar">دليل الهوية البصرية – Brand Book</span>
-                    <span class="tr-en">Brand Book – Full Guidelines</span>
-                  </h2>
-                  <p class="card-subtitle">
-                    <span class="tr-ar">المرجع الرسمي النهائي لكل تفاصيل الهوية.</span>
-                    <span class="tr-en">The official master reference for all brand decisions.</span>
-                  </p>
-                </div>
-              </div>
-              <div class="card-body">
-                <p>
-                  <span class="tr-ar">
-                    يتضمن دليل الهوية الشعار، الألوان، الخطوط، أنماط الصور، استخدامات الهوية في العروض،
-                    المواقع الإلكترونية، المنصات الرقمية، والمعارض والفعاليات.
-                  </span>
-                  <span class="tr-en">
-                    The brand book covers logo usage, colors, typography, imagery styles,
-                    and how the brand appears across presentations, websites, digital platforms, and events.
-                  </span>
-                </p>
-                <div class="btn-row">
-                  <a href="assets/brand-book/ts-brand-book.pdf" class="btn-primary" download>
-                    <span>
-                      <span class="tr-ar">تحميل دليل الهوية (PDF)</span>
-                      <span class="tr-en">Download Brand Book (PDF)</span>
-                    </span>
-                  </a>
-                </div>
-              </div>
-            </article>
+            <p class="muted">
+              <span class="tr-ar">
+                في حال الشك في الصياغة، يُفضّل مشاركة النص مع فريق التسويق
+                للمراجعة قبل النشر.
+              </span>
+              <span class="tr-en">
+                When in doubt, share your copy with the Marketing team for a
+                quick review before publishing.
+              </span>
+            </p>
+          </div>
+        </article>
 
-            <!-- نبرة وهوية الكتابة -->
-            <article class="glass-card" id="voice">
-              <div class="card-header">
-                <div class="card-icon">🗣️</div>
-                <div class="card-title-block">
-                  <h2 class="card-title">
-                    <span class="tr-ar">نبرة وهوية الكتابة – Brand Voice &amp; Tone</span>
-                    <span class="tr-en">Brand Voice &amp; Tone Guidelines</span>
-                  </h2>
-                  <p class="card-subtitle">
-                    <span class="tr-ar">كيف نكتب باسم T&amp;S في الإيميلات، العروض، والسوشال ميديا.</span>
-                    <span class="tr-en">How we write as T&amp;S across emails, decks, and social media.</span>
-                  </p>
-                </div>
-              </div>
-              <div class="card-body">
-                <p>
-                  <span class="tr-ar">
-                    • النبرة: مهنية، بسيطة، قريبة، وتركز على قيمة ما نقدمه للعميل.<br>
-                    • اللغة: ثنائية (عربي/إنجليزي) عند الحاجة، مع تجنب الترجمة الحرفية قدر الإمكان.<br>
-                    • الأسلوب: جُمَل واضحة، بدون مبالغة، ووعود قابلة للقياس.
-                  </span>
-                  <span class="tr-en">
-                    • Tone: professional, clear, approachable, and value-focused.<br>
-                    • Language: bilingual (Arabic/English) when needed, avoiding literal translations as much as possible.<br>
-                    • Style: short clear sentences, no over-promising, and measurable statements.
-                  </span>
-                </p>
-                <p class="mini-note">
-                  <span class="tr-ar">
-                    أمثلة سريعة:<br>
-                    ✔️ صحيحة: "نساعد الجهات على إدارة بنيتها الرقمية بكفاءة وموثوقية أعلى."<br>
-                    ❌ غير مفضلة: "نغيّر عالم التقنية بالكامل ونضمن نجاحاً بلا حدود."
-                  </span>
-                  <span class="tr-en">
-                    Quick examples:<br>
-                    ✔️ Recommended: "We help organizations run their digital infrastructure more efficiently and reliably."<br>
-                    ❌ Not recommended: "We completely transform the tech world and guarantee unlimited success."
-                  </span>
-                </p>
-              </div>
-            </article>
+        <!-- CONTACT -->
+        <article id="contact" class="card glass-card">
+          <header class="card-header">
+            <div>
+              <div class="card-kicker tr-ar">للاستفسارات</div>
+              <div class="card-kicker tr-en">Contact</div>
+              <h2 class="card-title">
+                <span class="tr-ar">للاستفسارات والتنسيق – Contact</span>
+                <span class="tr-en">For Questions &amp; Approvals</span>
+              </h2>
+            </div>
+          </header>
 
-            <!-- تواصل -->
-            <article class="glass-card" id="contact">
-              <div class="card-header">
-                <div class="card-icon">💬</div>
-                <div class="card-title-block">
-                  <h2 class="card-title">
-                    <span class="tr-ar">للاستفسارات والتنسيق</span>
-                    <span class="tr-en">For Questions &amp; Alignment</span>
-                  </h2>
-                  <p class="card-subtitle">
-                    <span class="tr-ar">نقطة التواصل مع فريق التسويق / الهوية البصرية.</span>
-                    <span class="tr-en">Point of contact with the Marketing / Branding team.</span>
-                  </p>
-                </div>
-              </div>
-              <div class="card-body">
-                <p>
-                  <span class="tr-ar">
-                    لأي استفسار بخصوص الهوية، أو لتدقيق تصميم قبل مشاركته مع العميل،
-                    الرجاء التواصل عبر البريد الرسمي أو فتح تذكرة على نظام الخدمة.
-                  </span>
-                  <span class="tr-en">
-                    For any questions about the brand, or to review a design before sharing it with a client,
-                    please contact us via the official email or by opening a ticket in the service system.
-                  </span>
-                </p>
-                <p class="mini-note">
-                  <span class="tr-ar">
-                    • البريد المقترح: <strong>brand@ts.sa</strong> (قم بتعديله حسب البريد الفعلي)<br>
-                    • فئة التذاكر المقترحة: "Branding / Marketing" داخل النظام الداخلي.
-                  </span>
-                  <span class="tr-en">
-                    • Suggested email: <strong>brand@ts.sa</strong> (update to your actual alias)<br>
-                    • Suggested ticket category: "Branding / Marketing" in the internal system.
-                  </span>
-                </p>
-              </div>
-            </article>
-          </section>
-        </main>
+          <div class="card-body">
+            <p>
+              <span class="tr-ar">
+                لأي استفسار يتعلق بالهوية البصرية، أو لاعتماد تصميم قبل مشاركته
+                مع العميل أو نشره، يُرجى التواصل مع فريق العلامة التجارية.
+              </span>
+              <span class="tr-en">
+                For any branding-related questions or to get a design approved
+                before sending it to a client or publishing it, please reach out
+                to the Brand team.
+              </span>
+            </p>
 
-        <footer class="page-footer">
-          <span>
-            <span class="tr-ar">آخر تحديث للهوية:</span>
-            <span class="tr-en">Last brand update:</span>
-            <strong> 01 / 12 / 2025 </strong>
-          </span>
-          <span>
-            <span class="tr-ar">هذه الصفحة للاستخدام الداخلي لموظفي T&amp;S فقط.</span>
-            <span class="tr-en">This page is for internal use by T&amp;S employees only.</span>
-          </span>
-        </footer>
+            <p>
+              <span class="tr-ar">
+                البريد المقترح:
+                <strong>brand@ts.sa</strong>
+              </span>
+              <span class="tr-en">
+                Suggested email:
+                <strong>brand@ts.sa</strong>
+              </span>
+            </p>
+
+            <p>
+              <span class="tr-ar">
+                في نظام التذاكر الداخلي، يُفضّل اختيار الفئة:
+              </span>
+              <span class="tr-en">
+                In the internal ticketing system, please use the category:
+              </span>
+            </p>
+
+            <div class="code-like">
+              <span class="icon">🏷️</span>
+              <span>Branding / Marketing</span>
+            </div>
+
+            <p class="muted">
+              <span class="tr-ar">
+                هذا يساعد الفريق على ترتيب الأولويات والتعامل مع الطلبات بشكل
+                أسرع.
+              </span>
+              <span class="tr-en">
+                This helps the team prioritize and respond to branding requests
+                more efficiently.
+              </span>
+            </p>
+          </div>
+        </article>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer glass-card">
+      <div class="footer-row">
+        <span class="tr-ar">آخر تحديث للهوية: 01 / 12 / 2025</span>
+        <span class="tr-en">Last brand update: 01 / 12 / 2025</span>
+        <span class="footer-dot"></span>
+        <span class="tr-ar">هذه الصفحة للاستخدام الداخلي لموظفي T&amp;S فقط.</span>
+        <span class="tr-en">This page is for internal use by T&amp;S employees only.</span>
       </div>
-    </div>
+    </footer>
   </div>
 
-  <!-- ===== سكربت تبديل اللغة + لوحة الألوان + نسخ الأكواد ===== -->
   <script>
     (function () {
-      let currentLang = "ar";
+      const htmlEl = document.documentElement;
+      const bodyEl = document.body;
+      const langButtons = document.querySelectorAll(".lang-pill");
+      const paletteToggle = document.getElementById("palette-toggle");
+      const palettePanel = document.getElementById("palette-panel");
+      const copyButtons = document.querySelectorAll(".copy-btn");
 
-      function applyLang(lang) {
-        currentLang = lang;
-
-        const html = document.documentElement;
-        html.lang = lang;
-        html.dir = lang === "ar" ? "rtl" : "ltr";
-
-        const btn = document.getElementById("lang-toggle-btn");
-        if (btn) {
-          btn.textContent = lang === "ar" ? "AR / EN" : "EN / AR";
+      function setLanguage(lang) {
+        if (lang === "en") {
+          htmlEl.setAttribute("lang", "en");
+          htmlEl.setAttribute("dir", "ltr");
+          bodyEl.classList.remove("lang-ar");
+          bodyEl.classList.add("lang-en");
+        } else {
+          htmlEl.setAttribute("lang", "ar");
+          htmlEl.setAttribute("dir", "rtl");
+          bodyEl.classList.remove("lang-en");
+          bodyEl.classList.add("lang-ar");
         }
 
-        const arElems = document.querySelectorAll(".tr-ar");
-        const enElems = document.querySelectorAll(".tr-en");
-
-        arElems.forEach(function (el) {
-          el.style.display = lang === "ar" ? "" : "none";
+        langButtons.forEach((btn) => {
+          btn.classList.toggle("active", btn.dataset.lang === lang);
         });
 
-        enElems.forEach(function (el) {
-          el.style.display = lang === "en" ? "" : "none";
+        resetCopyButtonsLabels();
+      }
+
+      function togglePalettePanel() {
+        const isOpen = palettePanel.classList.toggle("open");
+        const arClosed = paletteToggle.querySelector(
+          ".tr-ar .text-when-closed"
+        );
+        const arOpen = paletteToggle.querySelector(".tr-ar .text-when-open");
+        const enClosed = paletteToggle.querySelector(
+          ".tr-en .text-when-closed"
+        );
+        const enOpen = paletteToggle.querySelector(".tr-en .text-when-open");
+
+        if (arClosed && arOpen && enClosed && enOpen) {
+          if (isOpen) {
+            arClosed.style.display = "none";
+            enClosed.style.display = "none";
+            arOpen.style.display = "inline";
+            enOpen.style.display = "inline";
+          } else {
+            arClosed.style.display = "inline";
+            enClosed.style.display = "inline";
+            arOpen.style.display = "none";
+            enOpen.style.display = "none";
+          }
+        }
+      }
+
+      function resetCopyButtonsLabels() {
+        const isAr = bodyEl.classList.contains("lang-ar");
+        copyButtons.forEach((btn) => {
+          const arLabel = btn.querySelector(".copy-label.tr-ar");
+          const enLabel = btn.querySelector(".copy-label.tr-en");
+          if (!arLabel || !enLabel) return;
+
+          if (btn.classList.contains("copied")) {
+            arLabel.textContent = isAr ? "تم النسخ" : "نسخ";
+            enLabel.textContent = isAr ? "Copied" : "Copied!";
+          } else {
+            arLabel.textContent = "نسخ";
+            enLabel.textContent = "Copy";
+          }
         });
       }
 
-      document.addEventListener("DOMContentLoaded", function () {
-        const btn = document.getElementById("lang-toggle-btn");
-        if (btn) {
-          btn.addEventListener("click", function () {
-            applyLang(currentLang === "ar" ? "en" : "ar");
-          });
-        }
+      function handleCopyClick(event) {
+        const btn = event.currentTarget;
+        const hex = btn.dataset.hex;
+        if (!hex) return;
 
-        // لوحة الألوان – فتح/إغلاق
-        const colorTrigger = document.getElementById("color-toggle-trigger");
-        const colorPanel = document.getElementById("color-panel");
-        const paletteClose = document.getElementById("palette-close");
-
-        if (colorTrigger && colorPanel) {
-          colorTrigger.addEventListener("click", function () {
-            colorPanel.style.display = "block";
-            colorTrigger.style.display = "none";
-          });
-        }
-
-        if (paletteClose && colorTrigger && colorPanel) {
-          paletteClose.addEventListener("click", function () {
-            colorPanel.style.display = "none";
-            colorTrigger.style.display = "inline-flex";
-          });
-        }
-
-        // أزرار نسخ أكواد الألوان
-        const copyButtons = document.querySelectorAll(".copy-color-btn");
-        copyButtons.forEach(function (btn) {
-          // حفظ المحتوى الأصلي
-          btn.dataset.original = btn.innerHTML;
-
-          btn.addEventListener("click", function () {
-            const code = btn.getAttribute("data-code") || "";
-            if (!code) return;
-
-            function setCopiedState() {
-              btn.classList.add("copied");
-              btn.innerHTML = '<span class="tr-ar">تم النسخ</span><span class="tr-en">Copied!</span>';
-              setTimeout(function () {
-                btn.classList.remove("copied");
-                btn.innerHTML = btn.dataset.original;
-                // إعادة تطبيق اللغة الحالية على النصوص داخل الزر
-                applyLang(currentLang);
-              }, 1500);
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(hex).then(
+            () => {
+              showCopiedState(btn);
+            },
+            () => {
+              showCopiedState(btn);
             }
+          );
+        } else {
+          const textarea = document.createElement("textarea");
+          textarea.value = hex;
+          textarea.style.position = "fixed";
+          textarea.style.opacity = "0";
+          document.body.appendChild(textarea);
+          textarea.select();
+          try {
+            document.execCommand("copy");
+          } catch (e) {}
+          document.body.removeChild(textarea);
+          showCopiedState(btn);
+        }
+      }
 
-            if (navigator.clipboard && navigator.clipboard.writeText) {
-              navigator.clipboard.writeText(code).then(setCopiedState).catch(function () {
-                // fallback بسيط
-                window.prompt("انسخ الكود التالي:", code);
-                setCopiedState();
-              });
-            } else {
-              window.prompt("انسخ الكود التالي:", code);
-              setCopiedState();
-            }
-          });
+      function showCopiedState(btn) {
+        const isAr = bodyEl.classList.contains("lang-ar");
+        const arLabel = btn.querySelector(".copy-label.tr-ar");
+        const enLabel = btn.querySelector(".copy-label.tr-en");
+        if (arLabel && enLabel) {
+          arLabel.textContent = isAr ? "تم النسخ" : "نسخ";
+          enLabel.textContent = isAr ? "Copied" : "Copied!";
+        }
+        btn.classList.add("copied");
+        setTimeout(() => {
+          btn.classList.remove("copied");
+          resetCopyButtonsLabels();
+        }, 1600);
+      }
+
+      langButtons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          setLanguage(btn.dataset.lang || "ar");
         });
-
-        // تفعيل العربية كافتراضي
-        applyLang("ar");
       });
+
+      if (paletteToggle && palettePanel) {
+        paletteToggle.addEventListener("click", togglePalettePanel);
+      }
+
+      copyButtons.forEach((btn) => {
+        btn.addEventListener("click", handleCopyClick);
+      });
+
+      // Default language: Arabic
+      setLanguage("ar");
     })();
   </script>
 </body>
