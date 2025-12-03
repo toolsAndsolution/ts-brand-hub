@@ -4,21 +4,18 @@
   <meta charset="UTF-8" />
   <title>T&S Brand Hub</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="ts-favicon.svg" />
 
-  <!-- Cairo Font -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap"
-    rel="stylesheet"
-  />
-
   <style>
+    @font-face {
+      font-family: "Baloo_Bhaijaan";
+      src:
+        url("assets/fonts/Baloo_Bhaijaan_EN_AR.woff2") format("woff2"),
+        url("assets/fonts/Baloo_Bhaijaan_EN_AR.ttf") format("truetype");
+      font-display: swap;
+    }
+
     :root {
-      /* Brand Colors */
       --primary-1: #0d295c;
       --primary-2: #8c40ff;
       --primary-3: #0a0f21;
@@ -32,8 +29,6 @@
 
       --glass-bg: rgba(10, 15, 33, 0.78);
       --glass-border: rgba(255, 255, 255, 0.06);
-      --chip-bg: rgba(17, 61, 143, 0.25);
-      --chip-border: rgba(255, 255, 255, 0.08);
 
       --radius-lg: 20px;
       --radius-pill: 999px;
@@ -55,7 +50,1062 @@
     body {
       min-height: 100vh;
       margin: 0;
-      font-family: "Cairo", system-ui, -apple-system, BlinkMacSystemFont,
+      font-family: "Baloo_Bhaijaan", system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", sans-serif;
+      color: var(--text-primary);
+      background:
+        radial-gradient(circle at top left, rgba(140, 64, 255, 0.4), transparent 55%),
+        radial-gradient(circle at bottom right, rgba(5, 173, 173, 0.35), transparent 55%),
+        linear-gradient(145deg, #050710, #050917, #02030a);
+      display: flex;
+      justify-content: center;
+    }
+
+    body.lang-ar {
+      direction: rtl;
+      text-align: right;
+    }
+
+    body.lang-en {
+      direction: ltr;
+      text-align: left;
+    }
+
+    .page-wrapper {
+      width: 100%;
+      max-width: 1200px;
+      padding: 24px 16px 32px;
+    }
+
+    @media (min-width: 768px) {
+      .page-wrapper {
+        padding: 32px 24px 40px;
+      }
+    }
+
+    .glass-card {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-lg);
+      box-shadow:
+        0 22px 50px rgba(0, 0, 0, 0.72),
+        0 0 0 1px rgba(255, 255, 255, 0.02);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+
+    /* HEADER */
+    .main-header {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      margin-bottom: 18px;
+    }
+
+    .header-top {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      padding: 12px 16px;
+      align-items: center;
+    }
+
+    .logo-box {
+      width: 60px;
+      height: 60px;
+      border-radius: 18px;
+      background: radial-gradient(circle at 10% 0%, rgba(140, 64, 255, 0.6), transparent 55%),
+        rgba(10, 15, 33, 0.92);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.7);
+    }
+
+    .logo-box img {
+      max-width: 70%;
+      max-height: 70%;
+      display: block;
+    }
+
+    .header-text {
+      flex: 1 1 220px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .hub-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      border-radius: var(--radius-pill);
+      padding: 1px 10px;
+      font-size: 11px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      background: linear-gradient(120deg, rgba(140, 64, 255, 0.4), rgba(5, 173, 173, 0.3));
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      max-width: 180px;
+      white-space: nowrap;
+    }
+
+    .hub-tag-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #3bffca;
+      box-shadow: 0 0 12px rgba(59, 255, 202, 0.8);
+    }
+
+    .header-title {
+      font-size: 21px;
+      font-weight: 700;
+      line-height: 1.35;
+    }
+
+    @media (min-width: 768px) {
+      .header-title {
+        font-size: 23px;
+      }
+    }
+
+    .header-subtitle {
+      font-size: 15px;
+      color: var(--text-secondary);
+      max-width: 560px;
+    }
+
+    .header-subtitle strong {
+      font-weight: 600;
+      color: #ffffff;
+    }
+
+    .header-lang-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 6px;
+      width: 100%;
+    }
+
+    @media (min-width: 768px) {
+      .header-lang-nav {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+      }
+    }
+
+    .lang-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 6px 4px 4px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: linear-gradient(120deg, rgba(13, 41, 92, 0.9), rgba(17, 61, 143, 0.9));
+      align-self: flex-end;
+    }
+
+    body.lang-en .lang-toggle {
+      align-self: flex-start;
+    }
+
+    @media (min-width: 768px) {
+      .lang-toggle {
+        align-self: auto;
+      }
+    }
+
+    .lang-label {
+      font-size: 13px;
+      color: var(--text-secondary);
+      white-space: nowrap;
+      padding-inline: 4px;
+    }
+
+    .lang-pill {
+      border-radius: var(--radius-pill);
+      border: none;
+      padding: 4px 10px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      background: transparent;
+      color: #e0e2ff;
+      transition: background var(--transition-fast), color var(--transition-fast),
+        transform 0.1s ease-out;
+    }
+
+    .lang-pill.active {
+      background: #f5f5ff;
+      color: #0a0f21;
+      box-shadow: 0 0 0 1px rgba(10, 15, 33, 0.8), 0 8px 18px rgba(0, 0, 0, 0.7);
+    }
+
+    .lang-pill:active {
+      transform: translateY(1px);
+    }
+
+    /* QUICK NAV */
+    .quick-nav {
+      padding: 10px 10px;
+    }
+
+    .quick-nav-title {
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-inline: 4px;
+      margin-bottom: 6px;
+    }
+
+    .chip-row {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 6px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+      scrollbar-width: thin;
+    }
+
+    .chip-row::-webkit-scrollbar {
+      height: 4px;
+    }
+
+    .chip-row::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.22);
+      border-radius: 999px;
+    }
+
+    .chip {
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      font-size: 13px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(17, 61, 143, 0.25);
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: background var(--transition-fast), color var(--transition-fast),
+        transform 0.1s ease-out, border-color var(--transition-fast);
+    }
+
+    .chip-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(5, 173, 173, 0.95);
+      box-shadow: 0 0 8px rgba(5, 173, 173, 0.9);
+    }
+
+    .chip:hover {
+      background: rgba(15, 56, 110, 0.7);
+      color: #ffffff;
+      border-color: rgba(255, 255, 255, 0.35);
+      transform: translateY(0);
+    }
+
+    /* GRID LAYOUT */
+    .content-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      margin-top: 8px;
+      margin-bottom: 14px;
+    }
+
+    .content-grid > .glass-card {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    @media (min-width: 960px) {
+      .content-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        column-gap: 14px;
+        row-gap: 14px;
+        align-items: stretch;
+      }
+
+      .card-span-2 {
+        grid-column: 1 / -1;
+      }
+    }
+
+    /* CARDS */
+    .card {
+      padding: 16px 16px 14px;
+    }
+
+    @media (min-width: 768px) {
+      .card {
+        padding: 18px 18px 16px;
+      }
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+
+    .card-title {
+      font-size: 16px;
+      font-weight: 600;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      align-items: baseline;
+    }
+
+    .card-kicker {
+      font-size: 13px;
+      color: var(--accent-1);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .card-body {
+      font-size: 14px;
+      color: var(--text-secondary);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .card-body p {
+      line-height: 1.6;
+    }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 4px;
+    }
+
+    .badge {
+      font-size: 12px;
+      padding: 3px 8px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: radial-gradient(circle at 0 0, rgba(140, 64, 255, 0.45), transparent 60%),
+        rgba(10, 15, 33, 0.9);
+      color: #ffffff;
+      white-space: nowrap;
+    }
+
+    .badge-muted {
+      background: rgba(10, 15, 33, 0.8);
+      color: var(--text-secondary);
+    }
+
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    .btn {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      border-radius: 999px;
+      font-size: 13px;
+      padding: 6px 12px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      background: linear-gradient(135deg, rgba(140, 64, 255, 0.9), rgba(17, 61, 143, 0.95));
+      color: #ffffff;
+      text-decoration: none;
+      cursor: pointer;
+      transition: box-shadow var(--transition-med), transform 0.1s ease-out,
+        background var(--transition-med), border-color var(--transition-med);
+      white-space: nowrap;
+    }
+
+    .btn span.icon {
+      font-size: 15px;
+      opacity: 0.9;
+    }
+
+    .btn:hover {
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.7);
+      transform: translateY(0);
+    }
+
+    .btn:active {
+      transform: translateY(0);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.7);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      border-color: rgba(255, 255, 255, 0.22);
+      color: var(--text-secondary);
+    }
+
+    .btn-ghost:hover {
+      background: rgba(11, 19, 40, 0.9);
+      color: #ffffff;
+    }
+
+    .btn-outline-accent {
+      background: transparent;
+      border-color: rgba(5, 173, 173, 0.6);
+      color: #dbfeff;
+    }
+
+    .btn-outline-accent:hover {
+      background: rgba(5, 173, 173, 0.22);
+    }
+
+    ul {
+      padding-inline-start: 18px;
+    }
+
+    body.lang-ar ul {
+      padding-inline-start: 0;
+      padding-inline-end: 18px;
+    }
+
+    li {
+      margin-bottom: 4px;
+      line-height: 1.6;
+    }
+
+    .two-column-list {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+
+    @media (min-width: 640px) {
+      .two-column-list {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .list-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: #ffffff;
+      margin-bottom: 2px;
+    }
+
+    .muted {
+      color: var(--text-secondary);
+      font-size: 13px;
+    }
+    .usage-two-column {
+      align-items: flex-start;
+    }
+
+    .checklist-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .checklist-column {
+      list-style: none;
+      margin: 0;
+      padding-inline-start: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-size: 14px;
+    }
+
+    .checklist-column li {
+      position: relative;
+      padding-inline-start: 1.4rem;
+    }
+
+    .checklist-column li::before {
+      content: "•";
+      position: absolute;
+      inset-inline-start: 0;
+      top: 0.3em;
+      font-size: 1.1em;
+      color: var(--accent);
+    }
+
+    @media (min-width: 768px) {
+      .checklist-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .usage-col {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .usage-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .usage-list li {
+      padding-inline-start: 0;
+    }
+
+    .usage-list li span {
+      display: block;
+    }
+
+
+    .code-like {
+      font-family: "Baloo_Bhaijaan", system-ui, sans-serif;
+      font-size: 13px;
+      padding: 3px 7px;
+      border-radius: var(--radius-pill);
+      border: 1px dashed rgba(255, 255, 255, 0.25);
+      background: rgba(10, 15, 33, 0.75);
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      margin-top: 4px;
+    }
+
+    .code-like span.icon {
+      font-size: 13px;
+      opacity: 0.8;
+    }
+
+    .font-preview {
+      margin-top: 8px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(10, 15, 33, 0.96);
+      padding: 10px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .font-preview-line {
+      font-family: "Baloo_Bhaijaan", system-ui, sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    .font-preview-caption {
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+
+    .code-like span.icon {
+      font-size: 14px;
+      opacity: 0.8;
+    }
+
+    /* COLOR PALETTE */
+    .palette-toggle-wrapper {
+      margin-top: 4px;
+      margin-bottom: 8px;
+    }
+
+    .palette-panel {
+      margin-top: 8px;
+      border-radius: 16px;
+      border: 1px dashed rgba(255, 255, 255, 0.18);
+      background: rgba(1, 4, 18, 0.92);
+      padding: 10px 10px 8px;
+      display: none;
+    }
+
+    .palette-panel.open {
+      display: block;
+    }
+
+    .palette-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 10px;
+      margin-top: 6px;
+    }
+
+    .palette-item {
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 8px;
+      background: linear-gradient(135deg, rgba(10, 15, 33, 0.9), rgba(17, 61, 143, 0.8));
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      font-size: 13px;
+    }
+
+    .swatch {
+      height: 42px;
+      border-radius: 9px;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.3);
+    }
+
+    .palette-name {
+      font-weight: 600;
+      color: #ffffff;
+      margin-top: 6px;
+    }
+
+    .palette-hex-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-top: 2px;
+    }
+
+    .palette-hex {
+      font-family: "Baloo_Bhaijaan", system-ui, sans-serif;
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+
+    .copy-btn {
+      border-radius: 999px;
+      border: none;
+      padding: 4px 9px;
+      font-size: 13px;
+      cursor: pointer;
+      background: rgba(5, 173, 173, 0.14);
+      color: #dbfeff;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: background var(--transition-fast), transform 0.08s ease-out;
+    }
+
+    .copy-btn span.icon {
+      font-size: 14px;
+    }
+
+    .copy-btn:hover {
+      background: rgba(5, 173, 173, 0.32);
+    }
+
+    .copy-btn:active {
+      transform: translateY(1px);
+    }
+
+    .copy-btn.copied {
+      background: rgba(5, 173, 173, 0.9);
+      color: #021018;
+    }
+
+    /* VOICE EXAMPLES */
+    .voice-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+
+    @media (min-width: 640px) {
+      .voice-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .voice-block {
+      border-radius: 12px;
+      padding: 8px 9px;
+      background: rgba(10, 15, 33, 0.95);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      font-size: 13px;
+    }
+
+    .voice-block.good {
+      border-color: rgba(5, 173, 173, 0.7);
+    }
+
+    .voice-block.bad {
+      border-color: rgba(240, 71, 74, 0.8);
+    }
+
+    .voice-label {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 4px;
+    }
+
+    .voice-label.good {
+      color: #3bffc3;
+    }
+
+    .voice-label.bad {
+      color: #ff9b9d;
+    }
+
+    /* FOOTER */
+    .site-footer {
+      padding: 12px 16px 10px;
+      font-size: 13px;
+      color: var(--text-secondary);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      align-items: flex-start;
+    }
+
+    body.lang-ar .site-footer {
+      align-items: flex-end;
+    }
+
+    .footer-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .footer-dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.4);
+    }
+
+    /* LANGUAGE HANDLING */
+    .tr-ar {
+      display: inline;
+    }
+
+    .tr-en {
+      display: none !important;
+    }
+
+    body.lang-en .tr-ar {
+      display: none !important;
+    }
+
+    body.lang-en .tr-en {
+      display: inline !important;
+    }
+
+    /* ASSET GRID / TILES */
+    .asset-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    .asset-tile, .asset-tile-group {
+      flex: 1 1 150px;
+      min-width: 150px;
+      max-width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 9px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      background: radial-gradient(circle at 0 0, rgba(140, 64, 255, 0.4), transparent 55%),
+        rgba(10, 15, 33, 0.95);
+      cursor: pointer;
+      text-align: start;
+      transition: transform 0.1s ease-out, box-shadow var(--transition-med),
+        border-color var(--transition-fast), background var(--transition-fast);
+    }
+
+    .asset-tile:hover, .asset-tile-group:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 12px 26px rgba(0, 0, 0, 0.82);
+      border-color: rgba(5, 173, 173, 0.8);
+      background: radial-gradient(circle at 0 0, rgba(5, 173, 173, 0.35), transparent 55%),
+        rgba(10, 15, 33, 0.98);
+    }
+
+    .asset-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      background: rgba(0, 0, 0, 0.42);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 17px;
+    }
+
+    .asset-text {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+    }
+
+    .asset-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #ffffff;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .asset-meta {
+      font-size: 12px;
+      color: var(--text-secondary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* PREVIEW MODAL */
+    .preview-overlay {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      background: rgba(0, 0, 0, 0.78);
+      z-index: 1000;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease-out;
+    }
+
+    .preview-overlay.visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .preview-dialog {
+      width: min(96vw, 840px);
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      background: rgba(7, 10, 24, 0.98);
+      border-radius: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow:
+        0 28px 60px rgba(0, 0, 0, 0.9),
+        0 0 0 1px rgba(5, 173, 173, 0.16);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      padding: 14px 16px 12px;
+    }
+
+    .preview-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .preview-title-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .preview-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: #ffffff;
+    }
+
+    .preview-sub {
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+
+    .preview-close-btn {
+      width: 28px;
+      height: 28px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      background: rgba(10, 15, 33, 0.95);
+      color: #ffffff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 15px;
+      transition: background var(--transition-fast), transform 0.1s ease-out,
+        box-shadow var(--transition-fast);
+      flex-shrink: 0;
+    }
+
+    .preview-body {
+      flex: 1;
+      min-height: 220px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: #050713;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .preview-body.preview-body--group {
+      align-items: center;
+      justify-content: center;
+      padding: 20px 16px;
+      overflow-y: auto;
+    }
+
+    .preview-group-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 12px;
+      width: 100%;
+    }
+
+    @media (min-width: 640px) {
+      .preview-group-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 12px;
+      width: 100%;
+    }
+    }
+
+    .preview-group-item {
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      background: radial-gradient(circle at 0 0, rgba(140, 64, 255, 0.4), transparent 55%),
+        rgba(10, 15, 33, 0.98);
+      padding: 12px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 14px;
+    }
+
+    .preview-group-title {
+      font-weight: 600;
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .preview-group-desc {
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+
+    .preview-group-buttons {
+      margin-top: 8px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+
+    .preview-body img {
+      max-width: 100%;
+      max-height: 100%;
+      display: block;
+    }
+
+    .preview-body iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      background: #050713;
+    }
+
+    .preview-actions {
+      margin-top: 8px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: flex-end;
+      align-items: center;
+    }
+
+    .preview-hint {
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-top: 4px;
+    }
+
+    @media (max-width: 767px) {
+      .header-top {
+        flex-direction: row;
+        align-items: flex-start;
+      }
+      .header-text {
+        min-width: 0;
+      }
+      .header-subtitle {
+        font-size: 14px;
+      }
+    }
+  
+    @font-face {
+      font-family: "Baloo_Bhaijaan";
+      src:
+        url("assets/fonts/Baloo_Bhaijaan_EN_AR.woff2") format("woff2"),
+        url("assets/fonts/Baloo_Bhaijaan_EN_AR.ttf") format("truetype");
+      font-display: swap;
+    }
+
+    :root {
+      --primary-1: #0d295c;
+      --primary-2: #8c40ff;
+      --primary-3: #0a0f21;
+      --accent-1: #05adad;
+      --accent-2: #3b1745;
+      --accent-3: #113d8f;
+      --accent-4: #f0474a;
+
+      --text-primary: #f5f5ff;
+      --text-secondary: #c0c4d6;
+
+      --glass-bg: rgba(10, 15, 33, 0.78);
+      --glass-border: rgba(255, 255, 255, 0.06);
+
+      --radius-lg: 20px;
+      --radius-pill: 999px;
+
+      --transition-fast: 0.18s ease-out;
+      --transition-med: 0.25s ease-out;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      font-family: "Baloo_Bhaijaan", system-ui, -apple-system, BlinkMacSystemFont,
         "Segoe UI", sans-serif;
       color: var(--text-primary);
       background:
@@ -115,12 +1165,6 @@
       align-items: center;
     }
 
-    @media (min-width: 768px) {
-      .header-top {
-        padding: 20px 22px 16px;
-      }
-    }
-
     .logo-box {
       width: 60px;
       height: 60px;
@@ -151,15 +1195,17 @@
     .hub-tag {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
+      gap: 5px;
       border-radius: var(--radius-pill);
-      padding: 3px 10px;
+      padding: 1px 10px;
       font-size: 11px;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.05em;
       text-transform: uppercase;
-      background: linear-gradient(120deg, rgba(140, 64, 255, 0.3), rgba(5, 173, 173, 0.25));
+      background: linear-gradient(120deg, rgba(140, 64, 255, 0.4), rgba(5, 173, 173, 0.3));
       color: #ffffff;
-      border: 1px solid rgba(255, 255, 255, 0.18);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      max-width: 180px;
+      white-space: nowrap;
     }
 
     .hub-tag-dot {
@@ -298,8 +1344,8 @@
       padding: 4px 10px;
       font-size: 11px;
       border-radius: var(--radius-pill);
-      border: 1px solid var(--chip-border);
-      background: var(--chip-bg);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(17, 61, 143, 0.25);
       color: var(--text-secondary);
       text-decoration: none;
       transition: background var(--transition-fast), color var(--transition-fast),
@@ -318,7 +1364,7 @@
       background: rgba(15, 56, 110, 0.7);
       color: #ffffff;
       border-color: rgba(255, 255, 255, 0.35);
-      transform: translateY(-1px);
+      transform: translateY(0);
     }
 
     /* GRID LAYOUT */
@@ -332,17 +1378,18 @@
 
     @media (min-width: 960px) {
       .content-grid {
-        grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
-        align-items: flex-start;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        column-gap: 18px;
+        row-gap: 16px;
+        align-items: start;
+      }
+
+      .card-span-2 {
+        grid-column: 1 / -1;
       }
     }
 
-    .column {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-
+    /* CARDS */
     .card {
       padding: 16px 16px 14px;
     }
@@ -375,12 +1422,6 @@
       color: var(--accent-1);
       text-transform: uppercase;
       letter-spacing: 0.08em;
-    }
-
-    .card-subtitle {
-      font-size: 12px;
-      color: var(--text-secondary);
-      margin-bottom: 10px;
     }
 
     .card-body {
@@ -449,14 +1490,9 @@
       opacity: 0.9;
     }
 
-    .btn:focus-visible {
-      outline: 2px solid #ffffff;
-      outline-offset: 2px;
-    }
-
     .btn:hover {
       box-shadow: 0 10px 28px rgba(0, 0, 0, 0.7);
-      transform: translateY(-1px);
+      transform: translateY(0);
     }
 
     .btn:active {
@@ -524,7 +1560,7 @@
     }
 
     .code-like {
-      font-family: "Cairo", system-ui, sans-serif;
+      font-family: "Baloo_Bhaijaan", system-ui, sans-serif;
       font-size: 11px;
       padding: 3px 7px;
       border-radius: var(--radius-pill);
@@ -600,7 +1636,7 @@
     }
 
     .palette-hex {
-      font-family: "Cairo", system-ui, sans-serif;
+      font-family: "Baloo_Bhaijaan", system-ui, sans-serif;
       font-size: 11px;
       color: var(--text-secondary);
     }
@@ -634,47 +1670,6 @@
     .copy-btn.copied {
       background: rgba(5, 173, 173, 0.9);
       color: #021018;
-    }
-
-    /* TYPOGRAPHY SAMPLES */
-    .type-scale {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      margin-top: 4px;
-    }
-
-    .type-row {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-      padding: 6px 8px;
-      border-radius: 10px;
-      background: rgba(10, 15, 33, 0.9);
-      border: 1px solid rgba(255, 255, 255, 0.06);
-    }
-
-    .type-label {
-      font-size: 10px;
-      color: var(--text-secondary);
-    }
-
-    .type-preview {
-      font-weight: 600;
-      color: #ffffff;
-    }
-
-    .type-preview.h1 {
-      font-size: 20px;
-    }
-
-    .type-preview.h2 {
-      font-size: 16px;
-    }
-
-    .type-preview.body {
-      font-size: 13px;
-      font-weight: 400;
     }
 
     /* VOICE EXAMPLES */
@@ -757,7 +1752,7 @@
     }
 
     .tr-en {
-      display: none;
+      display: none !important;
     }
 
     body.lang-en .tr-ar {
@@ -768,22 +1763,2096 @@
       display: inline !important;
     }
 
-    /* Small helper to stack label phrases nicely */
-    .line-break {
+    /* ASSET GRID / TILES */
+    .asset-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    .asset-tile {
+      flex: 1 1 150px;
+      min-width: 150px;
+      max-width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 9px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      background: radial-gradient(circle at 0 0, rgba(140, 64, 255, 0.4), transparent 55%),
+        rgba(10, 15, 33, 0.95);
+      cursor: pointer;
+      text-align: start;
+      transition: transform 0.1s ease-out, box-shadow var(--transition-med),
+        border-color var(--transition-fast), background var(--transition-fast);
+    }
+
+    .asset-tile:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 12px 26px rgba(0, 0, 0, 0.82);
+      border-color: rgba(5, 173, 173, 0.8);
+      background: radial-gradient(circle at 0 0, rgba(5, 173, 173, 0.35), transparent 55%),
+        rgba(10, 15, 33, 0.98);
+    }
+
+    .asset-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      background: rgba(0, 0, 0, 0.42);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 17px;
+    }
+
+    .asset-text {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+    }
+
+    .asset-title {
+      font-size: 12px;
+      font-weight: 600;
+      color: #ffffff;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .asset-meta {
+      font-size: 10px;
+      color: var(--text-secondary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* PREVIEW MODAL */
+    .preview-overlay {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      background: rgba(0, 0, 0, 0.78);
+      z-index: 1000;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease-out;
+    }
+
+    .preview-overlay.visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .preview-dialog {
+      width: min(96vw, 840px);
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      background: rgba(7, 10, 24, 0.98);
+      border-radius: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow:
+        0 28px 60px rgba(0, 0, 0, 0.9),
+        0 0 0 1px rgba(5, 173, 173, 0.16);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      padding: 14px 16px 12px;
+    }
+
+    .preview-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .preview-title-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .preview-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #ffffff;
+    }
+
+    .preview-sub {
+      font-size: 11px;
+      color: var(--text-secondary);
+    }
+
+    .preview-close-btn {
+      width: 28px;
+      height: 28px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      background: rgba(10, 15, 33, 0.95);
+      color: #ffffff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 15px;
+      transition: background var(--transition-fast), transform 0.1s ease-out,
+        box-shadow var(--transition-fast);
+      flex-shrink: 0;
+    }
+
+    .preview-body {
+      flex: 1;
+      min-height: 220px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: #050713;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .preview-body img {
+      max-width: 100%;
+      max-height: 100%;
       display: block;
     }
 
-    /* RESPONSIVE TWEAKS */
+    .preview-body iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      background: #050713;
+    }
+
+    .preview-actions {
+      margin-top: 8px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: flex-end;
+      align-items: center;
+    }
+
+    .preview-hint {
+      font-size: 10px;
+      color: var(--text-secondary);
+      margin-top: 4px;
+    }
+
     @media (max-width: 767px) {
       .header-top {
         flex-direction: row;
         align-items: flex-start;
       }
-
       .header-text {
         min-width: 0;
       }
+      .header-subtitle {
+        font-size: 12px;
+      }
+    }
+  
 
+    /* Compact header spacing override */
+    .main-header {
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    @font-face {
+      font-family: "Baloo_Bhaijaan";
+      src:
+        url("assets/fonts/Baloo_Bhaijaan_EN_AR.woff2") format("woff2"),
+        url("assets/fonts/Baloo_Bhaijaan_EN_AR.ttf") format("truetype");
+      font-display: swap;
+    }
+
+    :root {
+      --primary-1: #0d295c;
+      --primary-2: #8c40ff;
+      --primary-3: #0a0f21;
+      --accent-1: #05adad;
+      --accent-2: #3b1745;
+      --accent-3: #113d8f;
+      --accent-4: #f0474a;
+
+      --text-primary: #f5f5ff;
+      --text-secondary: #c0c4d6;
+
+      --glass-bg: rgba(10, 15, 33, 0.78);
+      --glass-border: rgba(255, 255, 255, 0.06);
+
+      --radius-lg: 20px;
+      --radius-pill: 999px;
+
+      --transition-fast: 0.18s ease-out;
+      --transition-med: 0.25s ease-out;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      font-family: "Baloo_Bhaijaan", system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", sans-serif;
+      color: var(--text-primary);
+      background:
+        radial-gradient(circle at top left, rgba(140, 64, 255, 0.4), transparent 55%),
+        radial-gradient(circle at bottom right, rgba(5, 173, 173, 0.35), transparent 55%),
+        linear-gradient(145deg, #050710, #050917, #02030a);
+      display: flex;
+      justify-content: center;
+    }
+
+    body.lang-ar {
+      direction: rtl;
+      text-align: right;
+    }
+
+    body.lang-en {
+      direction: ltr;
+      text-align: left;
+    }
+
+    .page-wrapper {
+      width: 100%;
+      max-width: 1200px;
+      padding: 24px 16px 32px;
+    }
+
+    @media (min-width: 768px) {
+      .page-wrapper {
+        padding: 32px 24px 40px;
+      }
+    }
+
+    .glass-card {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-lg);
+      box-shadow:
+        0 22px 50px rgba(0, 0, 0, 0.72),
+        0 0 0 1px rgba(255, 255, 255, 0.02);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+
+    /* HEADER */
+    .main-header {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      margin-bottom: 18px;
+    }
+
+    .header-top {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      padding: 18px 18px 16px;
+      align-items: center;
+    }
+
+    .logo-box {
+      width: 60px;
+      height: 60px;
+      border-radius: 18px;
+      background: radial-gradient(circle at 10% 0%, rgba(140, 64, 255, 0.6), transparent 55%),
+        rgba(10, 15, 33, 0.92);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.7);
+    }
+
+    .logo-box img {
+      max-width: 70%;
+      max-height: 70%;
+      display: block;
+    }
+
+    .header-text {
+      flex: 1 1 220px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .hub-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      border-radius: var(--radius-pill);
+      padding: 1px 10px;
+      font-size: 11px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      background: linear-gradient(120deg, rgba(140, 64, 255, 0.4), rgba(5, 173, 173, 0.3));
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      max-width: 180px;
+      white-space: nowrap;
+    }
+
+    .hub-tag-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #3bffca;
+      box-shadow: 0 0 12px rgba(59, 255, 202, 0.8);
+    }
+
+    .header-title {
+      font-size: 21px;
+      font-weight: 700;
+      line-height: 1.35;
+    }
+
+    @media (min-width: 768px) {
+      .header-title {
+        font-size: 23px;
+      }
+    }
+
+    .header-subtitle {
+      font-size: 15px;
+      color: var(--text-secondary);
+      max-width: 560px;
+    }
+
+    .header-subtitle strong {
+      font-weight: 600;
+      color: #ffffff;
+    }
+
+    .header-lang-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 6px;
+      width: 100%;
+    }
+
+    @media (min-width: 768px) {
+      .header-lang-nav {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+      }
+    }
+
+    .lang-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 6px 4px 4px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: linear-gradient(120deg, rgba(13, 41, 92, 0.9), rgba(17, 61, 143, 0.9));
+      align-self: flex-end;
+    }
+
+    body.lang-en .lang-toggle {
+      align-self: flex-start;
+    }
+
+    @media (min-width: 768px) {
+      .lang-toggle {
+        align-self: auto;
+      }
+    }
+
+    .lang-label {
+      font-size: 13px;
+      color: var(--text-secondary);
+      white-space: nowrap;
+      padding-inline: 4px;
+    }
+
+    .lang-pill {
+      border-radius: var(--radius-pill);
+      border: none;
+      padding: 4px 10px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      background: transparent;
+      color: #e0e2ff;
+      transition: background var(--transition-fast), color var(--transition-fast),
+        transform 0.1s ease-out;
+    }
+
+    .lang-pill.active {
+      background: #f5f5ff;
+      color: #0a0f21;
+      box-shadow: 0 0 0 1px rgba(10, 15, 33, 0.8), 0 8px 18px rgba(0, 0, 0, 0.7);
+    }
+
+    .lang-pill:active {
+      transform: translateY(1px);
+    }
+
+    /* QUICK NAV */
+    .quick-nav {
+      padding: 10px 10px;
+    }
+
+    .quick-nav-title {
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-inline: 4px;
+      margin-bottom: 6px;
+    }
+
+    .chip-row {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 6px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+      scrollbar-width: thin;
+    }
+
+    .chip-row::-webkit-scrollbar {
+      height: 4px;
+    }
+
+    .chip-row::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.22);
+      border-radius: 999px;
+    }
+
+    .chip {
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      font-size: 13px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(17, 61, 143, 0.25);
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: background var(--transition-fast), color var(--transition-fast),
+        transform 0.1s ease-out, border-color var(--transition-fast);
+    }
+
+    .chip-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(5, 173, 173, 0.95);
+      box-shadow: 0 0 8px rgba(5, 173, 173, 0.9);
+    }
+
+    .chip:hover {
+      background: rgba(15, 56, 110, 0.7);
+      color: #ffffff;
+      border-color: rgba(255, 255, 255, 0.35);
+      transform: translateY(0);
+    }
+
+    /* GRID LAYOUT */
+    .content-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      margin-top: 10px;
+      margin-bottom: 18px;
+    }
+
+    @media (min-width: 960px) {
+      .content-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        column-gap: 18px;
+        row-gap: 20px;
+        align-items: start;
+      }
+
+      .card-span-2 {
+        grid-column: 1 / -1;
+      }
+    }
+
+    /* CARDS */
+    .card {
+      padding: 16px 16px 14px;
+    }
+
+    @media (min-width: 768px) {
+      .card {
+        padding: 18px 18px 16px;
+      }
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+
+    .card-title {
+      font-size: 16px;
+      font-weight: 600;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      align-items: baseline;
+    }
+
+    .card-kicker {
+      font-size: 13px;
+      color: var(--accent-1);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .card-body {
+      font-size: 14px;
+      color: var(--text-secondary);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .card-body p {
+      line-height: 1.6;
+    }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 4px;
+    }
+
+    .badge {
+      font-size: 12px;
+      padding: 3px 8px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: radial-gradient(circle at 0 0, rgba(140, 64, 255, 0.45), transparent 60%),
+        rgba(10, 15, 33, 0.9);
+      color: #ffffff;
+      white-space: nowrap;
+    }
+
+    .badge-muted {
+      background: rgba(10, 15, 33, 0.8);
+      color: var(--text-secondary);
+    }
+
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    .btn {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      border-radius: 999px;
+      font-size: 13px;
+      padding: 6px 12px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      background: linear-gradient(135deg, rgba(140, 64, 255, 0.9), rgba(17, 61, 143, 0.95));
+      color: #ffffff;
+      text-decoration: none;
+      cursor: pointer;
+      transition: box-shadow var(--transition-med), transform 0.1s ease-out,
+        background var(--transition-med), border-color var(--transition-med);
+      white-space: nowrap;
+    }
+
+    .btn span.icon {
+      font-size: 15px;
+      opacity: 0.9;
+    }
+
+    .btn:hover {
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.7);
+      transform: translateY(0);
+    }
+
+    .btn:active {
+      transform: translateY(0);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.7);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      border-color: rgba(255, 255, 255, 0.22);
+      color: var(--text-secondary);
+    }
+
+    .btn-ghost:hover {
+      background: rgba(11, 19, 40, 0.9);
+      color: #ffffff;
+    }
+
+    .btn-outline-accent {
+      background: transparent;
+      border-color: rgba(5, 173, 173, 0.6);
+      color: #dbfeff;
+    }
+
+    .btn-outline-accent:hover {
+      background: rgba(5, 173, 173, 0.22);
+    }
+
+    ul {
+      padding-inline-start: 18px;
+    }
+
+    body.lang-ar ul {
+      padding-inline-start: 0;
+      padding-inline-end: 18px;
+    }
+
+    li {
+      margin-bottom: 4px;
+      line-height: 1.6;
+    }
+
+    .two-column-list {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+
+    @media (min-width: 640px) {
+      .two-column-list {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .list-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: #ffffff;
+      margin-bottom: 2px;
+    }
+
+    .muted {
+      color: var(--text-secondary);
+      font-size: 13px;
+    }
+
+    .code-like {
+      font-family: "Baloo_Bhaijaan", system-ui, sans-serif;
+      font-size: 13px;
+      padding: 3px 7px;
+      border-radius: var(--radius-pill);
+      border: 1px dashed rgba(255, 255, 255, 0.25);
+      background: rgba(10, 15, 33, 0.75);
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      margin-top: 4px;
+    }
+
+    .code-like span.icon {
+      font-size: 13px;
+      opacity: 0.8;
+    }
+
+    .font-preview {
+      margin-top: 8px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(10, 15, 33, 0.96);
+      padding: 10px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .font-preview-line {
+      font-family: "Baloo_Bhaijaan", system-ui, sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    .font-preview-caption {
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+
+    .code-like span.icon {
+      font-size: 14px;
+      opacity: 0.8;
+    }
+
+    /* COLOR PALETTE */
+    .palette-toggle-wrapper {
+      margin-top: 4px;
+      margin-bottom: 8px;
+    }
+
+    .palette-panel {
+      margin-top: 8px;
+      border-radius: 16px;
+      border: 1px dashed rgba(255, 255, 255, 0.18);
+      background: rgba(1, 4, 18, 0.92);
+      padding: 10px 10px 8px;
+      display: none;
+    }
+
+    .palette-panel.open {
+      display: block;
+    }
+
+    .palette-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 10px;
+      margin-top: 6px;
+    }
+
+    .palette-item {
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 8px;
+      background: linear-gradient(135deg, rgba(10, 15, 33, 0.9), rgba(17, 61, 143, 0.8));
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      font-size: 13px;
+    }
+
+    .swatch {
+      height: 42px;
+      border-radius: 9px;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.3);
+    }
+
+    .palette-name {
+      font-weight: 600;
+      color: #ffffff;
+      margin-top: 6px;
+    }
+
+    .palette-hex-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-top: 2px;
+    }
+
+    .palette-hex {
+      font-family: "Baloo_Bhaijaan", system-ui, sans-serif;
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+
+    .copy-btn {
+      border-radius: 999px;
+      border: none;
+      padding: 4px 9px;
+      font-size: 13px;
+      cursor: pointer;
+      background: rgba(5, 173, 173, 0.14);
+      color: #dbfeff;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: background var(--transition-fast), transform 0.08s ease-out;
+    }
+
+    .copy-btn span.icon {
+      font-size: 14px;
+    }
+
+    .copy-btn:hover {
+      background: rgba(5, 173, 173, 0.32);
+    }
+
+    .copy-btn:active {
+      transform: translateY(1px);
+    }
+
+    .copy-btn.copied {
+      background: rgba(5, 173, 173, 0.9);
+      color: #021018;
+    }
+
+    /* VOICE EXAMPLES */
+    .voice-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+
+    @media (min-width: 640px) {
+      .voice-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .voice-block {
+      border-radius: 12px;
+      padding: 8px 9px;
+      background: rgba(10, 15, 33, 0.95);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      font-size: 13px;
+    }
+
+    .voice-block.good {
+      border-color: rgba(5, 173, 173, 0.7);
+    }
+
+    .voice-block.bad {
+      border-color: rgba(240, 71, 74, 0.8);
+    }
+
+    .voice-label {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 4px;
+    }
+
+    .voice-label.good {
+      color: #3bffc3;
+    }
+
+    .voice-label.bad {
+      color: #ff9b9d;
+    }
+
+    /* FOOTER */
+    .site-footer {
+      padding: 12px 16px 10px;
+      font-size: 13px;
+      color: var(--text-secondary);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      align-items: flex-start;
+    }
+
+    body.lang-ar .site-footer {
+      align-items: flex-end;
+    }
+
+    .footer-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .footer-dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.4);
+    }
+
+    /* LANGUAGE HANDLING */
+    .tr-ar {
+      display: inline;
+    }
+
+    .tr-en {
+      display: none !important;
+    }
+
+    body.lang-en .tr-ar {
+      display: none !important;
+    }
+
+    body.lang-en .tr-en {
+      display: inline !important;
+    }
+
+    /* ASSET GRID / TILES */
+    .asset-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    .asset-tile, .asset-tile-group {
+      flex: 1 1 150px;
+      min-width: 150px;
+      max-width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 9px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      background: radial-gradient(circle at 0 0, rgba(140, 64, 255, 0.4), transparent 55%),
+        rgba(10, 15, 33, 0.95);
+      cursor: pointer;
+      text-align: start;
+      transition: transform 0.1s ease-out, box-shadow var(--transition-med),
+        border-color var(--transition-fast), background var(--transition-fast);
+    }
+
+    .asset-tile:hover, .asset-tile-group:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 12px 26px rgba(0, 0, 0, 0.82);
+      border-color: rgba(5, 173, 173, 0.8);
+      background: radial-gradient(circle at 0 0, rgba(5, 173, 173, 0.35), transparent 55%),
+        rgba(10, 15, 33, 0.98);
+    }
+
+    .asset-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      background: rgba(0, 0, 0, 0.42);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 17px;
+    }
+
+    .asset-text {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+    }
+
+    .asset-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #ffffff;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .asset-meta {
+      font-size: 12px;
+      color: var(--text-secondary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* PREVIEW MODAL */
+    .preview-overlay {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      background: rgba(0, 0, 0, 0.78);
+      z-index: 1000;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease-out;
+    }
+
+    .preview-overlay.visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .preview-dialog {
+      width: min(96vw, 840px);
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      background: rgba(7, 10, 24, 0.98);
+      border-radius: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow:
+        0 28px 60px rgba(0, 0, 0, 0.9),
+        0 0 0 1px rgba(5, 173, 173, 0.16);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      padding: 14px 16px 12px;
+    }
+
+    .preview-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .preview-title-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .preview-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: #ffffff;
+    }
+
+    .preview-sub {
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+
+    .preview-close-btn {
+      width: 28px;
+      height: 28px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      background: rgba(10, 15, 33, 0.95);
+      color: #ffffff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 15px;
+      transition: background var(--transition-fast), transform 0.1s ease-out,
+        box-shadow var(--transition-fast);
+      flex-shrink: 0;
+    }
+
+    .preview-body {
+      flex: 1;
+      min-height: 220px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: #050713;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .preview-body.preview-body--group {
+      align-items: center;
+      justify-content: center;
+      padding: 20px 16px;
+      overflow-y: auto;
+    }
+
+    .preview-group-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 12px;
+      width: 100%;
+    }
+
+    @media (min-width: 640px) {
+      .preview-group-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 12px;
+      width: 100%;
+    }
+    }
+
+    .preview-group-item {
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      background: radial-gradient(circle at 0 0, rgba(140, 64, 255, 0.4), transparent 55%),
+        rgba(10, 15, 33, 0.98);
+      padding: 12px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 14px;
+    }
+
+    .preview-group-title {
+      font-weight: 600;
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .preview-group-desc {
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+
+    .preview-group-buttons {
+      margin-top: 8px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+
+    .preview-body img {
+      max-width: 100%;
+      max-height: 100%;
+      display: block;
+    }
+
+    .preview-body iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      background: #050713;
+    }
+
+    .preview-actions {
+      margin-top: 8px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: flex-end;
+      align-items: center;
+    }
+
+    .preview-hint {
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-top: 4px;
+    }
+
+    @media (max-width: 767px) {
+      .header-top {
+        flex-direction: row;
+        align-items: flex-start;
+      }
+      .header-text {
+        min-width: 0;
+      }
+      .header-subtitle {
+        font-size: 14px;
+      }
+    }
+  
+    @font-face {
+      font-family: "Baloo_Bhaijaan";
+      src:
+        url("assets/fonts/Baloo_Bhaijaan_EN_AR.woff2") format("woff2"),
+        url("assets/fonts/Baloo_Bhaijaan_EN_AR.ttf") format("truetype");
+      font-display: swap;
+    }
+
+    :root {
+      --primary-1: #0d295c;
+      --primary-2: #8c40ff;
+      --primary-3: #0a0f21;
+      --accent-1: #05adad;
+      --accent-2: #3b1745;
+      --accent-3: #113d8f;
+      --accent-4: #f0474a;
+
+      --text-primary: #f5f5ff;
+      --text-secondary: #c0c4d6;
+
+      --glass-bg: rgba(10, 15, 33, 0.78);
+      --glass-border: rgba(255, 255, 255, 0.06);
+
+      --radius-lg: 20px;
+      --radius-pill: 999px;
+
+      --transition-fast: 0.18s ease-out;
+      --transition-med: 0.25s ease-out;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      font-family: "Baloo_Bhaijaan", system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", sans-serif;
+      color: var(--text-primary);
+      background:
+        radial-gradient(circle at top left, rgba(140, 64, 255, 0.4), transparent 55%),
+        radial-gradient(circle at bottom right, rgba(5, 173, 173, 0.35), transparent 55%),
+        linear-gradient(145deg, #050710, #050917, #02030a);
+      display: flex;
+      justify-content: center;
+    }
+
+    body.lang-ar {
+      direction: rtl;
+      text-align: right;
+    }
+
+    body.lang-en {
+      direction: ltr;
+      text-align: left;
+    }
+
+    .page-wrapper {
+      width: 100%;
+      max-width: 1200px;
+      padding: 24px 16px 32px;
+    }
+
+    @media (min-width: 768px) {
+      .page-wrapper {
+        padding: 32px 24px 40px;
+      }
+    }
+
+    .glass-card {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-lg);
+      box-shadow:
+        0 22px 50px rgba(0, 0, 0, 0.72),
+        0 0 0 1px rgba(255, 255, 255, 0.02);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+
+    /* HEADER */
+    .main-header {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .header-top {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      padding: 18px 18px 16px;
+      align-items: center;
+    }
+
+    .logo-box {
+      width: 60px;
+      height: 60px;
+      border-radius: 18px;
+      background: radial-gradient(circle at 10% 0%, rgba(140, 64, 255, 0.6), transparent 55%),
+        rgba(10, 15, 33, 0.92);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.7);
+    }
+
+    .logo-box img {
+      max-width: 70%;
+      max-height: 70%;
+      display: block;
+    }
+
+    .header-text {
+      flex: 1 1 220px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .hub-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      border-radius: var(--radius-pill);
+      padding: 1px 10px;
+      font-size: 11px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      background: linear-gradient(120deg, rgba(140, 64, 255, 0.4), rgba(5, 173, 173, 0.3));
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      max-width: 180px;
+      white-space: nowrap;
+    }
+
+    .hub-tag-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #3bffca;
+      box-shadow: 0 0 12px rgba(59, 255, 202, 0.8);
+    }
+
+    .header-title {
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1.35;
+    }
+
+    @media (min-width: 768px) {
+      .header-title {
+        font-size: 20px;
+      }
+    }
+
+    .header-subtitle {
+      font-size: 13px;
+      color: var(--text-secondary);
+      max-width: 560px;
+    }
+
+    .header-subtitle strong {
+      font-weight: 600;
+      color: #ffffff;
+    }
+
+    .header-lang-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 6px;
+      width: 100%;
+    }
+
+    @media (min-width: 768px) {
+      .header-lang-nav {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+      }
+    }
+
+    .lang-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 6px 4px 4px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: linear-gradient(120deg, rgba(13, 41, 92, 0.9), rgba(17, 61, 143, 0.9));
+      align-self: flex-end;
+    }
+
+    body.lang-en .lang-toggle {
+      align-self: flex-start;
+    }
+
+    @media (min-width: 768px) {
+      .lang-toggle {
+        align-self: auto;
+      }
+    }
+
+    .lang-label {
+      font-size: 11px;
+      color: var(--text-secondary);
+      white-space: nowrap;
+      padding-inline: 4px;
+    }
+
+    .lang-pill {
+      border-radius: var(--radius-pill);
+      border: none;
+      padding: 4px 10px;
+      font-size: 11px;
+      font-weight: 600;
+      cursor: pointer;
+      background: transparent;
+      color: #e0e2ff;
+      transition: background var(--transition-fast), color var(--transition-fast),
+        transform 0.1s ease-out;
+    }
+
+    .lang-pill.active {
+      background: #f5f5ff;
+      color: #0a0f21;
+      box-shadow: 0 0 0 1px rgba(10, 15, 33, 0.8), 0 8px 18px rgba(0, 0, 0, 0.7);
+    }
+
+    .lang-pill:active {
+      transform: translateY(1px);
+    }
+
+    /* QUICK NAV */
+    .quick-nav {
+      padding: 10px 10px;
+    }
+
+    .quick-nav-title {
+      font-size: 11px;
+      color: var(--text-secondary);
+      margin-inline: 4px;
+      margin-bottom: 6px;
+    }
+
+    .chip-row {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 6px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+      scrollbar-width: thin;
+    }
+
+    .chip-row::-webkit-scrollbar {
+      height: 4px;
+    }
+
+    .chip-row::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.22);
+      border-radius: 999px;
+    }
+
+    .chip {
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      font-size: 11px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(17, 61, 143, 0.25);
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: background var(--transition-fast), color var(--transition-fast),
+        transform 0.1s ease-out, border-color var(--transition-fast);
+    }
+
+    .chip-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(5, 173, 173, 0.95);
+      box-shadow: 0 0 8px rgba(5, 173, 173, 0.9);
+    }
+
+    .chip:hover {
+      background: rgba(15, 56, 110, 0.7);
+      color: #ffffff;
+      border-color: rgba(255, 255, 255, 0.35);
+      transform: translateY(0);
+    }
+
+    /* GRID LAYOUT */
+    .content-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      margin-top: 10px;
+      margin-bottom: 18px;
+    }
+
+    @media (min-width: 960px) {
+      .content-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        column-gap: 18px;
+        row-gap: 16px;
+        align-items: start;
+      }
+
+      .card-span-2 {
+        grid-column: 1 / -1;
+      }
+    }
+
+    /* CARDS */
+    .card {
+      padding: 16px 16px 14px;
+    }
+
+    @media (min-width: 768px) {
+      .card {
+        padding: 18px 18px 16px;
+      }
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+
+    .card-title {
+      font-size: 14px;
+      font-weight: 600;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      align-items: baseline;
+    }
+
+    .card-kicker {
+      font-size: 11px;
+      color: var(--accent-1);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .card-body {
+      font-size: 12px;
+      color: var(--text-secondary);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .card-body p {
+      line-height: 1.6;
+    }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 4px;
+    }
+
+    .badge {
+      font-size: 10px;
+      padding: 3px 8px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: radial-gradient(circle at 0 0, rgba(140, 64, 255, 0.45), transparent 60%),
+        rgba(10, 15, 33, 0.9);
+      color: #ffffff;
+      white-space: nowrap;
+    }
+
+    .badge-muted {
+      background: rgba(10, 15, 33, 0.8);
+      color: var(--text-secondary);
+    }
+
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    .btn {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      border-radius: 999px;
+      font-size: 11px;
+      padding: 6px 12px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      background: linear-gradient(135deg, rgba(140, 64, 255, 0.9), rgba(17, 61, 143, 0.95));
+      color: #ffffff;
+      text-decoration: none;
+      cursor: pointer;
+      transition: box-shadow var(--transition-med), transform 0.1s ease-out,
+        background var(--transition-med), border-color var(--transition-med);
+      white-space: nowrap;
+    }
+
+    .btn span.icon {
+      font-size: 13px;
+      opacity: 0.9;
+    }
+
+    .btn:hover {
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.7);
+      transform: translateY(0);
+    }
+
+    .btn:active {
+      transform: translateY(0);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.7);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      border-color: rgba(255, 255, 255, 0.22);
+      color: var(--text-secondary);
+    }
+
+    .btn-ghost:hover {
+      background: rgba(11, 19, 40, 0.9);
+      color: #ffffff;
+    }
+
+    .btn-outline-accent {
+      background: transparent;
+      border-color: rgba(5, 173, 173, 0.6);
+      color: #dbfeff;
+    }
+
+    .btn-outline-accent:hover {
+      background: rgba(5, 173, 173, 0.22);
+    }
+
+    ul {
+      padding-inline-start: 18px;
+    }
+
+    body.lang-ar ul {
+      padding-inline-start: 0;
+      padding-inline-end: 18px;
+    }
+
+    li {
+      margin-bottom: 4px;
+      line-height: 1.6;
+    }
+
+    .two-column-list {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+
+    @media (min-width: 640px) {
+      .two-column-list {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .list-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: #ffffff;
+      margin-bottom: 2px;
+    }
+
+    .muted {
+      color: var(--text-secondary);
+      font-size: 11px;
+    }
+
+    .code-like {
+      font-family: "Baloo_Bhaijaan", system-ui, sans-serif;
+      font-size: 11px;
+      padding: 3px 7px;
+      border-radius: var(--radius-pill);
+      border: 1px dashed rgba(255, 255, 255, 0.25);
+      background: rgba(10, 15, 33, 0.75);
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      margin-top: 4px;
+    }
+
+    .code-like span.icon {
+      font-size: 12px;
+      opacity: 0.8;
+    }
+
+    /* COLOR PALETTE */
+    .palette-toggle-wrapper {
+      margin-top: 4px;
+      margin-bottom: 8px;
+    }
+
+    .palette-panel {
+      margin-top: 8px;
+      border-radius: 16px;
+      border: 1px dashed rgba(255, 255, 255, 0.18);
+      background: rgba(1, 4, 18, 0.92);
+      padding: 10px 10px 8px;
+      display: none;
+    }
+
+    .palette-panel.open {
+      display: block;
+    }
+
+    .palette-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 10px;
+      margin-top: 6px;
+    }
+
+    .palette-item {
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 8px;
+      background: linear-gradient(135deg, rgba(10, 15, 33, 0.9), rgba(17, 61, 143, 0.8));
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      font-size: 11px;
+    }
+
+    .swatch {
+      height: 42px;
+      border-radius: 9px;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.3);
+    }
+
+    .palette-name {
+      font-weight: 600;
+      color: #ffffff;
+      margin-top: 6px;
+    }
+
+    .palette-hex-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-top: 2px;
+    }
+
+    .palette-hex {
+      font-family: "Baloo_Bhaijaan", system-ui, sans-serif;
+      font-size: 11px;
+      color: var(--text-secondary);
+    }
+
+    .copy-btn {
+      border-radius: 999px;
+      border: none;
+      padding: 4px 9px;
+      font-size: 11px;
+      cursor: pointer;
+      background: rgba(5, 173, 173, 0.14);
+      color: #dbfeff;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: background var(--transition-fast), transform 0.08s ease-out;
+    }
+
+    .copy-btn span.icon {
+      font-size: 12px;
+    }
+
+    .copy-btn:hover {
+      background: rgba(5, 173, 173, 0.32);
+    }
+
+    .copy-btn:active {
+      transform: translateY(1px);
+    }
+
+    .copy-btn.copied {
+      background: rgba(5, 173, 173, 0.9);
+      color: #021018;
+    }
+
+    /* VOICE EXAMPLES */
+    .voice-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+
+    @media (min-width: 640px) {
+      .voice-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .voice-block {
+      border-radius: 12px;
+      padding: 8px 9px;
+      background: rgba(10, 15, 33, 0.95);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      font-size: 11px;
+    }
+
+    .voice-block.good {
+      border-color: rgba(5, 173, 173, 0.7);
+    }
+
+    .voice-block.bad {
+      border-color: rgba(240, 71, 74, 0.8);
+    }
+
+    .voice-label {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 4px;
+    }
+
+    .voice-label.good {
+      color: #3bffc3;
+    }
+
+    .voice-label.bad {
+      color: #ff9b9d;
+    }
+
+    /* FOOTER */
+    .site-footer {
+      padding: 12px 16px 10px;
+      font-size: 11px;
+      color: var(--text-secondary);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      align-items: flex-start;
+    }
+
+    body.lang-ar .site-footer {
+      align-items: flex-end;
+    }
+
+    .footer-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .footer-dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.4);
+    }
+
+    /* LANGUAGE HANDLING */
+    .tr-ar {
+      display: inline;
+    }
+
+    .tr-en {
+      display: none !important;
+    }
+
+    body.lang-en .tr-ar {
+      display: none !important;
+    }
+
+    body.lang-en .tr-en {
+      display: inline !important;
+    }
+
+    /* ASSET GRID / TILES */
+    .asset-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    .asset-tile {
+      flex: 1 1 150px;
+      min-width: 150px;
+      max-width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 9px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      background: radial-gradient(circle at 0 0, rgba(140, 64, 255, 0.4), transparent 55%),
+        rgba(10, 15, 33, 0.95);
+      cursor: pointer;
+      text-align: start;
+      transition: transform 0.1s ease-out, box-shadow var(--transition-med),
+        border-color var(--transition-fast), background var(--transition-fast);
+    }
+
+    .asset-tile:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 12px 26px rgba(0, 0, 0, 0.82);
+      border-color: rgba(5, 173, 173, 0.8);
+      background: radial-gradient(circle at 0 0, rgba(5, 173, 173, 0.35), transparent 55%),
+        rgba(10, 15, 33, 0.98);
+    }
+
+    .asset-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      background: rgba(0, 0, 0, 0.42);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 17px;
+    }
+
+    .asset-text {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+    }
+
+    .asset-title {
+      font-size: 12px;
+      font-weight: 600;
+      color: #ffffff;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .asset-meta {
+      font-size: 10px;
+      color: var(--text-secondary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* PREVIEW MODAL */
+    .preview-overlay {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      background: rgba(0, 0, 0, 0.78);
+      z-index: 1000;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease-out;
+    }
+
+    .preview-overlay.visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .preview-dialog {
+      width: min(96vw, 840px);
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      background: rgba(7, 10, 24, 0.98);
+      border-radius: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow:
+        0 28px 60px rgba(0, 0, 0, 0.9),
+        0 0 0 1px rgba(5, 173, 173, 0.16);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      padding: 14px 16px 12px;
+    }
+
+    .preview-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .preview-title-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .preview-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #ffffff;
+    }
+
+    .preview-sub {
+      font-size: 11px;
+      color: var(--text-secondary);
+    }
+
+    .preview-close-btn {
+      width: 28px;
+      height: 28px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      background: rgba(10, 15, 33, 0.95);
+      color: #ffffff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 15px;
+      transition: background var(--transition-fast), transform 0.1s ease-out,
+        box-shadow var(--transition-fast);
+      flex-shrink: 0;
+    }
+
+    .preview-body {
+      flex: 1;
+      min-height: 220px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: #050713;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .preview-body img {
+      max-width: 100%;
+      max-height: 100%;
+      display: block;
+    }
+
+    .preview-body iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      background: #050713;
+    }
+
+    .preview-actions {
+      margin-top: 8px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: flex-end;
+      align-items: center;
+    }
+
+    .preview-hint {
+      font-size: 10px;
+      color: var(--text-secondary);
+      margin-top: 4px;
+    }
+
+    @media (max-width: 767px) {
+      .header-top {
+        flex-direction: row;
+        align-items: flex-start;
+      }
+      .header-text {
+        min-width: 0;
+      }
       .header-subtitle {
         font-size: 12px;
       }
@@ -796,9 +3865,9 @@
     <!-- HEADER -->
     <header class="main-header">
       <div class="header-top glass-card">
-        <div class="logo-box">
+        <button class="logo-box asset-group-trigger" type="button" data-asset-group="logos">
           <img src="ts-logo.svg" alt="T&S Logo" />
-        </div>
+        </button>
 
         <div class="header-text">
           <div class="hub-tag">
@@ -825,7 +3894,6 @@
           </p>
 
           <div class="header-lang-nav">
-            <!-- Language Toggle -->
             <div class="lang-toggle" aria-label="Language toggle">
               <span class="lang-label tr-ar">اللغة</span>
               <span class="lang-label tr-en">Language</span>
@@ -889,834 +3957,960 @@
 
     <!-- MAIN CONTENT -->
     <main class="content-grid">
-      <!-- LEFT COLUMN -->
-      <section class="column column-left">
-        <!-- LOGO CARD -->
-        <article id="logos" class="card glass-card">
-          <header class="card-header">
-            <div>
-              <div class="card-kicker tr-ar">الشعار الرسمي</div>
-              <div class="card-kicker tr-en">Primary Logo</div>
-              <h2 class="card-title">
-                <span class="tr-ar">الشعار &amp; الاستخدامات الأساسية</span>
-                <span class="tr-en">Logo &amp; Core Usage</span>
-              </h2>
-            </div>
-          </header>
+      <!-- Row 1: Logo + Colors -->
+      <article id="logos" class="card glass-card">
+        <header class="card-header">
+          <div>
+            <div class="card-kicker tr-ar">الشعار الرسمي</div>
+            <div class="card-kicker tr-en">Primary Logo</div>
+            <h2 class="card-title">
+              <span class="tr-ar">الشعار &amp; الاستخدامات الأساسية</span>
+              <span class="tr-en">Logo &amp; Core Usage</span>
+            </h2>
+          </div>
+        </header>
 
-          <div class="card-body">
-            <p>
+        <div class="card-body">
+          <p>
+            <span class="tr-ar">
+              يُستخدم الشعار الرسمي لـ T&amp;S كما هو، بدون أي تعديل على
+              <strong>الألوان، النِسَب، أو العناصر</strong>. يجب المحافظة على
+              مساحة عزل (Clear Space) حول الشعار، وتجنب وضعه فوق خلفيات تُضعف
+              الوضوح أو تقلل التباين.
+            </span>
+            <span class="tr-en">
+              Always use the official T&amp;S logo as provided, with
+              <strong>no changes to colors, proportions, or structure</strong>.
+              Keep a clear space around the logo and avoid placing it on
+              cluttered or low-contrast backgrounds that reduce legibility.
+            </span>
+          </p>
+
+          <div class="asset-grid">
+            <button
+              type="button"
+              class="asset-tile asset-group-trigger"
+              data-asset-group="logoLight"
+            >
+              <div class="asset-icon">🔆</div>
+              <div class="asset-text">
+                <div class="asset-title tr-ar">الشعار الفاتح</div>
+                <div class="asset-title tr-en">Light Logo</div>
+                <div class="asset-meta tr-ar">للاستخدام على الخلفيات الداكنة / البنفسجية.</div>
+                <div class="asset-meta tr-en">Use on dark / purple backgrounds.</div>
+              </div>
+            </button>
+
+            <button
+              type="button"
+              class="asset-tile asset-group-trigger"
+              data-asset-group="logoDark"
+            >
+              <div class="asset-icon">🌑</div>
+              <div class="asset-text">
+                <div class="asset-title tr-ar">الشعار الغامق</div>
+                <div class="asset-title tr-en">Dark Logo</div>
+                <div class="asset-meta tr-ar">للاستخدام على الخلفيات البيضاء أو الفاتحة.</div>
+                <div class="asset-meta tr-en">Use on white or light backgrounds.</div>
+              </div>
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <article id="colors" class="card glass-card">
+        <header class="card-header">
+          <div>
+            <div class="card-kicker tr-ar">الألوان المعتمدة</div>
+            <div class="card-kicker tr-en">Official Colors</div>
+            <h2 class="card-title">
+              <span class="tr-ar">لوحة الألوان – Color Palette</span>
+              <span class="tr-en">Color Palette – Brand Core</span>
+            </h2>
+          </div>
+        </header>
+
+        <div class="card-body">
+          <p>
+            <span class="tr-ar">
+              تعتمد الهوية على مجموعة ألوان داكنة وحديثة، مع لمسات
+              <strong>Accent</strong> لإبراز العناصر المهمة. استخدم هذه
+              الأكواد كما هي في جميع التصاميم.
+            </span>
+            <span class="tr-en">
+              The identity uses a modern dark palette with vibrant
+              <strong>accent colors</strong> to highlight key elements. Always
+              use these exact HEX values in your designs.
+            </span>
+          </p>
+
+          <div class="palette-toggle-wrapper">
+            <button
+              id="palette-toggle"
+              type="button"
+              class="btn btn-ghost"
+            >
+              <span class="icon">🎨</span>
               <span class="tr-ar">
-                يُستخدم الشعار الرسمي لـ T&amp;S كما هو، بدون أي تعديل على
-                <strong>الألوان، النِسَب، أو العناصر</strong>. يجب المحافظة على
-                مساحة عزل (Clear Space) حول الشعار، وتجنب وضعه فوق خلفيات تُضعف
-                الوضوح أو تقلل التباين.
+                <span class="text-when-closed">عرض لوحة الألوان</span>
+                <span class="text-when-open" style="display: none;">
+                  إخفاء لوحة الألوان
+                </span>
               </span>
               <span class="tr-en">
-                Always use the official T&amp;S logo as provided, with
-                <strong>no changes to colors, proportions, or structure</strong>.
-                Keep a clear space around the logo and avoid placing it on
-                cluttered or low-contrast backgrounds that reduce legibility.
+                <span class="text-when-closed">Show Color Palette</span>
+                <span class="text-when-open" style="display: none;">
+                  Hide Color Palette
+                </span>
               </span>
-            </p>
-
-            <div class="btn-row">
-              <!-- COLORED SVG -->
-              <a
-                href="assets/logos/ts-logo-colored.svg"
-                target="_blank"
-                class="btn"
-              >
-                <span class="icon">👁️</span>
-                <span class="tr-ar">معاينة الشعار (SVG)</span>
-                <span class="tr-en">Preview Logo (SVG)</span>
-              </a>
-
-              <a
-                href="assets/logos/ts-logo-colored.svg"
-                download
-                class="btn btn-ghost"
-              >
-                <span class="icon">⬇️</span>
-                <span class="tr-ar">تحميل الشعار الملون (SVG)</span>
-                <span class="tr-en">Download Colored Logo (SVG)</span>
-              </a>
-
-              <!-- COLORED PNG -->
-              <a
-                href="assets/logos/ts-logo-colored.png"
-                target="_blank"
-                class="btn btn-outline-accent"
-              >
-                <span class="icon">👁️</span>
-                <span class="tr-ar">معاينة الشعار (PNG)</span>
-                <span class="tr-en">Preview Logo (PNG)</span>
-              </a>
-
-              <a
-                href="assets/logos/ts-logo-colored.png"
-                download
-                class="btn btn-ghost"
-              >
-                <span class="icon">⬇️</span>
-                <span class="tr-ar">تحميل الشعار بدقة عالية (PNG)</span>
-                <span class="tr-en">Download High-Res Logo (PNG)</span>
-              </a>
-            </div>
-
-            <div class="badge-row">
-              <span class="badge">Colored Version</span>
-              <span class="badge">Monochrome</span>
-              <span class="badge badge-muted">Digital &amp; Print</span>
-            </div>
+            </button>
           </div>
-        </article>
 
-        <!-- ALLOWED & FORBIDDEN USAGE -->
-        <article class="card glass-card">
-          <header class="card-header">
-            <div>
-              <div class="card-kicker tr-ar">الاستخدامات</div>
-              <div class="card-kicker tr-en">Usage Rules</div>
-              <h2 class="card-title">
-                <span class="tr-ar">الاستخدامات المسموحة والممنوعة</span>
-                <span class="tr-en">Allowed &amp; Forbidden Usage</span>
-              </h2>
-            </div>
-          </header>
-
-          <div class="card-body">
-            <div class="two-column-list">
-              <div>
-                <div class="list-label tr-ar">مسموح ✅</div>
-                <div class="list-label tr-en">Allowed ✅</div>
-                <ul>
-                  <li class="tr-ar">
-                    استخدام الشعار بالألوان الأصلية فقط وعلى خلفيات عالية
-                    التباين.
-                  </li>
-                  <li class="tr-en">
-                    Use the logo in its official colors on backgrounds with
-                    strong contrast.
-                  </li>
-                  <li class="tr-ar">
-                    احترام مساحة العزل حول الشعار وعدم إلصاق عناصر أخرى به.
-                  </li>
-                  <li class="tr-en">
-                    Keep sufficient clear space around the logo with no other
-                    elements touching it.
-                  </li>
-                  <li class="tr-ar">
-                    استخدام النسخة الأحادية اللون عند الحاجة لطباعة محدودة
-                    الألوان.
-                  </li>
-                  <li class="tr-en">
-                    Use the monochrome version for restricted-color printing
-                    when needed.
-                  </li>
-                </ul>
+          <div id="palette-panel" class="palette-panel">
+            <div class="palette-grid">
+              <div class="palette-item">
+                <div class="swatch" style="background:#0D295C;"></div>
+                <div class="palette-name">Primary 1</div>
+                <div class="palette-hex-row">
+                  <span class="palette-hex">#0D295C</span>
+                  <button class="copy-btn" type="button" data-hex="#0D295C">
+                    <span class="icon">📋</span>
+                    <span class="copy-label tr-ar">نسخ</span>
+                    <span class="copy-label tr-en">Copy</span>
+                  </button>
+                </div>
               </div>
 
-              <div>
-                <div class="list-label tr-ar">ممنوع 🚫</div>
-                <div class="list-label tr-en">Not Allowed 🚫</div>
-                <ul>
-                  <li class="tr-ar">
-                    تغيير ألوان الشعار أو إضافة تأثيرات غير معتمدة (ظلال مبالغ
-                    فيها/توهج).
-                  </li>
-                  <li class="tr-en">
-                    Changing logo colors or adding unapproved effects (strong
-                    glow, drop shadow, etc.).
-                  </li>
-                  <li class="tr-ar">
-                    تمديد الشعار أفقياً أو عمودياً أو تشويهه بأي شكل.
-                  </li>
-                  <li class="tr-en">
-                    Stretching, skewing, or distorting the logo proportions.
-                  </li>
-                  <li class="tr-ar">
-                    استخدام الشعار داخل جُمل أو نصوص كجزء من الكتابة.
-                  </li>
-                  <li class="tr-en">
-                    Using the logo as part of a sentence or inline text.
-                  </li>
-                </ul>
+              <div class="palette-item">
+                <div class="swatch" style="background:#8C40FF;"></div>
+                <div class="palette-name">Primary 2</div>
+                <div class="palette-hex-row">
+                  <span class="palette-hex">#8C40FF</span>
+                  <button class="copy-btn" type="button" data-hex="#8C40FF">
+                    <span class="icon">📋</span>
+                    <span class="copy-label tr-ar">نسخ</span>
+                    <span class="copy-label tr-en">Copy</span>
+                  </button>
+                </div>
+              </div>
+
+              <div class="palette-item">
+                <div class="swatch" style="background:#0A0F21;"></div>
+                <div class="palette-name">Primary 3</div>
+                <div class="palette-hex-row">
+                  <span class="palette-hex">#0A0F21</span>
+                  <button class="copy-btn" type="button" data-hex="#0A0F21">
+                    <span class="icon">📋</span>
+                    <span class="copy-label tr-ar">نسخ</span>
+                    <span class="copy-label tr-en">Copy</span>
+                  </button>
+                </div>
+              </div>
+
+              <div class="palette-item">
+                <div class="swatch" style="background:#05ADAD;"></div>
+                <div class="palette-name">Accent 1</div>
+                <div class="palette-hex-row">
+                  <span class="palette-hex">#05ADAD</span>
+                  <button class="copy-btn" type="button" data-hex="#05ADAD">
+                    <span class="icon">📋</span>
+                    <span class="copy-label tr-ar">نسخ</span>
+                    <span class="copy-label tr-en">Copy</span>
+                  </button>
+                </div>
+              </div>
+
+              <div class="palette-item">
+                <div class="swatch" style="background:#3B1745;"></div>
+                <div class="palette-name">Accent 2</div>
+                <div class="palette-hex-row">
+                  <span class="palette-hex">#3B1745</span>
+                  <button class="copy-btn" type="button" data-hex="#3B1745">
+                    <span class="icon">📋</span>
+                    <span class="copy-label tr-ar">نسخ</span>
+                    <span class="copy-label tr-en">Copy</span>
+                  </button>
+                </div>
+              </div>
+
+              <div class="palette-item">
+                <div class="swatch" style="background:#113D8F;"></div>
+                <div class="palette-name">Accent 3</div>
+                <div class="palette-hex-row">
+                  <span class="palette-hex">#113D8F</span>
+                  <button class="copy-btn" type="button" data-hex="#113D8F">
+                    <span class="icon">📋</span>
+                    <span class="copy-label tr-ar">نسخ</span>
+                    <span class="copy-label tr-en">Copy</span>
+                  </button>
+                </div>
+              </div>
+
+              <div class="palette-item">
+                <div class="swatch" style="background:#F0474A;"></div>
+                <div class="palette-name">Accent 4</div>
+                <div class="palette-hex-row">
+                  <span class="palette-hex">#F0474A</span>
+                  <button class="copy-btn" type="button" data-hex="#F0474A">
+                    <span class="icon">📋</span>
+                    <span class="copy-label tr-ar">نسخ</span>
+                    <span class="copy-label tr-en">Copy</span>
+                  </button>
+                </div>
               </div>
             </div>
 
-            <div class="btn-row">
-              <a
-                href="assets/logos/ts-logo-usage-guide.pdf"
-                class="btn"
-                download
-              >
-                <span class="icon">📘</span>
-                <span class="tr-ar">تحميل دليل استخدامات الشعار (PDF)</span>
-                <span class="tr-en">Download Logo Usage Guide (PDF)</span>
-              </a>
-            </div>
-          </div>
-        </article>
-
-        <!-- TEMPLATES -->
-        <article id="templates" class="card glass-card">
-          <header class="card-header">
-            <div>
-              <div class="card-kicker tr-ar">القوالب الرسمية</div>
-              <div class="card-kicker tr-en">Branded Templates</div>
-              <h2 class="card-title">
-                <span class="tr-ar">القوالب الجاهزة – Branded Templates</span>
-                <span class="tr-en">Ready-to-use Branded Templates</span>
-              </h2>
-            </div>
-          </header>
-
-          <div class="card-body">
-            <p>
+            <p class="muted" style="margin-top: 10px;">
               <span class="tr-ar">
-                تم إعداد حزمة قوالب رسمية للاستخدام اليومي في
-                <strong>العروض التقديمية، المراسلات، التواقيع البريدية، ومحتوى
-                  السوشال ميديا</strong>، لضمان توحيد الهوية في جميع المخرجات.
+                تذكير: النصوص الأساسية بلون <code>#F5F5FF</code> والثانوية بلون <code>#C0C4D6</code>.
               </span>
               <span class="tr-en">
-                A full set of official templates is available for
-                <strong>presentations, documents, email signatures, and social
-                  media</strong>, ensuring consistent branding across all
-                deliverables.
-              </span>
-            </p>
-
-            <div class="btn-row">
-              <a
-                href="assets/templates/ts-ppt-templates-kit.zip"
-                class="btn"
-                download
-              >
-                <span class="icon">⬇️</span>
-                <span class="tr-ar">حزمة قوالب العروض (PowerPoint)</span>
-                <span class="tr-en">Presentation Templates Kit (PPT)</span>
-              </a>
-
-              <a
-                href="assets/templates/ts-letterhead-word-templates.zip"
-                class="btn btn-ghost"
-                download
-              >
-                <span class="icon">⬇️</span>
-                <span class="tr-ar">قوالب ورق رسمي (Word)</span>
-                <span class="tr-en">Letterhead Templates (Word)</span>
-              </a>
-
-              <a
-                href="assets/templates/ts-email-signature-guide.pdf"
-                class="btn btn-outline-accent"
-                download
-              >
-                <span class="icon">📄</span>
-                <span class="tr-ar">دليل توقيع البريد الإلكتروني (PDF)</span>
-                <span class="tr-en">Email Signature Guide (PDF)</span>
-              </a>
-            </div>
-
-            <p class="muted">
-              <span class="tr-ar">
-                قبل إنشاء أي مادة تسويقية أو داخلية جديدة، يُفضّل بدء التصميم من
-                هذه القوالب المعتمدة.
-              </span>
-              <span class="tr-en">
-                Whenever you create new internal or external material, start from
-                these official templates.
+                Reminder: primary text uses <code>#F5F5FF</code> and secondary text uses <code>#C0C4D6</code>.
               </span>
             </p>
           </div>
-        </article>
+        </div>
+      </article>
 
-        <!-- EXTRA ASSETS -->
-        <article id="files" class="card glass-card">
-          <header class="card-header">
-            <div>
-              <div class="card-kicker tr-ar">ملفات الهوية</div>
-              <div class="card-kicker tr-en">Brand Assets</div>
-              <h2 class="card-title">
-                <span class="tr-ar">ملفات إضافية – Extra Assets</span>
-                <span class="tr-en">Additional Brand Assets</span>
-              </h2>
-            </div>
-          </header>
-
-          <div class="card-body">
-            <p>
-              <span class="tr-ar">
-                تشمل هذه الحزمة <strong>أيقونات، صور رسمية، خلفيات، وMockups</strong>
-                يمكن استخدامها في العروض، السوشال ميديا، وتقارير العملاء مع
-                الحفاظ على روح الهوية.
-              </span>
-              <span class="tr-en">
-                These packages include official <strong>icons, photography,
-                  backgrounds, and mockups</strong> to support presentations,
-                social media, and client deliverables while keeping the brand
-                look and feel.
-              </span>
-            </p>
-
-            <div class="btn-row">
-              <a
-                href="assets/icons/ts-icon-pack.zip"
-                class="btn"
-                download
-              >
-                <span class="icon">⬇️</span>
-                <span class="tr-ar">حزمة الأيقونات (ZIP)</span>
-                <span class="tr-en">Icon Pack (ZIP)</span>
-              </a>
-
-              <a
-                href="assets/photos/ts-official-photos-kit.zip"
-                class="btn btn-ghost"
-                download
-              >
-                <span class="icon">⬇️</span>
-                <span class="tr-ar">مجموعة الصور الرسمية (ZIP)</span>
-                <span class="tr-en">Official Photos Kit (ZIP)</span>
-              </a>
-            </div>
+      <!-- Row 2: Usage + Typography -->
+      <article class="card glass-card">
+        <header class="card-header">
+          <div>
+            <div class="card-kicker tr-ar">الاستخدامات</div>
+            <div class="card-kicker tr-en">Usage Rules</div>
+            <h2 class="card-title">
+              <span class="tr-ar">الاستخدامات المسموحة والممنوعة</span>
+              <span class="tr-en">Allowed &amp; Forbidden Usage</span>
+            </h2>
           </div>
-        </article>
+        </header>
 
-        <!-- DESIGN EXAMPLES -->
-        <article id="social" class="card glass-card">
-          <header class="card-header">
-            <div>
-              <div class="card-kicker tr-ar">أمثلة التصاميم</div>
-              <div class="card-kicker tr-en">Design Examples</div>
-              <h2 class="card-title">
-                <span class="tr-ar">أمثلة التصاميم – Social &amp; Events</span>
-                <span class="tr-en">Design Examples – Social &amp; Events</span>
-              </h2>
-            </div>
-          </header>
-
-          <div class="card-body">
-            <p>
-              <span class="tr-ar">
-                تحتوي هذه الأمثلة على بوستات سوشال ميديا، رول أب، وبنرات معارض
-                تُظهر كيفية تطبيق الهوية البصرية في سياقات مختلفة.
-              </span>
-              <span class="tr-en">
-                These examples showcase social media posts, roll-ups, and event
-                banners that demonstrate how to apply the visual identity in
-                different contexts.
-              </span>
-            </p>
-
-            <p>
-              <span class="tr-ar">
-                مقاسات مقترحة:
-                <strong>Instagram</strong> (¹:¹ &amp; ⁴:⁵)،
-                <strong>LinkedIn</strong> (١٢٠٠×١٢٠٠ و١٢٠٠×٦٢٨)،
-                <strong>Roll-up</strong> (٨٥×٢٠٠ سم أو حسب المتطلبات).
-              </span>
-              <span class="tr-en">
-                Recommended sizes:
-                <strong>Instagram</strong> (1:1 &amp; 4:5),
-                <strong>LinkedIn</strong> (1200×1200 &amp; 1200×628),
-                <strong>Roll-up</strong> (85×200 cm or as required).
-              </span>
-            </p>
-
-            <div class="btn-row">
-              <a
-                href="assets/social/ts-social-media-examples.zip"
-                class="btn"
-                download
-              >
-                <span class="icon">⬇️</span>
-                <span class="tr-ar">أمثلة سوشال ميديا (ZIP)</span>
-                <span class="tr-en">Social Media Examples (ZIP)</span>
-              </a>
-
-              <a
-                href="assets/events/ts-events-and-banners-examples.zip"
-                class="btn btn-ghost"
-                download
-              >
-                <span class="icon">⬇️</span>
-                <span class="tr-ar">أمثلة المعارض والرول أب (ZIP)</span>
-                <span class="tr-en">Events &amp; Banners Examples (ZIP)</span>
-              </a>
-            </div>
-          </div>
-        </article>
-      </section>
-
-      <!-- RIGHT COLUMN -->
-      <section class="column column-right">
-        <!-- COLOR PALETTE -->
-        <article id="colors" class="card glass-card">
-          <header class="card-header">
-            <div>
-              <div class="card-kicker tr-ar">الألوان المعتمدة</div>
-              <div class="card-kicker tr-en">Official Colors</div>
-              <h2 class="card-title">
-                <span class="tr-ar">لوحة الألوان – Color Palette</span>
-                <span class="tr-en">Color Palette – Brand Core</span>
-              </h2>
-            </div>
-          </header>
-
-          <div class="card-body">
-            <p>
-              <span class="tr-ar">
-                تعتمد الهوية على مجموعة ألوان داكنة وحديثة، مع لمسات
-                <strong>Accent</strong> لإبراز العناصر المهمة. استخدم هذه
-                الأكواد كما هي في جميع التصاميم.
-              </span>
-              <span class="tr-en">
-                The identity uses a modern dark palette with vibrant
-                <strong>accent colors</strong> to highlight key elements. Always
-                use these exact HEX values in your designs.
-              </span>
-            </p>
-
-            <div class="palette-toggle-wrapper">
-              <button
-                id="palette-toggle"
-                type="button"
-                class="btn btn-ghost"
-              >
-                <span class="icon">🎨</span>
-                <span class="tr-ar">
-                  <span class="text-when-closed">عرض لوحة الألوان</span>
-                  <span class="text-when-open" style="display: none;">
-                    إخفاء لوحة الألوان
+        <div class="card-body">
+          <div class="two-column-list usage-two-column">
+            <div class="usage-col">
+              <div class="list-label">
+                <span class="tr-ar">مسموح ✅</span>
+                <span class="tr-en">Allowed ✅</span>
+              </div>
+              <ul class="usage-list">
+                <li>
+                  <span class="tr-ar">
+                    استخدام الشعار بألوانه الأصلية فقط وعلى خلفيات ذات تباين عالٍ لضمان وضوحه.
                   </span>
-                </span>
-                <span class="tr-en">
-                  <span class="text-when-closed">Show Color Palette</span>
-                  <span class="text-when-open" style="display: none;">
-                    Hide Color Palette
+                  <span class="tr-en">
+                    Use the logo only in its official colors on backgrounds with strong contrast.
                   </span>
-                </span>
-              </button>
+                </li>
+                <li>
+                  <span class="tr-ar">
+                    احترام مساحة العزل حول الشعار وعدم إلصاق أي عناصر أخرى به أو بالقرب منه.
+                  </span>
+                  <span class="tr-en">
+                    Always keep sufficient clear space around the logo with no other elements touching it.
+                  </span>
+                </li>
+                <li>
+                  <span class="tr-ar">
+                    استخدام النسخة الأحادية اللون عند الحاجة لطباعة محدودة الألوان أو مواد منخفضة الجودة.
+                  </span>
+                  <span class="tr-en">
+                    Use the monochrome version when printing with limited colors or on lower-quality materials.
+                  </span>
+                </li>
+                <li>
+                  <span class="tr-ar">
+                    التأكد من وضوح الشعار عند تصغيره، خاصة في العروض التقديمية والمستندات والتواقيع.
+                  </span>
+                  <span class="tr-en">
+                    Ensure the logo stays clear and readable at small sizes, especially in decks, documents, and signatures.
+                  </span>
+                </li>
+                <li>
+                  <span class="tr-ar">
+                    استخدام نسخ الشعار المعتمدة فقط من هذا الدليل أو من مركز الملفات الرسمي للشركة.
+                  </span>
+                  <span class="tr-en">
+                    Only use approved logo files from this hub or the official asset library.
+                  </span>
+                </li>
+              </ul>
             </div>
 
-            <div id="palette-panel" class="palette-panel">
-              <div class="palette-grid">
-                <div class="palette-item">
-                  <div
-                    class="swatch"
-                    style="background: #0D295C;"
-                  ></div>
-                  <div class="palette-name">Primary 1</div>
-                  <div class="palette-hex-row">
-                    <span class="palette-hex">#0D295C</span>
-                    <button
-                      class="copy-btn"
-                      type="button"
-                      data-hex="#0D295C"
-                    >
-                      <span class="icon">📋</span>
-                      <span class="copy-label tr-ar">نسخ</span>
-                      <span class="copy-label tr-en">Copy</span>
-                    </button>
-                  </div>
-                </div>
-
-                <div class="palette-item">
-                  <div
-                    class="swatch"
-                    style="background: #8C40FF;"
-                  ></div>
-                  <div class="palette-name">Primary 2</div>
-                  <div class="palette-hex-row">
-                    <span class="palette-hex">#8C40FF</span>
-                    <button
-                      class="copy-btn"
-                      type="button"
-                      data-hex="#8C40FF"
-                    >
-                      <span class="icon">📋</span>
-                      <span class="copy-label tr-ar">نسخ</span>
-                      <span class="copy-label tr-en">Copy</span>
-                    </button>
-                  </div>
-                </div>
-
-                <div class="palette-item">
-                  <div
-                    class="swatch"
-                    style="background: #0A0F21;"
-                  ></div>
-                  <div class="palette-name">Primary 3</div>
-                  <div class="palette-hex-row">
-                    <span class="palette-hex">#0A0F21</span>
-                    <button
-                      class="copy-btn"
-                      type="button"
-                      data-hex="#0A0F21"
-                    >
-                      <span class="icon">📋</span>
-                      <span class="copy-label tr-ar">نسخ</span>
-                      <span class="copy-label tr-en">Copy</span>
-                    </button>
-                  </div>
-                </div>
-
-                <div class="palette-item">
-                  <div
-                    class="swatch"
-                    style="background: #05ADAD;"
-                  ></div>
-                  <div class="palette-name">Accent 1</div>
-                  <div class="palette-hex-row">
-                    <span class="palette-hex">#05ADAD</span>
-                    <button
-                      class="copy-btn"
-                      type="button"
-                      data-hex="#05ADAD"
-                    >
-                      <span class="icon">📋</span>
-                      <span class="copy-label tr-ar">نسخ</span>
-                      <span class="copy-label tr-en">Copy</span>
-                    </button>
-                  </div>
-                </div>
-
-                <div class="palette-item">
-                  <div
-                    class="swatch"
-                    style="background: #3B1745;"
-                  ></div>
-                  <div class="palette-name">Accent 2</div>
-                  <div class="palette-hex-row">
-                    <span class="palette-hex">#3B1745</span>
-                    <button
-                      class="copy-btn"
-                      type="button"
-                      data-hex="#3B1745"
-                    >
-                      <span class="icon">📋</span>
-                      <span class="copy-label tr-ar">نسخ</span>
-                      <span class="copy-label tr-en">Copy</span>
-                    </button>
-                  </div>
-                </div>
-
-                <div class="palette-item">
-                  <div
-                    class="swatch"
-                    style="background: #113D8F;"
-                  ></div>
-                  <div class="palette-name">Accent 3</div>
-                  <div class="palette-hex-row">
-                    <span class="palette-hex">#113D8F</span>
-                    <button
-                      class="copy-btn"
-                      type="button"
-                      data-hex="#113D8F"
-                    >
-                      <span class="icon">📋</span>
-                      <span class="copy-label tr-ar">نسخ</span>
-                      <span class="copy-label tr-en">Copy</span>
-                    </button>
-                  </div>
-                </div>
-
-                <div class="palette-item">
-                  <div
-                    class="swatch"
-                    style="background: #F0474A;"
-                  ></div>
-                  <div class="palette-name">Accent 4</div>
-                  <div class="palette-hex-row">
-                    <span class="palette-hex">#F0474A</span>
-                    <button
-                      class="copy-btn"
-                      type="button"
-                      data-hex="#F0474A"
-                    >
-                      <span class="icon">📋</span>
-                      <span class="copy-label tr-ar">نسخ</span>
-                      <span class="copy-label tr-en">Copy</span>
-                    </button>
-                  </div>
-                </div>
+            <div class="usage-col">
+              <div class="list-label">
+                <span class="tr-ar">ممنوع 🚫</span>
+                <span class="tr-en">Not Allowed 🚫</span>
               </div>
+              <ul class="usage-list">
+                <li>
+                  <span class="tr-ar">
+                    تغيير ألوان الشعار أو إضافة تأثيرات (ظلال قوية، توهج، أنماط) غير معتمدة في الهوية الرسمية.
+                  </span>
+                  <span class="tr-en">
+                    Changing logo colors or adding unapproved effects such as heavy glow, strong shadows, or patterns.
+                  </span>
+                </li>
+                <li>
+                  <span class="tr-ar">
+                    تمديد الشعار أفقيًا أو عموديًا أو تشويهه بأي شكل يغيّر نسبه الأصلية.
+                  </span>
+                  <span class="tr-en">
+                    Stretching, squashing, or otherwise distorting the logo proportions.
+                  </span>
+                </li>
+                <li>
+                  <span class="tr-ar">
+                    استخدام الشعار داخل جُمل أو نصوص كجزء من الكتابة أو استبدال حروف به.
+                  </span>
+                  <span class="tr-en">
+                    Using the logo as part of a sentence or replacing letters with the logo mark.
+                  </span>
+                </li>
+                <li>
+                  <span class="tr-ar">
+                    تدوير الشعار أو قلبه أو وضعه بزوايا غير منطقية داخل التصاميم.
+                  </span>
+                  <span class="tr-en">
+                    Rotating or flipping the logo at unusual angles in layouts.
+                  </span>
+                </li>
+                <li>
+                  <span class="tr-ar">
+                    قص الشعار أو إخفاء جزء منه داخل إطارات أو خلف عناصر أخرى في التصميم.
+                  </span>
+                  <span class="tr-en">
+                    Cropping the logo or hiding parts of it behind frames or overlapping elements.
+                  </span>
+                </li>
+              </ul>
+            </div>
+          </div>
 
-              <p class="muted" style="margin-top: 10px;">
-                <span class="tr-ar">
-                  تذكير: النصوص الأساسية بلون
-                  <code>#F5F5FF</code>
-                  والنصوص الثانوية بلون
-                  <code>#C0C4D6</code>.
-                </span>
-                <span class="tr-en">
-                  Reminder: primary text uses
-                  <code>#F5F5FF</code>
-                  and secondary text uses
-                  <code>#C0C4D6</code>.
-                </span>
+          <div class="asset-grid">
+            <button
+              type="button"
+              class="asset-tile"
+              data-preview-type="pdf"
+              data-preview-src="assets/logos/ts-logo-usage-guide.pdf"
+              data-download-src="assets/logos/ts-logo-usage-guide.pdf"
+              data-title-ar="دليل استخدامات الشعار (PDF)"
+              data-title-en="Logo Usage Guide (PDF)"
+            >
+              <div class="asset-icon">📘</div>
+              <div class="asset-text">
+                <div class="asset-title tr-ar">دليل استخدامات الشعار (PDF)</div>
+                <div class="asset-title tr-en">Logo Usage Guide (PDF)</div>
+                <div class="asset-meta tr-ar">شرح تفصيلي للاستخدامات المسموحة والممنوعة.</div>
+                <div class="asset-meta tr-en">Detailed explanations of allowed and forbidden logo usage.</div>
+              </div>
+            </button>
+          </div>
+
+      </article>
+
+
+      <article class="card glass-card">
+        <header class="card-header">
+          <div>
+            <div class="card-kicker tr-ar">الخطوط</div>
+            <div class="card-kicker tr-en">Typography</div>
+            <h2 class="card-title">
+              <span class="tr-ar">الخطوط – Typography</span>
+              <span class="tr-en">Typography &amp; Brand Fonts</span>
+            </h2>
+          </div>
+        </header>
+
+        <div class="card-body">
+          <p>
+            <span class="tr-ar">
+              الخط الرسمي الوحيد للهوية هو
+              <strong>Baloo_Bhaijaan (EN_AR)</strong>، ويُستخدم في
+              <strong>جميع</strong> مواد T&amp;S: العروض التقديمية، المستندات،
+              التصاميم التسويقية، والبنرات الرقمية والمطبوعة.
+            </span>
+            <span class="tr-en">
+              The only official T&amp;S font is
+              <strong>Baloo_Bhaijaan (EN_AR)</strong>. It is used across
+              <strong>all</strong> T&amp;S materials: decks, documents, marketing
+              creatives, and digital/print banners.
+            </span>
+          </p>
+
+
+          <div class="two-column-list" style="margin-top: 6px;">
+            <div>
+              <div class="list-label tr-ar">كيف أستخدم Baloo_Bhaijaan؟</div>
+              <div class="list-label tr-en">How to use Baloo_Bhaijaan</div>
+              <ul>
+                <li class="tr-ar">
+                  استخدم وزنًا أوضح (Semi-Bold / Bold) للعناوين الرئيسية في الشرائح والتصاميم.
+                </li>
+                <li class="tr-en">
+                  Use a stronger weight (Semi-Bold / Bold) for main titles and
+                  headlines in slides and designs.
+                </li>
+                <li class="tr-ar">
+                  استخدم وزنًا أخف (Regular / Medium) للنصوص الشارحة والنقاط.
+                </li>
+                <li class="tr-en">
+                  Use lighter weights (Regular / Medium) for body copy and bullets.
+                </li>
+                <li class="tr-ar">
+                  في التصاميم الثنائية اللغة، استخدم نفس الخط للعربي والإنجليزي
+                  مع الحفاظ على RTL وLTR.
+                </li>
+                <li class="tr-en">
+                  In bilingual layouts, use the same font for Arabic and English
+                  with proper RTL / LTR direction.
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <div class="list-label tr-ar">نصائح للقراءة المريحة</div>
+              <div class="list-label tr-en">Readability tips</div>
+              <ul>
+                <li class="tr-ar">
+                  خفف النص في كل شريحة إلى <strong>٣–٥ نقاط</strong> قدر الإمكان.
+                </li>
+                <li class="tr-en">
+                  Keep each slide to around <strong>3–5 bullets</strong>.
+                </li>
+                <li class="tr-ar">
+                  استخدم مسافة سطرية مريحة وتجنب تلاصق الأسطر.
+                </li>
+                <li class="tr-en">
+                  Use comfortable line spacing; avoid cramped text.
+                </li>
+                <li class="tr-ar">
+                  احرص أن حجم النص لا يقل عن مستوى مريح للقراءة (مثلاً ١٢–١٤pt في المستندات).
+                </li>
+                <li class="tr-en">
+                  Keep font sizes readable (around 12–14pt minimum in docs).
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div style="margin-top: 10px;">
+            <div class="list-label tr-ar">إرشادات سريعة</div>
+            <div class="list-label tr-en">Quick guidelines</div>
+            <ul>
+              <li class="tr-ar">
+                لا تضف خطوطاً جديدة في ملفات T&amp;S؛ استخدم
+                <strong>Baloo_Bhaijaan</strong> فقط في المواد الرسمية.
+              </li>
+              <li class="tr-en">
+                Don’t introduce extra fonts in T&amp;S files; use
+                <strong>Baloo_Bhaijaan</strong> only for official materials.
+              </li>
+              <li class="tr-ar">
+                استخدم أوزان مختلفة لنفس الخط لخلق هرمية بصرية بدل تغيير الخط.
+              </li>
+              <li class="tr-en">
+                Use different weights of the same font to create hierarchy
+                instead of changing fonts.
+              </li>
+            </ul>
+          </div>
+
+          <div class="btn-row" style="margin-top: 10px;">
+            <a
+              href="assets/fonts/Baloo_Bhaijaan_EN_AR.zip"
+              class="btn"
+              download
+            >
+              <span class="icon">⬇️</span>
+              <span class="tr-ar">تحميل حزمة الخط الرسمية (ZIP)</span>
+              <span class="tr-en">Download official font pack (ZIP)</span>
+            </a>
+          </div>
+
+          <p class="muted">
+            <span class="tr-ar">
+              يُفضَّل تثبيت الخط على جهازك قبل العمل على قوالب T&amp;S لضمان ظهور
+              الملفات بنفس الشكل عند مشاركتها مع الزملاء.
+            </span>
+            <span class="tr-en">
+              Install the font locally before working on T&amp;S templates to
+              ensure layouts look the same when shared with colleagues.
+            </span>
+          </p>
+        </div>
+      </article>
+
+      <!-- Row 3: Templates + Presentation guidelines -->
+      <article id="templates" class="card glass-card">
+        <header class="card-header">
+          <div>
+            <div class="card-kicker tr-ar">القوالب الرسمية</div>
+            <div class="card-kicker tr-en">Branded Templates</div>
+            <h2 class="card-title">
+              <span class="tr-ar">القوالب الجاهزة – Branded Templates</span>
+              <span class="tr-en">Ready-to-use Branded Templates</span>
+            </h2>
+          </div>
+        </header>
+
+        <div class="card-body">
+          <p>
+            <span class="tr-ar">
+              تم إعداد حزمة قوالب رسمية للاستخدام اليومي في
+              <strong>العروض التقديمية، المراسلات، التواقيع البريدية، ومحتوى
+                السوشال ميديا</strong>.
+            </span>
+            <span class="tr-en">
+              A full set of official templates is available for
+              <strong>presentations, documents, email signatures, and social
+                media</strong>.
+            </span>
+          </p>
+
+
+          <div class="asset-grid">
+            <button
+              type="button"
+              class="asset-tile-group asset-group-trigger"
+              data-asset-group="pptTemplates"
+            >
+              <div class="asset-icon">🎞️</div>
+              <div class="asset-text">
+                <div class="asset-title tr-ar">قوالب العروض التقديمية (PowerPoint)</div>
+                <div class="asset-title tr-en">Presentation Templates (PowerPoint)</div>
+                <div class="asset-meta tr-ar">عرض جميع القوالب الرسمية للعروض</div>
+                <div class="asset-meta tr-en">View all official deck templates</div>
+              </div>
+            </button>
+
+            <button
+              type="button"
+              class="asset-tile-group asset-group-trigger"
+              data-asset-group="wordTemplates"
+            >
+              <div class="asset-icon">📄</div>
+              <div class="asset-text">
+                <div class="asset-title tr-ar">قوالب الورق الرسمي (Word)</div>
+                <div class="asset-title tr-en">Letterhead &amp; Docs (Word)</div>
+                <div class="asset-meta tr-ar">عرض جميع قوالب المستندات الرسمية</div>
+                <div class="asset-meta tr-en">View all official document templates</div>
+              </div>
+            </button>
+          </div>
+
+
+          <div class="asset-grid">
+            <button
+              type="button"
+              class="asset-tile"
+              data-preview-type="pdf"
+              data-preview-src="assets/templates/ts-email-signature-guide.pdf"
+              data-download-src="assets/templates/ts-email-signature-guide.pdf"
+              data-title-ar="دليل توقيع البريد الإلكتروني"
+              data-title-en="Email Signature Guide"
+            >
+              <div class="asset-icon">✉️</div>
+              <div class="asset-text">
+                <div class="asset-title tr-ar">دليل توقيع البريد (PDF)</div>
+                <div class="asset-title tr-en">Email Signature Guide (PDF)</div>
+                <div class="asset-meta tr-ar">معاينة بصرية + تحميل</div>
+                <div class="asset-meta tr-en">Visual preview + download</div>
+              </div>
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <article class="card glass-card">
+        <header class="card-header">
+          <div>
+            <div class="card-kicker tr-ar">العروض التقديمية</div>
+            <div class="card-kicker tr-en">Presentations</div>
+            <h2 class="card-title">
+              <span class="tr-ar">إرشادات بناء عروض متناسقة</span>
+              <span class="tr-en">Guidelines for Consistent Decks</span>
+            </h2>
+          </div>
+        </header>
+
+        <div class="card-body">
+          <p>
+            <span class="tr-ar">
+              الهدف هو تسهيل بناء عروض متناسقة مع هوية T&amp;S بالاعتماد على
+              <strong>القوالب الرسمية، لوحة الألوان، وخط Baloo_Bhaijaan</strong>.
+            </span>
+            <span class="tr-en">
+              These guidelines help you build decks aligned with the T&amp;S
+              brand using the <strong>official templates, color palette, and Baloo_Bhaijaan font</strong>.
+            </span>
+          </p>
+
+          <div class="two-column-list" style="margin-top: 8px;">
+            <div>
+              <div class="list-label tr-ar">قبل البدء</div>
+              <div class="list-label tr-en">Before you start</div>
+              <ul>
+                <li class="tr-ar">
+                  ابدأ دائمًا من حزمة قوالب العروض الرسمية (PowerPoint).
+                </li>
+                <li class="tr-en">
+                  Always start from the official PowerPoint templates.
+                </li>
+                <li class="tr-ar">
+                  ضع شعار T&amp;S في الغلاف والختام بدون تكرار مزعج في كل شريحة.
+                </li>
+                <li class="tr-en">
+                  Use the T&amp;S logo on cover and closing slides, not on every element.
+                </li>
+                <li class="tr-ar">
+                  اختر الألوان من لوحة الألوان وتجنّب إضافة ألوان خارج الهوية.
+                </li>
+                <li class="tr-en">
+                  Use colors from the palette and avoid introducing new random colors.
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <div class="list-label tr-ar">أثناء التصميم</div>
+              <div class="list-label tr-en">While designing</div>
+              <ul>
+                <li class="tr-ar">
+                  استخدم <strong>Baloo_Bhaijaan</strong> للعناوين والنصوص مع هرمية واضحة في الحجم.
+                </li>
+                <li class="tr-en">
+                  Use <strong>Baloo_Bhaijaan</strong> with clear size hierarchy for titles and body.
+                </li>
+                <li class="tr-ar">
+                  اجعل كل شريحة حول فكرة رئيسية واحدة قدر الإمكان.
+                </li>
+                <li class="tr-en">
+                  Keep each slide focused on one main idea where possible.
+                </li>
+                <li class="tr-ar">
+                  حافظ على هوامش ثابتة ولا تضع النصوص ملاصقة للحواف.
+                </li>
+                <li class="tr-en">
+                  Maintain consistent margins; avoid placing text at the very edges.
+                </li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </article>
+
+      <!-- Row 4: Extra assets + Brand Book -->
+      <article id="files" class="card glass-card">
+        <header class="card-header">
+          <div>
+            <div class="card-kicker tr-ar">ملفات الهوية</div>
+            <div class="card-kicker tr-en">Brand Assets</div>
+            <h2 class="card-title">
+              <span class="tr-ar">ملفات إضافية – Extra Assets</span>
+              <span class="tr-en">Additional Brand Assets</span>
+            </h2>
+          </div>
+        </header>
+
+        <div class="card-body">
+          <p>
+            <span class="tr-ar">
+              تشمل هذه الحزم <strong>أيقونات، صور رسمية، خلفيات، وMockups</strong>
+              يمكن استخدامها في العروض، السوشال، وتقارير العملاء.
+            </span>
+            <span class="tr-en">
+              These packages include official <strong>icons, photography, backgrounds, and mockups</strong>
+              for presentations, social media, and client reports.
+            </span>
+          </p>
+
+          <div class="btn-row">
+            <a
+              href="assets/icons/ts-icon-pack.zip"
+              class="btn"
+              download
+            >
+              <span class="icon">⬇️</span>
+              <span class="tr-ar">حزمة الأيقونات (ZIP)</span>
+              <span class="tr-en">Icon Pack (ZIP)</span>
+            </a>
+
+            <a
+              href="assets/photos/ts-official-photos-kit.zip"
+              class="btn btn-ghost"
+              download
+            >
+              <span class="icon">⬇️</span>
+              <span class="tr-ar">مجموعة الصور الرسمية (ZIP)</span>
+              <span class="tr-en">Official Photos Kit (ZIP)</span>
+            </a>
+          </div>
+
+
+          <div class="asset-grid">
+            <button
+              type="button"
+              class="asset-tile"
+              data-preview-type="pdf"
+              data-preview-src="assets/company-profile/ts-company-profile.pdf"
+              data-download-src="assets/company-profile/ts-company-profile.pdf"
+              data-title-ar="البروفايل التعريفي للشركة – PDF"
+              data-title-en="T&amp;S Company Profile – PDF"
+            >
+              <div class="asset-icon">📘</div>
+              <div class="asset-text">
+                <div class="asset-title tr-ar">البروفايل الرسمي للشركة (PDF)</div>
+                <div class="asset-title tr-en">Official Company Profile (PDF)</div>
+                <div class="asset-meta tr-ar">معاينة كاملة + تحميل</div>
+                <div class="asset-meta tr-en">Full preview + download</div>
+              </div>
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <article class="card glass-card">
+        <header class="card-header">
+          <div>
+            <div class="card-kicker tr-ar">دليل الهوية</div>
+            <div class="card-kicker tr-en">Brand Book</div>
+            <h2 class="card-title">
+              <span class="tr-ar">دليل الهوية البصرية – Brand Book</span>
+              <span class="tr-en">Visual Identity Brand Book</span>
+            </h2>
+          </div>
+        </header>
+
+        <div class="card-body">
+          <p>
+            <span class="tr-ar">
+              يجمع هذا الدليل كل ما يتعلق بالهوية البصرية لـ T&amp;S من
+              شعارات، ألوان، خطوط، وأمثلة تطبيقية.
+            </span>
+            <span class="tr-en">
+              This brand book consolidates logos, colors, typography, and
+              applications for the T&amp;S identity.
+            </span>
+          </p>
+
+          <div class="asset-grid">
+            <button
+              type="button"
+              class="asset-tile"
+              data-preview-type="pdf"
+              data-preview-src="assets/brand-book/ts-brand-book.pdf"
+              data-download-src="assets/brand-book/ts-brand-book.pdf"
+              data-title-ar="دليل الهوية البصرية – Brand Book"
+              data-title-en="Visual Identity Brand Book"
+            >
+              <div class="asset-icon">📗</div>
+              <div class="asset-text">
+                <div class="asset-title tr-ar">دليل الهوية (PDF)</div>
+                <div class="asset-title tr-en">Brand Book (PDF)</div>
+                <div class="asset-meta tr-ar">معاينة الصفحات + تحميل</div>
+                <div class="asset-meta tr-en">Preview pages + download</div>
+              </div>
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Row 5: Social examples + Voice -->
+      <article id="social" class="card glass-card">
+        <header class="card-header">
+          <div>
+            <div class="card-kicker tr-ar">أمثلة التصاميم</div>
+            <div class="card-kicker tr-en">Design Examples</div>
+            <h2 class="card-title">
+              <span class="tr-ar">أمثلة التصاميم – Social &amp; Events</span>
+              <span class="tr-en">Design Examples – Social &amp; Events</span>
+            </h2>
+          </div>
+        </header>
+
+        <div class="card-body">
+          <p>
+            <span class="tr-ar">
+              تحتوي هذه الأمثلة على بوستات سوشال ميديا، رول أب، وبنرات معارض
+              تُظهر كيفية تطبيق الهوية البصرية.
+            </span>
+            <span class="tr-en">
+              These examples showcase social media posts, roll-ups, and event
+              banners that demonstrate how to apply the visual identity.
+            </span>
+          </p>
+
+          <p>
+            <span class="tr-ar">
+              مقاسات مقترحة:
+              <strong>Instagram</strong> (¹:¹ &amp; ⁴:⁵)،
+              <strong>LinkedIn</strong> (١٢٠٠×١٢٠٠ و١٢٠٠×٦٢٨)،
+              <strong>Roll-up</strong> (٨٥×٢٠٠ سم أو حسب المتطلبات).
+            </span>
+            <span class="tr-en">
+              Recommended sizes:
+              <strong>Instagram</strong> (1:1 &amp; 4:5),
+              <strong>LinkedIn</strong> (1200×1200 &amp; 1200×628),
+              <strong>Roll-up</strong> (85×200 cm or as required).
+            </span>
+          </p>
+
+          <div class="btn-row">
+            <a
+              href="assets/social/ts-social-media-examples.zip"
+              class="btn"
+              download
+            >
+              <span class="icon">⬇️</span>
+              <span class="tr-ar">أمثلة سوشال ميديا (ZIP)</span>
+              <span class="tr-en">Social Media Examples (ZIP)</span>
+            </a>
+
+            <a
+              href="assets/events/ts-events-and-banners-examples.zip"
+              class="btn btn-ghost"
+              download
+            >
+              <span class="icon">⬇️</span>
+              <span class="tr-ar">أمثلة المعارض والرول أب (ZIP)</span>
+              <span class="tr-en">Events &amp; Banners Examples (ZIP)</span>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <article id="voice" class="card glass-card">
+        <header class="card-header">
+          <div>
+            <div class="card-kicker tr-ar">نبرة الكتابة</div>
+            <div class="card-kicker tr-en">Voice &amp; Tone</div>
+            <h2 class="card-title">
+              <span class="tr-ar">نبرة وهوية الكتابة – Brand Voice</span>
+              <span class="tr-en">Brand Voice &amp; Tone</span>
+            </h2>
+          </div>
+        </header>
+
+        <div class="card-body">
+          <p>
+            <span class="tr-ar">
+              نبرة T&amp;S مهنية، بسيطة، قريبة، وقائمة على القيمة. نكتب
+              بأسلوب واضح بدون مبالغة تسويقية.
+            </span>
+            <span class="tr-en">
+              The T&amp;S voice is professional, simple, approachable, and
+              value-driven, with clear language and no hype.
+            </span>
+          </p>
+
+          <div class="voice-grid">
+            <div class="voice-block good">
+              <div class="voice-label good tr-ar">صياغة مفضلة ✅</div>
+              <div class="voice-label good tr-en">Preferred Style ✅</div>
+              <p class="tr-ar">
+                "نساعد الجهات على بناء حلول رقمية عملية، قابلة للتطبيق، وتضيف
+                قيمة حقيقية لفِرَق العمل."
+              </p>
+              <p class="tr-en">
+                "We help organizations build practical digital solutions that
+                teams can actually use and benefit from."
+              </p>
+            </div>
+
+            <div class="voice-block bad">
+              <div class="voice-label bad tr-ar">غير مفضل ❌</div>
+              <div class="voice-label bad tr-en">Not Recommended ❌</div>
+              <p class="tr-ar">
+                "نقدّم أفضل وأقوى الحلول الرقمية على الإطلاق لنعيد تعريف
+                المستقبل بالكامل."
+              </p>
+              <p class="tr-en">
+                "We deliver the most powerful digital solutions ever that
+                completely redefine the future."
               </p>
             </div>
           </div>
-        </article>
 
-        <!-- TYPOGRAPHY -->
-        <article class="card glass-card">
-          <header class="card-header">
-            <div>
-              <div class="card-kicker tr-ar">الخطوط</div>
-              <div class="card-kicker tr-en">Typography</div>
-              <h2 class="card-title">
-                <span class="tr-ar">الخطوط – Typography</span>
-                <span class="tr-en">Typography &amp; Brand Fonts</span>
-              </h2>
-            </div>
-          </header>
+          <p class="muted">
+            <span class="tr-ar">
+              في حال الشك في الصياغة، يُفضّل مشاركة النص مع فريق التسويق
+              للمراجعة قبل النشر.
+            </span>
+            <span class="tr-en">
+              When in doubt, share your copy with the Marketing team for a
+              quick review before publishing.
+            </span>
+          </p>
+        </div>
+      </article>
 
-          <div class="card-body">
-            <p>
-              <span class="tr-ar">
-                الخط الرسمي للهوية هو
-                <strong>Baloo_Bhaijaan (EN_AR)</strong> ويُستخدم للهوية
-                البصرية الرئيسية. لواجهة الموقع والمواد الداخلية، يمكن استخدام
-                <strong>Cairo</strong> بما يتوافق مع أسلوب T&amp;S.
-              </span>
-              <span class="tr-en">
-                The primary brand font is
-                <strong>Baloo_Bhaijaan (EN_AR)</strong>, used in core identity
-                visuals. For the interface and internal assets, the
-                <strong>Cairo</strong> font family can be used to keep a clean
-                and modern look.
-              </span>
-            </p>
-
-            <div class="btn-row">
-              <a
-                href="assets/fonts/Baloo_Bhaijaan_EN_AR.zip"
-                class="btn"
-                download
-              >
-                <span class="icon">⬇️</span>
-                <span class="tr-ar">تحميل الخط الرسمي (ZIP)</span>
-                <span class="tr-en">Download Official Font (ZIP)</span>
-              </a>
-            </div>
-
-            <div class="type-scale">
-              <div class="type-row">
-                <div class="type-label tr-ar">عنوان رئيسي – H1</div>
-                <div class="type-label tr-en">Headline – H1</div>
-                <div class="type-preview h1">
-                  <span class="tr-ar">عنوان رئيسي – T&amp;S Brand Hub</span>
-                  <span class="tr-en">Main Headline – T&amp;S Brand Hub</span>
-                </div>
-              </div>
-
-              <div class="type-row">
-                <div class="type-label tr-ar">عنوان فرعي – H2</div>
-                <div class="type-label tr-en">Section Title – H2</div>
-                <div class="type-preview h2">
-                  <span class="tr-ar">هوية متسقة في جميع مخرجات الشركة</span>
-                  <span class="tr-en">
-                    A consistent identity across all company touchpoints
-                  </span>
-                </div>
-              </div>
-
-              <div class="type-row">
-                <div class="type-label tr-ar">نص أساسي – Body</div>
-                <div class="type-label tr-en">Body Text</div>
-                <div class="type-preview body">
-                  <span class="tr-ar">
-                    يُستخدم هذا الأسلوب للنصوص الشارحة، التعليمات، ورسائل
-                    البريد الإلكتروني.
-                  </span>
-                  <span class="tr-en">
-                    Used for explanatory copy, guidelines, and email content in
-                    everyday communication.
-                  </span>
-                </div>
-              </div>
-            </div>
+            <!-- Row 6: Brand checklist full width -->
+      <article id="contact" class="card glass-card card-span-2">
+        <header class="card-header">
+          <div>
+            <div class="card-kicker tr-ar">قبل إرسال أي تصميم</div>
+            <div class="card-kicker tr-en">Before You Share Any Design</div>
+            <h2 class="card-title">
+              <span class="tr-ar">قائمة التحقق السريعة – Brand Checklist</span>
+              <span class="tr-en">Quick Brand Checklist</span>
+            </h2>
           </div>
-        </article>
+        </header>
 
-        <!-- BRAND BOOK -->
-        <article class="card glass-card">
-          <header class="card-header">
-            <div>
-              <div class="card-kicker tr-ar">دليل الهوية</div>
-              <div class="card-kicker tr-en">Brand Book</div>
-              <h2 class="card-title">
-                <span class="tr-ar">دليل الهوية البصرية – Brand Book</span>
-                <span class="tr-en">Visual Identity Brand Book</span>
-              </h2>
-            </div>
-          </header>
+        <div class="card-body">
+          <p>
+            <span class="tr-ar">
+              تأكد من النقاط التالية قبل إرسال أي عرض، بوست، أو ملف للعميل أو للنشر الداخلي.
+            </span>
+            <span class="tr-en">
+              Make sure you review the following points before sending any deck, post, or file to clients or for internal publishing.
+            </span>
+          </p>
 
-          <div class="card-body">
-            <p>
-              <span class="tr-ar">
-                يجمع هذا الدليل كل ما يتعلق بالهوية البصرية لـ T&amp;S من
-                شعارات، ألوان، خطوط، أمثلة تطبيقية، ودليل لنبرة الكتابة. يُفضل
-                الرجوع له قبل إطلاق أي مادة تحمل اسم الشركة.
-              </span>
-              <span class="tr-en">
-                This brand book consolidates everything about the T&amp;S
-                identity: logos, colors, typography, applications, and voice &amp;
-                tone. Refer to it before releasing any material carrying the
-                T&amp;S name.
-              </span>
-            </p>
+          <div class="checklist-grid">
+            <ul class="checklist-column">
+              <li>
+                <span class="tr-ar">استخدمت نسخة الشعار الصحيحة (فاتح أو داكن) بما يناسب الخلفية.</span>
+                <span class="tr-en">You used the correct logo version (light or dark) for the background.</span>
+              </li>
+              <li>
+                <span class="tr-ar">الألوان المستخدمة من لوحة الألوان المعتمدة فقط.</span>
+                <span class="tr-en">All colors are taken from the approved color palette.</span>
+              </li>
+              <li>
+                <span class="tr-ar">تم استخدام خط Baloo_Bhaijaan (EN_AR) في العناوين والنصوص الأساسية.</span>
+                <span class="tr-en">Baloo_Bhaijaan (EN_AR) is used for main titles and key text.</span>
+              </li>
+            </ul>
 
-            <div class="btn-row">
-              <a
-                href="assets/brand-book/ts-brand-book.pdf"
-                class="btn"
-                download
-              >
-                <span class="icon">📘</span>
-                <span class="tr-ar">تحميل دليل الهوية (PDF)</span>
-                <span class="tr-en">Download Brand Book (PDF)</span>
-              </a>
-            </div>
+            <ul class="checklist-column">
+              <li>
+                <span class="tr-ar">دقة الصور والملفات مناسبة للطباعة أو العرض على الشاشات.</span>
+                <span class="tr-en">Image and file resolution is suitable for print or screen.</span>
+              </li>
+              <li>
+                <span class="tr-ar">تمت مراجعة الأرقام، أسماء العملاء، والشعارات بدقة.</span>
+                <span class="tr-en">All numbers, client names, and logos were double-checked.</span>
+              </li>
+              <li>
+                <span class="tr-ar">التصميم يعكس نبرة وهوية T&amp;S بدون إضافات شخصية غير متسقة.</span>
+                <span class="tr-en">The design reflects T&amp;S tone and identity without off-brand personal tweaks.</span>
+              </li>
+            </ul>
           </div>
-        </article>
 
-        <!-- BRAND VOICE & TONE -->
-        <article id="voice" class="card glass-card">
-          <header class="card-header">
-            <div>
-              <div class="card-kicker tr-ar">نبرة الكتابة</div>
-              <div class="card-kicker tr-en">Voice &amp; Tone</div>
-              <h2 class="card-title">
-                <span class="tr-ar">نبرة وهوية الكتابة – Brand Voice</span>
-                <span class="tr-en">Brand Voice &amp; Tone</span>
-              </h2>
-            </div>
-          </header>
+          <p class="muted">
+            <span class="tr-ar">
+              في الحالات الخاصة أو الاستثناءات، يمكن التنسيق مع فريق العلامة التجارية لاعتماد الحل الأنسب.
+            </span>
+            <span class="tr-en">
+              For special or exceptional cases, you can still coordinate with the Brand team to find the best solution.
+            </span>
+          </p>
+        </div>
+      </article>
 
-          <div class="card-body">
-            <p>
-              <span class="tr-ar">
-                نبرة T&amp;S مهنية، بسيطة، قريبة، وقائمة على القيمة. نكتب
-                بالعربية والإنجليزية بأسلوب متزن، بدون ترجمة حرفية، وبجُمل
-                واضحة بلا مبالغة تسويقية.
-              </span>
-              <span class="tr-en">
-                The T&amp;S voice is professional, simple, approachable, and
-                value-driven. We write in both Arabic and English with clarity,
-                avoiding literal translation and exaggerated marketing claims.
-              </span>
-            </p>
-
-            <div class="voice-grid">
-              <div class="voice-block good">
-                <div class="voice-label good tr-ar">صياغة مفضلة ✅</div>
-                <div class="voice-label good tr-en">Preferred Style ✅</div>
-                <p class="tr-ar">
-                  "نساعد الجهات على بناء حلول رقمية عملية، قابلة للتطبيق، وتضيف
-                  قيمة حقيقية لفِرَق العمل."
-                </p>
-                <p class="tr-en">
-                  "We help organizations build practical digital solutions that
-                  teams can actually use and benefit from."
-                </p>
-              </div>
-
-              <div class="voice-block bad">
-                <div class="voice-label bad tr-ar">غير مفضل ❌</div>
-                <div class="voice-label bad tr-en">Not Recommended ❌</div>
-                <p class="tr-ar">
-                  "نقدّم أفضل وأقوى الحلول الرقمية على الإطلاق لنعيد تعريف
-                  المستقبل بالكامل."
-                </p>
-                <p class="tr-en">
-                  "We deliver the most powerful digital solutions ever that
-                  completely redefine the future."
-                </p>
-              </div>
-            </div>
-
-            <p class="muted">
-              <span class="tr-ar">
-                في حال الشك في الصياغة، يُفضّل مشاركة النص مع فريق التسويق
-                للمراجعة قبل النشر.
-              </span>
-              <span class="tr-en">
-                When in doubt, share your copy with the Marketing team for a
-                quick review before publishing.
-              </span>
-            </p>
-          </div>
-        </article>
-
-        <!-- CONTACT -->
-        <article id="contact" class="card glass-card">
-          <header class="card-header">
-            <div>
-              <div class="card-kicker tr-ar">للاستفسارات</div>
-              <div class="card-kicker tr-en">Contact</div>
-              <h2 class="card-title">
-                <span class="tr-ar">للاستفسارات والتنسيق – Contact</span>
-                <span class="tr-en">For Questions &amp; Approvals</span>
-              </h2>
-            </div>
-          </header>
-
-          <div class="card-body">
-            <p>
-              <span class="tr-ar">
-                لأي استفسار يتعلق بالهوية البصرية، أو لاعتماد تصميم قبل مشاركته
-                مع العميل أو نشره، يُرجى التواصل مع فريق العلامة التجارية.
-              </span>
-              <span class="tr-en">
-                For any branding-related questions or to get a design approved
-                before sending it to a client or publishing it, please reach out
-                to the Brand team.
-              </span>
-            </p>
-
-            <p>
-              <span class="tr-ar">
-                البريد المقترح:
-                <strong>brand@ts.sa</strong>
-              </span>
-              <span class="tr-en">
-                Suggested email:
-                <strong>brand@ts.sa</strong>
-              </span>
-            </p>
-
-            <p>
-              <span class="tr-ar">
-                في نظام التذاكر الداخلي، يُفضّل اختيار الفئة:
-              </span>
-              <span class="tr-en">
-                In the internal ticketing system, please use the category:
-              </span>
-            </p>
-
-            <div class="code-like">
-              <span class="icon">🏷️</span>
-              <span>Branding / Marketing</span>
-            </div>
-
-            <p class="muted">
-              <span class="tr-ar">
-                هذا يساعد الفريق على ترتيب الأولويات والتعامل مع الطلبات بشكل
-                أسرع.
-              </span>
-              <span class="tr-en">
-                This helps the team prioritize and respond to branding requests
-                more efficiently.
-              </span>
-            </p>
-          </div>
-        </article>
-      </section>
     </main>
 
     <!-- FOOTER -->
@@ -1731,6 +4925,71 @@
     </footer>
   </div>
 
+  <!-- ASSET PREVIEW MODAL -->
+  <div id="asset-preview-overlay" class="preview-overlay" aria-hidden="true">
+    <div class="preview-dialog" role="dialog" aria-modal="true">
+      <div class="preview-header">
+        <div class="preview-title-wrap">
+          <div class="preview-title">
+            <span id="asset-preview-title-ar" class="tr-ar"></span>
+            <span id="asset-preview-title-en" class="tr-en"></span>
+          </div>
+          <div class="preview-sub">
+            <span class="tr-ar">معاينة بصرية للملف قبل التحميل.</span>
+            <span class="tr-en">Visual preview of the asset before downloading.</span>
+          </div>
+        </div>
+        <button
+          type="button"
+          id="asset-preview-close"
+          class="preview-close-btn"
+          aria-label="Close preview"
+        >
+          ×
+        </button>
+      </div>
+
+      <div id="asset-preview-content" class="preview-body">
+      </div>
+
+      <div class="preview-actions">
+        <p class="preview-hint">
+          <span class="tr-ar">
+            يمكنك تحميل الملف مباشرة أو فتحه في تبويب جديد لمعاينته بالحجم الكامل.
+          </span>
+          <span class="tr-en">
+            You can download the file directly or open it in a new tab for full-size viewing.
+          </span>
+        </p>
+
+        <div class="btn-row">
+          <a
+            href="#"
+            id="asset-preview-open-link"
+            class="btn btn-ghost"
+            target="_blank"
+            rel="noopener"
+          >
+            <span class="icon">🌀</span>
+            <span class="tr-ar">فتح في تبويب جديد</span>
+            <span class="tr-en">Open in new tab</span>
+          </a>
+
+          <a
+            href="#"
+            id="asset-preview-download-link"
+            class="btn"
+            download
+          >
+            <span class="icon">⬇️</span>
+            <span class="tr-ar">تحميل الملف</span>
+            <span class="tr-en">Download file</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script>
     (function () {
       const htmlEl = document.documentElement;
@@ -1739,6 +4998,221 @@
       const paletteToggle = document.getElementById("palette-toggle");
       const palettePanel = document.getElementById("palette-panel");
       const copyButtons = document.querySelectorAll(".copy-btn");
+
+      const assetTiles = document.querySelectorAll(".asset-tile");
+      const overlay = document.getElementById("asset-preview-overlay");
+      const overlayContent = document.getElementById("asset-preview-content");
+      const overlayTitleAr = document.getElementById("asset-preview-title-ar");
+      const overlayTitleEn = document.getElementById("asset-preview-title-en");
+      const overlayCloseBtn = document.getElementById("asset-preview-close");
+      const overlayOpenLink = document.getElementById("asset-preview-open-link");
+      const overlayDownloadLink = document.getElementById("asset-preview-download-link");
+      const overlayHint = document.querySelector(".preview-hint");
+
+      const assetGroupTriggers = document.querySelectorAll("[data-asset-group]");
+
+      const assetGroups = {
+        logos: {
+          titleAr: "ملفات الشعار الرسمي",
+          titleEn: "Official Logo Assets",
+          items: [
+            {
+              id: "logo-light",
+              titleAr: "شعار فاتح – خلفيات داكنة",
+              titleEn: "Light logo – for dark backgrounds",
+              descAr: "يستخدم على الخلفيات الداكنة أو البنفسجية / الزرقاء.",
+              descEn: "Use on dark, purple, or blue backgrounds.",
+              downloads: [
+                {
+                  href: "assets/logos/ts-logo-light.svg",
+                  labelAr: "تحميل SVG",
+                  labelEn: "Download SVG"
+                },
+                {
+                  href: "assets/logos/ts-logo-light.png",
+                  labelAr: "تحميل PNG",
+                  labelEn: "Download PNG"
+                }
+              ]
+            },
+            {
+              id: "logo-dark",
+              titleAr: "شعار داكن – خلفيات فاتحة",
+              titleEn: "Dark logo – for light backgrounds",
+              descAr: "يستخدم على الخلفيات البيضاء أو الفاتحة.",
+              descEn: "Use on white or light backgrounds.",
+              downloads: [
+                {
+                  href: "assets/logos/ts-logo-dark.svg",
+                  labelAr: "تحميل SVG",
+                  labelEn: "Download SVG"
+                },
+                {
+                  href: "assets/logos/ts-logo-dark.png",
+                  labelAr: "تحميل PNG",
+                  labelEn: "Download PNG"
+                }
+              ]
+            }
+          ]
+        },
+        logoLight: {
+          titleAr: "الشعار الفاتح",
+          titleEn: "Light Logo",
+          items: [
+            {
+              id: "logo-light-single",
+              titleAr: "الشعار الفاتح",
+              titleEn: "Light Logo",
+              descAr: "للاستخدام على الخلفيات الداكنة / البنفسجية.",
+              descEn: "Use on dark or purple backgrounds.",
+              downloads: [
+                {
+                  href: "assets/logos/ts-logo-light.svg",
+                  labelAr: "تحميل SVG",
+                  labelEn: "Download SVG"
+                },
+                {
+                  href: "assets/logos/ts-logo-light.png",
+                  labelAr: "تحميل PNG",
+                  labelEn: "Download PNG"
+                }
+              ]
+            }
+          ]
+        },
+        logoDark: {
+          titleAr: "الشعار الغامق",
+          titleEn: "Dark Logo",
+          items: [
+            {
+              id: "logo-dark-single",
+              titleAr: "الشعار الغامق",
+              titleEn: "Dark Logo",
+              descAr: "للاستخدام على الخلفيات البيضاء أو الفاتحة.",
+              descEn: "Use on white or light backgrounds.",
+              downloads: [
+                {
+                  href: "assets/logos/ts-logo-dark.svg",
+                  labelAr: "تحميل SVG",
+                  labelEn: "Download SVG"
+                },
+                {
+                  href: "assets/logos/ts-logo-dark.png",
+                  labelAr: "تحميل PNG",
+                  labelEn: "Download PNG"
+                }
+              ]
+            }
+          ]
+        },
+        wordTemplates: {
+          titleAr: "قوالب الورق الرسمي والمستندات (Word)",
+          titleEn: "Official Word Letterhead & Documents",
+          items: [
+            {
+              id: "word-ar",
+              titleAr: "ورق رسمي – عربي",
+              titleEn: "Letterhead – Arabic",
+              descAr: "للمراسلات الرسمية باللغة العربية.",
+              descEn: "For Arabic formal correspondence.",
+              downloads: [
+                {
+                  href: "assets/templates/word-letterhead-ar.docx",
+                  labelAr: "تحميل .docx",
+                  labelEn: "Download .docx"
+                }
+              ]
+            },
+            {
+              id: "word-en",
+              titleAr: "ورق رسمي – إنجليزي",
+              titleEn: "Letterhead – English",
+              descAr: "للمراسلات الرسمية باللغة الإنجليزية.",
+              descEn: "For English formal correspondence.",
+              downloads: [
+                {
+                  href: "assets/templates/word-letterhead-en.docx",
+                  labelAr: "تحميل .docx",
+                  labelEn: "Download .docx"
+                }
+              ]
+            },
+            {
+              id: "word-bilingual",
+              titleAr: "ورق رسمي – ثنائي اللغة",
+              titleEn: "Letterhead – Bilingual",
+              descAr: "يوحد الهوية في مراسلات ثنائية اللغة.",
+              descEn: "Unified layout for bilingual letters.",
+              downloads: [
+                {
+                  href: "assets/templates/word-letterhead-bilingual.docx",
+                  labelAr: "تحميل .docx",
+                  labelEn: "Download .docx"
+                }
+              ]
+            },
+            {
+              id: "word-report",
+              titleAr: "قالب تقرير / مذكرة",
+              titleEn: "Report / Memo Template",
+              descAr: "للتقارير والمذكرات الداخلية.",
+              descEn: "For internal reports and memos.",
+              downloads: [
+                {
+                  href: "assets/templates/word-report-template.docx",
+                  labelAr: "تحميل .docx",
+                  labelEn: "Download .docx"
+                }
+              ]
+            }
+          ]
+        },
+        pptTemplates: {
+          titleAr: "قوالب العروض التقديمية (PowerPoint)",
+          titleEn: "Presentation Templates (PowerPoint)",
+          items: [
+            {
+              id: "ppt-main",
+              titleAr: "قالب العروض الرئيسي",
+              titleEn: "Main Presentation Template",
+              descAr: "للاستخدام العام في جميع العروض.",
+              descEn: "General-purpose deck for most presentations.",
+              downloads: [
+                {
+                  href: "assets/templates/ts-ppt-main-template.pptx",
+                  labelAr: "تحميل .pptx",
+                  labelEn: "Download .pptx"
+                }
+              ]
+            },
+            {
+              id: "ppt-verticals",
+              titleAr: "قالب العروض – حلول / قطاعات",
+              titleEn: "Solutions / Verticals Template",
+              descAr: "لعروض المتاجر، الحلول، والقطاعات المختلفة.",
+              descEn: "For solutions, verticals, and offering-specific decks.",
+              downloads: [
+                {
+                  href: "assets/templates/ts-ppt-verticals-template.pptx",
+                  labelAr: "تحميل .pptx",
+                  labelEn: "Download .pptx"
+                }
+              ]
+            }
+          ]
+        }
+      };
+
+      let defaultHintAr = "";
+      let defaultHintEn = "";
+      if (overlayHint) {
+        const arEl = overlayHint.querySelector(".tr-ar");
+        const enEl = overlayHint.querySelector(".tr-en");
+        defaultHintAr = arEl ? arEl.textContent : "";
+        defaultHintEn = enEl ? enEl.textContent : "";
+      }
+
 
       function setLanguage(lang) {
         if (lang === "en") {
@@ -1761,14 +5235,11 @@
       }
 
       function togglePalettePanel() {
+        if (!palettePanel || !paletteToggle) return;
         const isOpen = palettePanel.classList.toggle("open");
-        const arClosed = paletteToggle.querySelector(
-          ".tr-ar .text-when-closed"
-        );
+        const arClosed = paletteToggle.querySelector(".tr-ar .text-when-closed");
         const arOpen = paletteToggle.querySelector(".tr-ar .text-when-open");
-        const enClosed = paletteToggle.querySelector(
-          ".tr-en .text-when-closed"
-        );
+        const enClosed = paletteToggle.querySelector(".tr-en .text-when-closed");
         const enOpen = paletteToggle.querySelector(".tr-en .text-when-open");
 
         if (arClosed && arOpen && enClosed && enOpen) {
@@ -1810,12 +5281,8 @@
 
         if (navigator.clipboard && navigator.clipboard.writeText) {
           navigator.clipboard.writeText(hex).then(
-            () => {
-              showCopiedState(btn);
-            },
-            () => {
-              showCopiedState(btn);
-            }
+            () => showCopiedState(btn),
+            () => showCopiedState(btn)
           );
         } else {
           const textarea = document.createElement("textarea");
@@ -1847,10 +5314,156 @@
         }, 1600);
       }
 
-      langButtons.forEach((btn) => {
-        btn.addEventListener("click", () => {
-          setLanguage(btn.dataset.lang || "ar");
+      function openAssetPreview(tile) {
+        if (!overlay || !overlayContent || !overlayTitleAr || !overlayTitleEn) return;
+
+        const type = tile.dataset.previewType || "image";
+        const src = tile.dataset.previewSrc;
+        const downloadSrc = tile.dataset.downloadSrc || src;
+        const titleAr = tile.dataset.titleAr || "";
+        const titleEn = tile.dataset.titleEn || "";
+
+        if (!src) return;
+
+        overlayTitleAr.textContent = titleAr;
+        overlayTitleEn.textContent = titleEn;
+
+        overlayContent.classList.remove("preview-body--group");
+        overlayContent.innerHTML = "";
+        if (type === "pdf") {
+          const iframe = document.createElement("iframe");
+          iframe.src = src;
+          iframe.title = titleEn || titleAr || "Preview";
+          overlayContent.appendChild(iframe);
+        } else {
+          const img = document.createElement("img");
+          img.src = src;
+          img.alt = titleEn || titleAr || "Asset preview";
+          overlayContent.appendChild(img);
+        }
+
+        if (overlayHint && defaultHintAr && defaultHintEn) {
+          const arEl = overlayHint.querySelector(".tr-ar");
+          const enEl = overlayHint.querySelector(".tr-en");
+          if (arEl) arEl.textContent = defaultHintAr;
+          if (enEl) enEl.textContent = defaultHintEn;
+        }
+
+        if (overlayOpenLink) {
+          overlayOpenLink.href = src;
+          overlayOpenLink.style.display = "";
+        }
+        if (overlayDownloadLink) {
+          overlayDownloadLink.href = downloadSrc;
+          overlayDownloadLink.style.display = "";
+        }
+
+        overlay.classList.add("visible");
+        overlay.setAttribute("aria-hidden", "false");
+      }
+
+      function openAssetGroup(groupId) {
+        if (!overlay || !overlayContent || !overlayTitleAr || !overlayTitleEn) return;
+        const config = assetGroups[groupId];
+        if (!config) return;
+
+        overlayTitleAr.textContent = config.titleAr || "";
+        overlayTitleEn.textContent = config.titleEn || "";
+
+        if (!overlayContent) return;
+        overlayContent.innerHTML = "";
+        overlayContent.classList.add("preview-body--group");
+
+        const grid = document.createElement("div");
+        grid.className = "preview-group-grid";
+
+        config.items.forEach((item) => {
+          const card = document.createElement("div");
+          card.className = "preview-group-item";
+
+          const titleRow = document.createElement("div");
+          titleRow.className = "preview-group-title";
+          titleRow.innerHTML = `
+            <span class="tr-ar">${item.titleAr || ""}</span>
+            <span class="tr-en">${item.titleEn || ""}</span>
+          `;
+          card.appendChild(titleRow);
+
+          if (item.descAr || item.descEn) {
+            const desc = document.createElement("div");
+            desc.className = "preview-group-desc";
+            desc.innerHTML = `
+              <span class="tr-ar">${item.descAr || ""}</span>
+              <span class="tr-en">${item.descEn || ""}</span>
+            `;
+            card.appendChild(desc);
+          }
+
+          if (item.downloads && item.downloads.length) {
+            const buttons = document.createElement("div");
+            buttons.className = "preview-group-buttons";
+            item.downloads.forEach((dl, index) => {
+              const link = document.createElement("a");
+              link.href = dl.href;
+              link.setAttribute("download", "");
+              link.className = index === 0 ? "btn" : "btn btn-ghost";
+              link.innerHTML = `
+                <span class="icon">⬇️</span>
+                <span class="tr-ar">${dl.labelAr || ""}</span>
+                <span class="tr-en">${dl.labelEn || ""}</span>
+              `;
+              buttons.appendChild(link);
+            });
+            card.appendChild(buttons);
+          }
+
+          grid.appendChild(card);
         });
+
+        overlayContent.appendChild(grid);
+
+        if (overlayHint) {
+          const arEl = overlayHint.querySelector(".tr-ar");
+          const enEl = overlayHint.querySelector(".tr-en");
+          if (arEl) arEl.textContent = "اختر أحد الملفات أدناه لتحميله.";
+          if (enEl) enEl.textContent = "Select one of the assets below to download.";
+        }
+
+        if (overlayOpenLink) {
+          overlayOpenLink.style.display = "none";
+        }
+        if (overlayDownloadLink) {
+          overlayDownloadLink.style.display = "none";
+        }
+
+        overlay.classList.add("visible");
+        overlay.setAttribute("aria-hidden", "false");
+      }
+
+function closeAssetPreview() {
+        if (!overlay) return;
+        overlay.classList.remove("visible");
+        overlay.setAttribute("aria-hidden", "true");
+        if (overlayContent) {
+          overlayContent.classList.remove("preview-body--group");
+          overlayContent.innerHTML = "";
+        }
+        if (overlayHint && defaultHintAr && defaultHintEn) {
+          const arEl = overlayHint.querySelector(".tr-ar");
+          const enEl = overlayHint.querySelector(".tr-en");
+          if (arEl) arEl.textContent = defaultHintAr;
+          if (enEl) enEl.textContent = defaultHintEn;
+        }
+        if (overlayOpenLink) {
+          overlayOpenLink.style.display = "";
+        }
+        if (overlayDownloadLink) {
+          overlayDownloadLink.style.display = "";
+        }
+      }
+
+      langButtons.forEach((btn) => {
+        btn.addEventListener("click", () => setLanguage(btn.dataset.lang || "ar"));
       });
 
       if (paletteToggle && palettePanel) {
@@ -1861,7 +5474,42 @@
         btn.addEventListener("click", handleCopyClick);
       });
 
-      // Default language: Arabic
+      assetTiles.forEach((tile) => {
+        tile.addEventListener("click", () => {
+          openAssetPreview(tile);
+        });
+      });
+
+      assetGroupTriggers.forEach((trigger) => {
+        trigger.addEventListener("click", () => {
+          const groupId = trigger.getAttribute("data-asset-group");
+          if (groupId) {
+            openAssetGroup(groupId);
+          }
+        });
+      });
+
+
+      if (overlayCloseBtn) {
+        overlayCloseBtn.addEventListener("click", closeAssetPreview);
+      }
+
+      if (overlay) {
+        overlay.addEventListener("click", (event) => {
+          if (event.target === overlay) {
+            closeAssetPreview();
+          }
+        });
+      }
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+          if (overlay && overlay.classList.contains("visible")) {
+            closeAssetPreview();
+          }
+        }
+      });
+
       setLanguage("ar");
     })();
   </script>
